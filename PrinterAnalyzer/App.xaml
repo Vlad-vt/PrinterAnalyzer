@@ -4,6 +4,7 @@
               xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModel ="clr-namespace:PrinterAnalyzer.MVVM.ViewModel"
              xmlns:view ="clr-namespace:PrinterAnalyzer.MVVM.View"
+             xmlns:viewsm ="clr-namespace:PrinterAnalyzer.MVVM.View.Small"
              xmlns:local="clr-namespace:PrinterAnalyzer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -134,7 +135,7 @@
             </Style>
 
             <DataTemplate DataType = "{x:Type viewModel:InfoCardViewModel}">
-                <view:InfoCard/>
+                <viewsm:InfoCard/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:PrintersViewModel}">
