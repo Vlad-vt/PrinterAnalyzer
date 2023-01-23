@@ -40,8 +40,8 @@
                                    TextAlignment="Center" VerticalAlignment="Center" Margin="3,0,0,2"/>
                     </Border>
                     <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                        <TextBlock Text="KioskLife APP" FontSize="15" Margin="0,0,0,5" Foreground="#c2cfff"/>
-                        <TextBlock Text="Beta 2.0.0" FontSize="11" Foreground="#7788bf"/>
+                        <TextBlock Text="Printer Analyzer" FontSize="15" Margin="0,0,0,5" Foreground="#c2cfff"/>
+                        <TextBlock Text="v1.0.0" FontSize="11" Foreground="#7788bf"/>
                     </StackPanel>
                 </StackPanel>
                 <Separator Height="0.8" Margin="20,30" Background="#46558a"/>
