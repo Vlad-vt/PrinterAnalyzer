@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterAnalyzer", "PrinterAnalyzer\PrinterAnalyzer.csproj", "{ACC3485D-4A8D-4791-83DC-9FCAE02E017F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACC3485D-4A8D-4791-83DC-9FCAE02E017F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC3485D-4A8D-4791-83DC-9FCAE02E017F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC3485D-4A8D-4791-83DC-9FCAE02E017F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC3485D-4A8D-4791-83DC-9FCAE02E017F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {114D02F2-D80B-420A-8147-17AAD8D28A85}
+	EndGlobalSection
+EndGlobal
