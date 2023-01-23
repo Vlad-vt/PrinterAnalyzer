@@ -3,12 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModel="clr-namespace:KioskLife.MVVM.ViewModel"
+        xmlns:viewModel="clr-namespace:PrinterAnalyzer.MVVM.ViewModel"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:PrinterAnalyzer.MVVM.View"
         xmlns:local="clr-namespace:PrinterAnalyzer"
         mc:Ignorable="d"
         Title="MainWindow" Height="740" Width="1280" WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" MouseMove="rctHeader_MouseMove"  MouseDown="rctHeader_MouseLeftButtonDown" MouseUp="rctHeader_MouseLeftButtonUp" WindowState="Minimized">
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -22,8 +26,8 @@
         <Border Grid.RowSpan="2" CornerRadius="10,0,0,10">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Color="#223266" Offset="0"/>
-                    <GradientStop Color="#27396b" Offset="1"/>
+                    <GradientStop Color="#FF587FFF" Offset="0"/>
+                    <GradientStop Color="#FF448BFF" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
             <StackPanel>
@@ -32,66 +36,35 @@
                     <Border CornerRadius="10" Width="40" Height="40">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                <GradientStop Color="#7f7cf1" Offset="0"/>
-                                <GradientStop Color="#d3b7ff" Offset="1"/>
+                                <GradientStop Color="#FF8DF7FF" Offset="0"/>
+                                <GradientStop Color="#FFB9B7FF" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
-                        <TextBlock Text="KL" Foreground="#ffff" FontSize="22" FontWeight="SemiBold"
+                        <TextBlock Text="PA" Foreground="#ffff" FontSize="22" FontWeight="SemiBold"
                                    TextAlignment="Center" VerticalAlignment="Center" Margin="3,0,0,2"/>
                     </Border>
                     <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                        <TextBlock Text="Printer Analyzer" FontSize="15" Margin="0,0,0,5" Foreground="#c2cfff"/>
-                        <TextBlock Text="v1.0.0" FontSize="11" Foreground="#7788bf"/>
+                        <TextBlock Text="Printer Analyzer" FontSize="15" Margin="0,0,0,5" Foreground="White"/>
+                        <TextBlock Text="v1.0.0" FontSize="11" Foreground="White"/>
                     </StackPanel>
                 </StackPanel>
-                <Separator Height="0.8" Margin="20,30" Background="#46558a"/>
+                <Separator Height="0.8" Margin="20,30" Background="White"/>
 
                 <!--Menu Buttons-->
-                <Button Command="{Binding ShowDashboardsView}"  Style="{Binding DashboardbuttonStyle}">
+                <Button Command="{Binding ShowSIIRPE10View}"  Style="{Binding RPE10buttonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="MonitorDashboard" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
+                        <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="White"/>
+                        <TextBlock Text="SII RP-E10" Style="{StaticResource menuButtonText}" Foreground="White"/>
                     </StackPanel>
                 </Button>
 
-                <Button Command="{Binding ShowPrintersView}" Style="{Binding PrintersbuttonStyle}">
+                <Button Command="{Binding ShowSIIRPF10G10View}" Style="{Binding RPF10G10buttonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Printers" Style="{StaticResource menuButtonText}"/>
+                        <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="White"/>
+                        <TextBlock Text="SII (RP-F10/G10)" Style="{StaticResource menuButtonText}" Foreground="White"/>
                     </StackPanel>
                 </Button>
 
-                <Button Command="{Binding ShowScannersView}" Style="{Binding ScannersbuttonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Scanner" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Scanners" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Command="{Binding ShowDispensersView}"  Style="{Binding DispensersbuttonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Sim" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Dispensers" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </Button>
-                <Button Command="{Binding ShowCamerasView}"  Style="{Binding CamerasbuttonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Camera" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Cameras" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </Button>
-                <Button Command="{Binding ShowTerminalsView}"  Style="{Binding TerminalsbuttonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Payment" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Terminals" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource menuButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Settings" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </Button>
             </StackPanel>
         </Border>
 
@@ -99,8 +72,8 @@
         <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  CornerRadius="0,10,10,0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                    <GradientStop Color="#41518f" Offset="0"/>
-                    <GradientStop Color="#2c386c" Offset="1"/>
+                    <GradientStop Color="#FF64A5C1" Offset="0"/>
+                    <GradientStop Color="#FF5F94FF" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
