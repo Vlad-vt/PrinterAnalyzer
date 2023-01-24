@@ -16,4 +16,10 @@
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SiiRpe1ClassLib">
+      <HintPath>libs\SiiRpe1ClassLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

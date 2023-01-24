@@ -31,7 +31,7 @@
                              EllipseBackground1="Violet" EllipseBackground2="PaleVioletRed"/>
         </Grid>
         <!--Title-->
-        <TextBlock Text="Printers Data" FontSize="26" Foreground="#ccd7ff" HorizontalAlignment="Left" Margin="50,35,0,20"/>
+        <TextBlock Text="{Binding PrinterTypeName}" FontSize="26" Foreground="White" HorizontalAlignment="Left" Margin="50,35,0,20"/>
 
 
         <!--Orders Section-->
@@ -40,7 +40,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="380"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="1"  CornerRadius="20" Padding="35,25" Background="#243771" Margin="50,10,10,40">
+            <Border Grid.Column="1"  CornerRadius="20" Padding="35,25" Background="#FF5BB6FF" Margin="50,10,10,40">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="25" Direction="-100" Color="#FF6EB3FF"/>
+                </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -69,7 +72,10 @@
                 </Grid>
             </Border>
             <!--Chart Section-->
-            <Border Grid.Column="0" CornerRadius="20" Padding="35,25" Background="#243771" Margin="50,10,10,40">
+            <Border Grid.Column="0" CornerRadius="20" Padding="35,25" Background="#FF5BB6FF" Margin="50,10,10,40">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="25" Direction="-100" Color="#FF6EB3FF"/>
+                </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -88,7 +94,7 @@
                             <ItemsControl ItemsSource="{Binding PrintersList}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <dc:PrinterCard Title="{Binding Name}" Number="{Binding Errors}" NetworkData="{Binding NetworkData}" WorkingIcon="{Binding WorkingColor}" WorkingStatus="{Binding IsOnline}" Icon="Printer" Background1="#FF3754AB" Background2="#FF517BF9" 
+                                        <dc:PrinterCard Title="{Binding Name}" Number="{Binding Errors}" NetworkData="{Binding NetworkData}" WorkingIcon="{Binding WorkingColor}" WorkingStatus="{Binding IsOnline}" Icon="Printer" Background1="#6B9FF0" Background2="#4D66F0" 
                              EllipseBackground1="#FF3861DE" EllipseBackground2="#FF89A6FF" Margin="0,0,0,50"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

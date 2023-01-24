@@ -14,7 +14,6 @@
                 <GradientStop Color="{Binding Path=Background2, ElementName=PrinterCardf}" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
-
         <Border.Clip>
             <RectangleGeometry RadiusX="15" RadiusY="15" Rect="0,0,490,180"/>
         </Border.Clip>

@@ -51,14 +51,14 @@
                 <Separator Height="0.8" Margin="20,30" Background="White"/>
 
                 <!--Menu Buttons-->
-                <Button Command="{Binding ShowSIIRPE10View}"  Style="{Binding RPE10buttonStyle}">
+                <Button Command="{Binding ShowSII_RP_E10View}"  Style="{Binding RPE10buttonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="White"/>
                         <TextBlock Text="SII RP-E10" Style="{StaticResource menuButtonText}" Foreground="White"/>
                     </StackPanel>
                 </Button>
 
-                <Button Command="{Binding ShowSIIRPF10G10View}" Style="{Binding RPF10G10buttonStyle}">
+                <Button Command="{Binding ShowSII_RP_F10_G10View}" Style="{Binding RPF10G10buttonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="White"/>
                         <TextBlock Text="SII (RP-F10/G10)" Style="{StaticResource menuButtonText}" Foreground="White"/>

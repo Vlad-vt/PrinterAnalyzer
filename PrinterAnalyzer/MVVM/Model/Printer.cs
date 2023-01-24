@@ -1,5 +1,6 @@
 ﻿using PrinterAnalyzer.Core;
 using Newtonsoft.Json;
+using System;
 
 namespace PrinterAnalyzer.MVVM.Model
 {
@@ -43,7 +44,12 @@ namespace PrinterAnalyzer.MVVM.Model
 
         public Printer()
         {
+            MachineName = Environment.MachineName;
+        }
 
+        public Printer(string Name)
+        {
+            MachineName = Environment.MachineName;
         }
     }
 }
