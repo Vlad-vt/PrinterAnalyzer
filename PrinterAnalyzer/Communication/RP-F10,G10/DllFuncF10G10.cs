@@ -76,7 +76,6 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             m_DevInfo = new DevInfoG10F10();
             m_StatusAPI = new StatusAPI();
             m_StatusAPI.StatusCallback += new StatusAPI.StatusCallbackHandler(CbStatusFuncSampProc);
-
             m_BarcodeScannerAPI = new BarcodeScannerAPI();
             m_BarcodeScannerAPI.BarcodeDataCallback += new BarcodeScannerAPI.BarcodeDataCallbackHandler(CbBarcodeDataFuncSampProc);
         }

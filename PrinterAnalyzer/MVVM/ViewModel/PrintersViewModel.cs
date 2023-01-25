@@ -1,4 +1,5 @@
 ﻿using PrinterAnalyzer.Communication.RP_E10;
+using PrinterAnalyzer.Communication.RP_F10_G10;
 using PrinterAnalyzer.Core;
 using PrinterAnalyzer.Enums;
 using PrinterAnalyzer.MVVM.Model;
@@ -29,7 +30,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         public ObservableCollection<Printer> PrintersList
         {
             get { return _printerList; }
-            set { _printerList = value; }
+            set { _printerList = value; OnPropertyChanged(); }
         }
 
         private string _printersCount;
@@ -56,18 +57,21 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         private List<Printer> PrintersMainList;
 
-        private DllFuncE10 m_DLLFunc;
+        private DllFuncE10 m_DLLFuncE10;
+
+        private DllFuncF10G10 m_DLLFuncF10G10;
 
         public PrintersViewModel()
         {
             ActionList = new ObservableCollection<PrinterAction>();
             PrintersList = new ObservableCollection<Printer>();
             PrintersMainList = new List<Printer>();
-            m_DLLFunc = new DllFuncE10();
-            m_DLLFunc.myCallbackEvent += new DllFuncE10.callbackEventHandler(AddMsgCBStatus);
-            m_DLLFunc = new DllFuncE10();
-            m_DLLFunc.myCallbackEvent += new DllFuncE10.callbackEventHandler(AddMsgCBStatus);
-            m_DLLFunc.CallbackSamp(true);
+            m_DLLFuncE10 = new DllFuncE10();
+            m_DLLFuncE10.myCallbackEvent += new DllFuncE10.callbackEventHandler(AddMsgCBStatus);
+            m_DLLFuncE10.CallbackSamp(false);
+            m_DLLFuncF10G10 = new DllFuncF10G10();
+            m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
+            m_DLLFuncF10G10.CallbackStatusSamp(false);
             CreatePrinterList();
         }
 
@@ -87,11 +91,15 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         private void AddMsgCBStatus(string msg)
         {
-            System.Windows.MessageBox.Show(msg);
+            PrintersList[0].Errors = "";
+            PrintersList[0].Errors += msg;
         }
 
         public void GetNewPrinterData(PrinterType printerType)
         {
+            PrintersList.Clear();
+            if (PrintersMainList.Count < 1)
+                return;
             for (int i = 0; i < PrintersMainList.Count; i++)
             {
                 switch(printerType)
@@ -100,12 +108,16 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         if (PrintersMainList[i].Name.Contains("E10"))
                         {
                             PrintersList.Add(new Printer(PrintersMainList[i].Name));
+                            m_DLLFuncE10.OpenSamp(PrintersMainList[i].Name);
+                            m_DLLFuncE10.CallbackSamp(true);
                         }
                         break;
                     case PrinterType.SII_RP_F10_G10:
                         if (PrintersMainList[i].Name.Contains("F10") || PrintersMainList[i].Name.Contains("G10"))
                         {
                             PrintersList.Add(new Printer(PrintersMainList[i].Name));
+                            m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[i].Name);
+                            m_DLLFuncF10G10.CallbackStatusSamp(true);
                         }
                         break;
                 }

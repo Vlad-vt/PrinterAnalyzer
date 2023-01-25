@@ -47,9 +47,10 @@ namespace PrinterAnalyzer.MVVM.Model
             MachineName = Environment.MachineName;
         }
 
-        public Printer(string Name)
+        public Printer(string name)
         {
             MachineName = Environment.MachineName;
+            Name = name;
         }
     }
 }

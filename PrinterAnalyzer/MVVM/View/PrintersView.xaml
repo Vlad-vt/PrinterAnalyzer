@@ -15,27 +15,12 @@
             <RowDefinition Height="170"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--Info Card-->
-        <Grid Grid.Row="1" Margin="50,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <uc:InfoCard Grid.Column="0" Title="Total Uses" Number="{Binding infoCardViewModel.TotalUses}" Icon="Eye" Background1="#827bff" Background2="#d9b5ff" 
-                             EllipseBackground1="#b298fd" EllipseBackground2="#e4bbff"/>
-            <uc:InfoCard Grid.Column="1" Title="Total Warnings" Number="{Binding infoCardViewModel.TotalWarnings}" Icon="Warning" Background1="#fd8a87" Background2="#f3ab92" 
-                             EllipseBackground1="#fbd5a8" EllipseBackground2="#fdb89b"/>
-            <uc:InfoCard Grid.Column="2" Title="Total Erorrs" Number="{Binding infoCardViewModel.TotalErrors}" Icon="Error" Background1="PaleVioletRed" Background2="MediumVioletRed" 
-                             EllipseBackground1="Violet" EllipseBackground2="PaleVioletRed"/>
-        </Grid>
         <!--Title-->
         <TextBlock Text="{Binding PrinterTypeName}" FontSize="26" Foreground="White" HorizontalAlignment="Left" Margin="50,35,0,20"/>
 
 
         <!--Orders Section-->
-        <Grid Grid.Row="2">
+        <Grid Grid.RowSpan="2" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="380"/>
