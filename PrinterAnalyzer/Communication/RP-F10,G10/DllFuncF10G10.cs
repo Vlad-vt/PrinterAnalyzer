@@ -1,5 +1,6 @@
 ﻿using SII.SDK.PosPrinter;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace PrinterAnalyzer.Communication.RP_F10_G10
@@ -7,7 +8,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
     internal class DllFuncF10G10
     {
         // Callback handler definition
-        public delegate void callbackEventHandler(string msg);
+        public delegate void callbackEventHandler(Dictionary<string,string> msg);
         public event callbackEventHandler MyCallbackEvent;
 
         // The property indicating whether to display barcode data as text
@@ -83,56 +84,88 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
         //	Callback status function sample
         private void CbStatusFuncSampProc(ASB status)
         {
-            StringBuilder sb = new StringBuilder();
-
-            // First offline check
+            Dictionary<string, string> errorStatus = new Dictionary<string, string>();
             if (status == ASB.ASB_NO_RESPONSE)
             {
-                sb.Append("* Offline ");
+                errorStatus.Add("* Printer is offline", "Yes");
+                MyCallbackEvent(errorStatus);
+                return;
             }
-            // Check each status and set state
             else
-            {
-                sb.Append("* Voltage error : ");
-                sb.Append(((status & ASB.ASB_VP_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Hardware error : ");
-                sb.Append(((status & ASB.ASB_HARDWARE_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Head temp error : ");
-                sb.Append(((status & ASB.ASB_HEAD_TEMPERATUR_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* AutoCutter error : ");
-                sb.Append(((status & ASB.ASB_AUTOCUTTER_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Out-of-paper error : ");
-                sb.Append(((status & ASB.ASB_RECEIPT_END) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Paper-near-end error : ");
-                sb.Append(((status & ASB.ASB_RECEIPT_NEAR_END) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Mark paper jam error : ");
-                sb.Append(((status & ASB.ASB_MARK_PAPER_JAM_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Cover/Platen open error : ");
-                sb.Append(((status & ASB.ASB_COVER_OPEN) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Feed switch status : ");
-                sb.Append(((status & ASB.ASB_PAPER_FEED) == 0) ? "Off\r\n" : "On\r\n");
-                sb.Append("* Paper feed status : ");
-                sb.Append(((status & ASB.ASB_NOW_PRINTING) == 0) ? "Stop\r\n" : "Operating\r\n");
-                sb.Append("* Return-waiting status : ");
-                sb.Append(((status & ASB.ASB_RETURN_WAITING) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Drawer sensor status : ");
-                sb.Append(((status & ASB.ASB_DRAWER_KICK) == 0) ? "Off\r\n" : "On\r\n");
-                sb.Append("* FLASH memory rewriting : ");
-                sb.Append(((status & ASB.ASB_FLASH_MEMORY_REWRITING) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* CG font status : ");
-                sb.Append(((status & ASB.ASB_CG_FONT) == 0) ? "Off\r\n" : "On\r\n");
-                sb.Append("* Battery level : ");
-                sb.Append(((status & ASB.ASB_BATTERY_FULL) == 0) ? (((status & ASB.ASB_BATTERY_MIDDLE) == 0) ? (((status & ASB.ASB_BATTERY_LOW) == 0) ? "Off\r\n" : "Low\r\n" ):"Middle\r\n" ): "Full\r\n");
-                sb.Append("* Battery error : ");
-                sb.Append(((status & ASB.ASB_BATTERY_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Automatic recovery error : ");
-                sb.Append(((status & ASB.ASB_AUTORECOVER_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Unrecover error : ");
-                sb.Append(((status & ASB.ASB_UNRECOVER_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-            }
+                errorStatus.Add("* Printer is offline", "No");
 
-            // Show the printer status
-            MyCallbackEvent(sb.ToString());
+            if (status == ASB.ASB_VP_ERR)
+                errorStatus.Add("* Voltage error : ", "Yes");
+            else
+                errorStatus.Add("* Voltage error : ", "No");
+
+
+            if (status == ASB.ASB_HEAD_TEMPERATUR_ERR)
+                errorStatus.Add("* Head temp error : ", "Yes");
+            else
+                errorStatus.Add("* Head temp error : ", "No");
+
+            if (status == ASB.ASB_AUTOCUTTER_ERR)
+                errorStatus.Add("* AutoCutter error : ", "Yes");
+            else
+                errorStatus.Add("* AutoCutter error : ", "No");
+
+            if (status == ASB.ASB_RECEIPT_END)
+                errorStatus.Add("* Out-of-paper error : ", "Yes");
+            else
+                errorStatus.Add("* Out-of-paper error : ", "No");
+
+            if (status == ASB.ASB_RECEIPT_NEAR_END)
+                errorStatus.Add("* Paper-near-end error : ", "Yes");
+            else
+                errorStatus.Add("* Paper-near-end error : ", "No");
+
+            if (status == ASB.ASB_MARK_PAPER_JAM_ERR)
+                errorStatus.Add("* Mark paper jam error : ", "Yes");
+            else
+                errorStatus.Add("* Mark paper jam error : ", "No");
+
+            if (status == ASB.ASB_COVER_OPEN)
+                errorStatus.Add("* Cover/Platen open error : ", "Yes");
+            else
+                errorStatus.Add("* Cover/Platen open error : ", "No");
+
+            if (status == ASB.ASB_PAPER_FEED)
+                errorStatus.Add("* Paper feed status : ", "Off");
+            else
+                errorStatus.Add("* Paper feed status : ", "On");
+
+            if (status == ASB.ASB_RETURN_WAITING)
+                errorStatus.Add("* Return-waiting status : ", "Yes");
+            else
+                errorStatus.Add("* Return-waiting status : ", "No");
+
+            if (status == ASB.ASB_NOW_PRINTING)
+                errorStatus.Add("* Is printing now", "Yes");
+            else
+                errorStatus.Add("* Is printing now", "No");
+
+            if (status == ASB.ASB_DRAWER_KICK)
+                errorStatus.Add("* Drawer sensor status : ", "Off");
+            else
+                errorStatus.Add("* Drawer sensor status : ", "On");
+
+            if (status == ASB.ASB_FLASH_MEMORY_REWRITING)
+                errorStatus.Add("* FLASH memory rewriting : ", "Yes");
+            else
+                errorStatus.Add("* FLASH memory rewriting : ", "No");
+
+            if (status == ASB.ASB_AUTORECOVER_ERR)
+                errorStatus.Add("* Automatic recovery error : ", "No");
+            else
+                errorStatus.Add("* Automatic recovery error : ", "Yes");
+
+            if (status == ASB.ASB_UNRECOVER_ERR)
+                errorStatus.Add("* Unrecover error : ", "Yes");
+            else
+                errorStatus.Add("* Unrecover error : ", "No");
+
+            MyCallbackEvent(errorStatus);
             return;
         }
 
@@ -180,7 +213,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             }
 
             // Show the connection status of the barcode scanner or barcode data
-            MyCallbackEvent(sb.ToString());
+            //MyCallbackEvent(sb.ToString());
             return;
         }
 

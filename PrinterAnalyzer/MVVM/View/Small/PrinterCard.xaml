@@ -33,7 +33,18 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                     <TextBlock Text="Errors: " Foreground="OrangeRed" FontWeight="SemiBold" FontSize="18"/>
-                    <TextBlock Text="{Binding Path=Number, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="300" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=VoltageError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=AutocutterError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=CoverOpenError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=DrawerSensorError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=FeedSwitchStateError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=HeadError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=NoResponseError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=OutOfPaperError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=PaperNearEndError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=UnrecoverableError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
 

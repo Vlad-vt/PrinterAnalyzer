@@ -90,6 +90,150 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty NumberProperty = DependencyProperty.Register("Number", typeof(string), typeof(PrinterCard));
 
+        public string VoltageError
+        {
+            get
+            {
+                return (string)GetValue(VoltageProperty);
+            }
+            set
+            {
+                SetValue(VoltageProperty, value);
+            }
+        }
+        public static readonly DependencyProperty VoltageProperty = DependencyProperty.Register("VoltageError", typeof(string), typeof(PrinterCard));
+
+        public string HeadError
+        {
+            get
+            {
+                return (string)GetValue(HeadErrorProperty);
+            }
+            set
+            {
+                SetValue(HeadErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty HeadErrorProperty = DependencyProperty.Register("HeadError", typeof(string), typeof(PrinterCard));
+
+        public string AutocutterError
+        {
+            get
+            {
+                return (string)GetValue(AutocutterErrorProperty);
+            }
+            set
+            {
+                SetValue(AutocutterErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty AutocutterErrorProperty = DependencyProperty.Register("AutocutterError", typeof(string), typeof(PrinterCard));
+
+        public string OutOfPaperError
+        {
+            get
+            {
+                return (string)GetValue(OutOfPaperErrorProperty);
+            }
+            set
+            {
+                SetValue(OutOfPaperErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty OutOfPaperErrorProperty = DependencyProperty.Register("OutOfPaperError", typeof(string), typeof(PrinterCard));
+
+        public string PaperNearEndError
+        {
+            get
+            {
+                return (string)GetValue(PaperNearEndErrorProperty);
+            }
+            set
+            {
+                SetValue(PaperNearEndErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PaperNearEndErrorProperty = DependencyProperty.Register("PaperNearEndError", typeof(string), typeof(PrinterCard));
+
+        public string PaperJamError
+        {
+            get
+            {
+                return (string)GetValue(PaperJamErrorProperty);
+            }
+            set
+            {
+                SetValue(PaperJamErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PaperJamErrorProperty = DependencyProperty.Register("PaperJamError", typeof(string), typeof(PrinterCard));
+
+        public string CoverOpenError
+        {
+            get
+            {
+                return (string)GetValue(CoverOpenErrorProperty);
+            }
+            set
+            {
+                SetValue(CoverOpenErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty CoverOpenErrorProperty = DependencyProperty.Register("CoverOpenError", typeof(string), typeof(PrinterCard));
+
+        public string DrawerSensorError
+        {
+            get
+            {
+                return (string)GetValue(DrawerSensorErrorProperty);
+            }
+            set
+            {
+                SetValue(DrawerSensorErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty DrawerSensorErrorProperty = DependencyProperty.Register("DrawerSensorError", typeof(string), typeof(PrinterCard));
+
+        public string UnrecoverableError
+        {
+            get
+            {
+                return (string)GetValue(UnrecoverableErrorProperty);
+            }
+            set
+            {
+                SetValue(UnrecoverableErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty UnrecoverableErrorProperty = DependencyProperty.Register("UnrecoverableError", typeof(string), typeof(PrinterCard));
+
+        public string FeedSwitchStateError
+        {
+            get
+            {
+                return (string)GetValue(FeedSwitchStateErrorProperty);
+            }
+            set
+            {
+                SetValue(FeedSwitchStateErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty FeedSwitchStateErrorProperty = DependencyProperty.Register("FeedSwitchStateError", typeof(string), typeof(PrinterCard));
+
+        public string NoResponseError
+        {
+            get
+            {
+                return (string)GetValue(NoResponseErrorProperty);
+            }
+            set
+            {
+                SetValue(NoResponseErrorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty NoResponseErrorProperty = DependencyProperty.Register("NoResponseError", typeof(string), typeof(PrinterCard));
+
+
         public string Icon
         {
             get

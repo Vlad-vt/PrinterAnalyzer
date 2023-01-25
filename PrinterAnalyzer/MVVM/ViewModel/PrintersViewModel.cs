@@ -89,10 +89,10 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         }
 
 
-        private void AddMsgCBStatus(string msg)
+        private void AddMsgCBStatus(Dictionary<string, string> msg)
         {
-            PrintersList[0].Errors = "";
-            PrintersList[0].Errors += msg;
+            PrintersList[0].Errors = msg;
+            
         }
 
         public void GetNewPrinterData(PrinterType printerType)

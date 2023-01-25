@@ -1,6 +1,7 @@
 ﻿using PrinterAnalyzer.Core;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace PrinterAnalyzer.MVVM.Model
 {
@@ -10,37 +11,68 @@ namespace PrinterAnalyzer.MVVM.Model
 
         public string Name { get; set; }
 
-        public string Errors { get; set; }
-
-        private string _isOnline;
-        public string IsOnline
+        private Dictionary<string, string> _errors;
+        public Dictionary<string, string> Errors
         {
             get
             {
-                return _isOnline;
+                return _errors;
             }
             set
             {
-                _isOnline = value;
+                _errors = value;
+                for(int i = 0; i < _errors.Count; i++)
+                {
+                    try
+                    {
+                        VoltageError = _errors.GetValueOrDefault("* Voltage error : ");
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private string _workingStatus;
+        public string WorkingStatus
+        {
+            get
+            {
+                return _workingStatus;
+            }
+            set
+            {
+                _workingStatus = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _workingColor;
+        private string _workingIcon;
 
         [JsonIgnore]
-        public string WorkingColor
+        public string WorkingIcon
         {
             get
             {
-                return _workingColor;
+                return _workingIcon;
             }
             set
             {
-                _workingColor = value;
+                _workingIcon = value;
                 OnPropertyChanged();
             }
         }
+
+        private string _voltageError;
+
+        public string VoltageError
+        {
+            get { return _voltageError; }
+            set { _voltageError = value; OnPropertyChanged(); }
+        }
+
 
         public Printer()
         {

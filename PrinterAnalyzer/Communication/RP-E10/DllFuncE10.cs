@@ -8,7 +8,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
 {
     public class DllFuncE10
     {
-        public delegate void callbackEventHandler(string msg);
+        public delegate void callbackEventHandler(Dictionary<string, string> msg);
         public event callbackEventHandler myCallbackEvent;
 
 
@@ -29,6 +29,15 @@ namespace PrinterAnalyzer.Communication.RP_E10
         private void CbFuncSampProc(ASB status)
         {
             Dictionary<string, string> errorStatus = new Dictionary<string, string>();
+            if (status == ASB.ASB_NO_RESPONSE)
+            {
+                errorStatus.Add("* Printer is offline", "Yes");
+                myCallbackEvent(errorStatus);
+                return;
+            }
+            else
+                errorStatus.Add("* Printer is offline", "No");
+
             if (status == ASB.ASB_VP_ERR)
                 errorStatus.Add("* Voltage error : ", "Yes");
             else
@@ -39,7 +48,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
                 errorStatus.Add("* Head temp error : ", "Yes");
             else
                 errorStatus.Add("* Head temp error : ", "No");
-
+`
             if (status == ASB.ASB_AUTOCUTTER_ERR)
                 errorStatus.Add("* AutoCutter error : ", "Yes");
             else
@@ -76,61 +85,31 @@ namespace PrinterAnalyzer.Communication.RP_E10
                 errorStatus.Add("* Return-waiting status : ", "No");
 
             if (status == ASB.ASB_NOW_PRINTING)
-                errorStatus.Add("");
+                errorStatus.Add("* Is printing now", "Yes");
             else
-                errorStatus.Add("");
+                errorStatus.Add("* Is printing now", "No");
 
             if (status == ASB.ASB_DRAWER_KICK)
-                errorStatus.Add();
+                errorStatus.Add("* Drawer sensor status : ", "Off");
             else
-                errorStatus.Add();
+                errorStatus.Add("* Drawer sensor status : ", "On");
 
             if (status == ASB.ASB_FLASH_MEMORY_REWRITING)
-                errorStatus.Add();
+                errorStatus.Add("* FLASH memory rewriting : ", "Yes");
             else
-                errorStatus.Add();
+                errorStatus.Add("* FLASH memory rewriting : ", "No");
 
             if (status == ASB.ASB_AUTORECOVER_ERR)
-                errorStatus.Add();
+                errorStatus.Add("* Automatic recovery error : ", "No");
             else
-                errorStatus.Add();
+                errorStatus.Add("* Automatic recovery error : ", "Yes");
 
             if (status == ASB.ASB_UNRECOVER_ERR)
-                errorStatus.Add("", "Yes");
+                errorStatus.Add("* Unrecover error : ", "Yes");
             else
-                errorStatus.Add("", "No");
+                errorStatus.Add("* Unrecover error : ", "No");
 
-            StringBuilder sb = new StringBuilder();
-             sb.Append("* Voltage error : ");
-                sb.Append(((status & ASB.ASB_VP_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Head temp error : ");
-                sb.Append(((status & ASB.ASB_HEAD_TEMPERATUR_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* AutoCutter error : ");
-                sb.Append(((status & ASB.ASB_AUTOCUTTER_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Out-of-paper error : ");
-                sb.Append(((status & ASB.ASB_RECEIPT_END) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Paper-near-end error : ");
-                sb.Append(((status & ASB.ASB_RECEIPT_NEAR_END) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Mark paper jam error : ");
-                sb.Append(((status & ASB.ASB_MARK_PAPER_JAM_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Cover/Platen open error : ");
-                sb.Append(((status & ASB.ASB_COVER_OPEN) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Feed switch status : ");
-                sb.Append(((status & ASB.ASB_PAPER_FEED) == 0) ? "Off\r\n" : "On\r\n");
-                sb.Append("* Paper feed status : ");
-                sb.Append(((status & ASB.ASB_NOW_PRINTING) == 0) ? "Stop\r\n" : "Operating\r\n");
-                sb.Append("* Return-waiting status : ");
-                sb.Append(((status & ASB.ASB_RETURN_WAITING) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Drawer sensor status : ");
-                sb.Append(((status & ASB.ASB_DRAWER_KICK) == 0) ? "Off\r\n" : "On\r\n");
-                sb.Append("* FLASH memory rewriting : ");
-                sb.Append(((status & ASB.ASB_FLASH_MEMORY_REWRITING) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Automatic recovery error : ");
-                sb.Append(((status & ASB.ASB_AUTORECOVER_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-                sb.Append("* Unrecover error : ");
-                sb.Append(((status & ASB.ASB_UNRECOVER_ERR) == 0) ? "No\r\n" : "Yes\r\n");
-            msg = string.Format("[{0:D2}] {1}", callbackMsgNum++, status);
-            myCallbackEvent(msg);
+            myCallbackEvent(errorStatus);
 
             return;
         }
