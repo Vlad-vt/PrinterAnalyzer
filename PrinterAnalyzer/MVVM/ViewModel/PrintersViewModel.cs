@@ -56,15 +56,16 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         private List<Printer> PrintersMainList;
 
-        private DllFunc m_DLLFunc;
+        private DllFuncE10 m_DLLFunc;
 
         public PrintersViewModel()
         {
             ActionList = new ObservableCollection<PrinterAction>();
             PrintersList = new ObservableCollection<Printer>();
             PrintersMainList = new List<Printer>();
-            m_DLLFunc = new DllFunc();
-            m_DLLFunc.myCallbackEvent += new DllFunc.callbackEventHandler(AddMsgCBStatus);
+            m_DLLFunc = new DllFuncE10();
+            m_DLLFunc.myCallbackEvent += new DllFuncE10.callbackEventHandler(AddMsgCBStatus);
+            m_DLLFunc.CallbackSamp(true);
             CreatePrinterList();
         }
 

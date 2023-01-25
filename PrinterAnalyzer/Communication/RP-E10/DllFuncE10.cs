@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PrinterAnalyzer.Communication.RP_E10
 {
-    public class DllFunc
+    public class DllFuncE10
     {
         public delegate void callbackEventHandler(string msg);
         public event callbackEventHandler myCallbackEvent;
@@ -17,7 +17,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
         private string msg = "";
         internal StatusAPI m_StatusAPI;        // .NET API class
 
-        public DllFunc()
+        public DllFuncE10()
         {
             m_StatusAPI = new StatusAPI();
             m_StatusAPI.StatusCallback += new StatusAPI.StatusCallbackHandler(CbFuncSampProc);
@@ -72,7 +72,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
             byte[] writeData = Encoding.ASCII.GetBytes("Seiko Instruments Inc.\r\n");
 
             returnValue = m_StatusAPI.DirectIOEx(writeData, timeout);      // Sample Print Data
-            returnValue = m_StatusAPI.DirectIOEx(DevInfo.footerCmd, ref readData, timeout, readFlag, option);
+            returnValue = m_StatusAPI.DirectIOEx(DevInfoE10.footerCmd, ref readData, timeout, readFlag, option);
             if (returnValue == ErrorCode.SUCCESS)
             {
                 msg = string.Format("[ DirectIOEx ]\r\n\r\n");
@@ -103,14 +103,14 @@ namespace PrinterAnalyzer.Communication.RP_E10
         {
             byte[] readData;
 
-            if (indexCapability == DevInfo.tblCapability.Length)
+            if (indexCapability == DevInfoE10.tblCapability.Length)
             {
                 indexCapability = 0;
             }
 
-            msg = string.Format("[ GetPrnCapability : {0} ]\r\n\r\n", DevInfo.tblCapability[indexCapability]);
+            msg = string.Format("[ GetPrnCapability : {0} ]\r\n\r\n", DevInfoE10.tblCapability[indexCapability]);
 
-            ErrorCode returnValue = m_StatusAPI.GetPrnCapability(DevInfo.tblCapability[indexCapability], out readData);
+            ErrorCode returnValue = m_StatusAPI.GetPrnCapability(DevInfoE10.tblCapability[indexCapability], out readData);
             if (returnValue == ErrorCode.SUCCESS)
             {
                 DispMsg(readData, readData.Length);
@@ -118,7 +118,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
             else
             {
                 msg = string.Format("Error ( {0} ) : [ GetPrnCapability : {1} ]",
-                    returnValue, DevInfo.tblCapability[indexCapability]);
+                    returnValue, DevInfoE10.tblCapability[indexCapability]);
             }
 
             indexCapability++;
@@ -131,21 +131,21 @@ namespace PrinterAnalyzer.Communication.RP_E10
         {
             int readData;
 
-            if (indexCounter == DevInfo.tblCounterId.Length)
+            if (indexCounter == DevInfoE10.tblCounterId.Length)
             {
                 indexCounter = 0;
             }
 
-            ErrorCode returnValue = m_StatusAPI.GetCounter(DevInfo.tblCounterId[indexCounter], out readData);
+            ErrorCode returnValue = m_StatusAPI.GetCounter(DevInfoE10.tblCounterId[indexCounter], out readData);
             if (returnValue == 0)
             {
                 msg = string.Format("[ GetCounter = {0} ]\r\n\r\n{1}",
-                    DevInfo.tblCounterId[indexCounter], readData);
+                    DevInfoE10.tblCounterId[indexCounter], readData);
             }
             else
             {
                 msg = string.Format("Error ( {0} ) : [ GetCounter = {1} ]",
-                    returnValue, DevInfo.tblCounterId[indexCounter]);
+                    returnValue, DevInfoE10.tblCounterId[indexCounter]);
             }
 
             indexCounter++;

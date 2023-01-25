@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="SiiPosCls">
+      <HintPath>libs\SiiPosCls.dll</HintPath>
+    </Reference>
     <Reference Include="SiiRpe1ClassLib">
       <HintPath>libs\SiiRpe1ClassLib.dll</HintPath>
     </Reference>

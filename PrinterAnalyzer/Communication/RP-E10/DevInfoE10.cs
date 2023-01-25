@@ -1,6 +1,6 @@
 ﻿namespace PrinterAnalyzer.Communication.RP_E10
 {
-    class DevInfo
+    class DevInfoE10
     {
         // Sample commands
         public static byte[] footerCmd = { 0x12, 0x71, 0x00 };
