@@ -3,9 +3,12 @@ using PrinterAnalyzer.Communication.RP_F10_G10;
 using PrinterAnalyzer.Core;
 using PrinterAnalyzer.Enums;
 using PrinterAnalyzer.MVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing.Printing;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace PrinterAnalyzer.MVVM.ViewModel
 {
@@ -88,6 +91,14 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             }
         }
 
+        private void AddNewAction(string action)
+        {
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                ActionList.Insert(0, new PrinterAction(action, "[" + DateTime.Now.ToString() + "]:  ", "Printer"));
+            });
+        }
+
 
         private void AddMsgCBStatus(Dictionary<string, string> msg)
         {
@@ -97,8 +108,10 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         public void GetNewPrinterData(PrinterType printerType)
         {
             PrintersList.Clear();
+            ActionList.Clear();
             if (PrintersMainList.Count < 1)
                 return;
+            int count = 0;
             for (int i = 0; i < PrintersMainList.Count; i++)
             {
                 switch(printerType)
@@ -107,6 +120,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         if (PrintersMainList[i].Name.Contains("E10"))
                         {
                             PrintersList.Add(new Printer(PrintersMainList[i].Name));
+                            PrintersList[count].printerAction += AddNewAction;
+                            count++;
                             m_DLLFuncE10.OpenSamp(PrintersMainList[i].Name);
                             m_DLLFuncE10.CallbackSamp(true);
                         }
@@ -115,6 +130,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         if (PrintersMainList[i].Name.Contains("F10") || PrintersMainList[i].Name.Contains("G10"))
                         {
                             PrintersList.Add(new Printer(PrintersMainList[i].Name));
+                            PrintersList[count].printerAction += AddNewAction;
+                            count++;
                             m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[i].Name);
                             m_DLLFuncF10G10.CallbackStatusSamp(true);
                         }

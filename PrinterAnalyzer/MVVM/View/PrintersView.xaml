@@ -43,7 +43,7 @@
                             <ItemsControl ItemsSource="{Binding ActionList}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <uc:InfoCard Title="{Binding Name}" Icon="{Binding DeviceType}" Number="{Binding Date}"/>
+                                        <uc:InfoAction Title="{Binding Name}" Icon="{Binding DeviceType}" Number="{Binding Date}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
@@ -90,6 +90,15 @@
                                                         OutOfPaperError="{Binding OutOfPaperError}"
                                                         OutOfPaperForeground="{Binding OutOfPaperColor}"
                                                         OutOfPaperVisibility="{Binding OutOfPaperVisibility}"
+                                                        PaperNearEndError="{Binding PaperNearEndError}"
+                                                        PaperNearEndForeground="{Binding PaperNearEndColor}"
+                                                        PaperNearEndVisibility="{Binding PaperNearEndVisibility}"
+                                                        DrawerSensorError="{Binding DrawerSensorError}"
+                                                        DrawerSensorForeground="{Binding DrawerSensorForeground}"
+                                                        DrawerSensorVisibility="{Binding DrawerSensorVisibility}"
+                                                        CoverOpenError="{Binding CoverPlatenOpenError}"
+                                                        CoverOpenForeground="{Binding CoverPlatenOpenErrorColor}"
+                                                        CoverOpenVisibility="{Binding CoverPlatenOpenErrorVisibility}"
                                                         NoResponseError="{Binding NoResponseError}"
                                                         NoResponseForeground= "#FFFF623E"
                                                         NoResponseVisibility="{Binding NoResponseVisibility}"/>

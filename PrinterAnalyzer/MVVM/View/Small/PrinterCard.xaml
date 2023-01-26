@@ -6,26 +6,23 @@
              xmlns:local="clr-namespace:PrinterAnalyzer.MVVM.View.Small"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Name="PrinterCardf" Width="520" Height="420">
-    <Border Margin="0,0,25,0">
+             Name="PrinterCardf" MinWidth="520" Width="auto" MaxWidth="1000" Height="auto">
+    <Border Margin="0,0,25,0" CornerRadius="15">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                 <GradientStop Color="{Binding Path=Background1, ElementName=PrinterCardf}" Offset="0"/>
                 <GradientStop Color="{Binding Path=Background2, ElementName=PrinterCardf}" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
-        <Border.Clip>
-            <RectangleGeometry RadiusX="15" RadiusY="15" Rect="0,0,490,420"/>
-        </Border.Clip>
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="360"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Margin="10,10,0,0" VerticalAlignment="Top">
+            <StackPanel Grid.Row="0" Grid.RowSpan="4" Margin="10,10,0,0" VerticalAlignment="Top" Orientation="Vertical">
                 <TextBlock Text="{Binding Path=Title, ElementName=PrinterCardf}" Foreground="#FFBAFFA3" FontSize="18" Margin="0,0,0,5" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal" Margin="0,2,0,0" Visibility="Hidden">
                     <TextBlock Text="Network data: " Foreground="#FFF2FFB0" FontSize="15" FontWeight="SemiBold"/>
@@ -36,36 +33,36 @@
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding Path=VoltageError, ElementName=PrinterCardf}" Foreground="{Binding Path=VoltageForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding Path=AutocutterError, ElementName=PrinterCardf}" Foreground="{Binding Path=AutocutterForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=AutocutterVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=CoverOpenError, ElementName=PrinterCardf}" Foreground="{Binding Path=CoverOpenError,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=DrawerSensorError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=CoverOpenError, ElementName=PrinterCardf}" Foreground="{Binding Path=CoverOpenError,ElementName=PrinterCardf}" Visibility="{Binding Path=CoverOpenVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=DrawerSensorError, ElementName=PrinterCardf}" Foreground="{Binding Path=DrawerSensorForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=DrawerSensorVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding Path=FeedSwitchStateError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=HeadError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=HeadError, ElementName=PrinterCardf}" Foreground="{Binding Path=HeadErrorForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=HeadErrorVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding Path=PaperJamError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperJamForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=PaperJamVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=OutOfPaperError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=PaperNearEndError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=OutOfPaperError, ElementName=PrinterCardf}" Foreground="{Binding Path=OutOfPaperForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=OutOfPaperVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=PaperNearEndError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperNearEndForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=PaperNearEndVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding Path=NoResponseError, ElementName=PrinterCardf}" Foreground="{Binding Path=NoResponseForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=NoResponseVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                     </StackPanel>
                 </StackPanel>
+                <Separator Grid.Row="1" Height="1" Margin="10,0,80,-10" Background="#FF8FA8FF"/>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <TextBlock Text="Status:" Foreground="#FFF2FFB0" FontSize="15" FontWeight="SemiBold" Margin="10,5,20,0"/>
+                    <TextBlock Text="{Binding Path=WorkingStatus, ElementName=PrinterCardf}" Foreground="White" FontSize="12" FontWeight="SemiBold" Margin="0,8,5,0"/>
+                    <md:PackIcon Kind="CircleSlice8" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Margin="0,9,20,0"/>
+                </StackPanel>
             </StackPanel>
 
-            <Separator Grid.Row="1" Height="1" Margin="10,0,80,-10" Background="#FF8FA8FF"/>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <TextBlock Text="Status:" Foreground="#FFF2FFB0" FontSize="15" FontWeight="SemiBold" Margin="10,5,20,0"/>
-                <TextBlock Text="{Binding Path=WorkingStatus, ElementName=PrinterCardf}" Foreground="White" FontSize="12" FontWeight="SemiBold" Margin="0,8,5,0"/>
-                <md:PackIcon Kind="CircleSlice8" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Margin="0,9,20,0"/>
-            </StackPanel>
-
-            <Ellipse Grid.RowSpan="3" Width="250" Height="250" Margin="0, -280, -100, 0" HorizontalAlignment="Right">
+<!--
+            <Ellipse Grid.RowSpan="3" Width="200" Height="auto" MaxHeight="250" Margin="0, -280, -100, 0" HorizontalAlignment="Right">
                 <Ellipse.Fill>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="{Binding Path=EllipseBackground1, ElementName=PrinterCardf}" Offset="0"/>
                         <GradientStop Color="{Binding Path=EllipseBackground2, ElementName=PrinterCardf}" Offset="1"/>
                     </LinearGradientBrush>
                 </Ellipse.Fill>
-            </Ellipse>
+            </Ellipse>-->
 
-            <md:PackIcon Kind="{Binding Path=Icon, ElementName=PrinterCardf}" Grid.RowSpan="3" Margin="0,0,40,240" Width="50" Height="50" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <!--<md:PackIcon Kind="{Binding Path=Icon, ElementName=PrinterCardf}" Grid.RowSpan="3" Margin="0,0,40,240" Width="50" Height="50" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>-->
         </Grid>
     </Border>
 </UserControl>

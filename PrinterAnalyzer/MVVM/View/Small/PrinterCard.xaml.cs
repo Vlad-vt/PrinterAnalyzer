@@ -347,6 +347,7 @@ namespace PrinterAnalyzer.MVVM.View.Small
 
         #endregion
 
+        #region CoverOpenError
         public string CoverOpenError
         {
             get
@@ -360,6 +361,35 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty CoverOpenErrorProperty = DependencyProperty.Register("CoverOpenError", typeof(string), typeof(PrinterCard));
 
+        public string CoverOpenForeground
+        {
+            get
+            {
+                return (string)GetValue(CoverOpenForegroundProperty);
+            }
+            set
+            {
+                SetValue(CoverOpenForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty CoverOpenForegroundProperty = DependencyProperty.Register("CoverOpenForeground", typeof(string), typeof(PrinterCard));
+
+        public string CoverOpenVisibility
+        {
+            get
+            {
+                return (string)GetValue(CoverOpenVisibilityProperty);
+            }
+            set
+            {
+                SetValue(CoverOpenVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty CoverOpenVisibilityProperty = DependencyProperty.Register("CoverOpenVisibility", typeof(string), typeof(PrinterCard));
+
+        #endregion
+
+        #region Drawer Sensor
         public string DrawerSensorError
         {
             get
@@ -372,6 +402,33 @@ namespace PrinterAnalyzer.MVVM.View.Small
             }
         }
         public static readonly DependencyProperty DrawerSensorErrorProperty = DependencyProperty.Register("DrawerSensorError", typeof(string), typeof(PrinterCard));
+
+        public string DrawerSensorForeground
+        {
+            get
+            {
+                return (string)GetValue(DrawerSensorForegroundProperty);
+            }
+            set
+            {
+                SetValue(DrawerSensorForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty DrawerSensorForegroundProperty = DependencyProperty.Register("DrawerSensorForeground", typeof(string), typeof(PrinterCard));
+
+        public string DrawerSensorVisibility
+        {
+            get
+            {
+                return (string)GetValue(DrawerSensorVisibilityProperty);
+            }
+            set
+            {
+                SetValue(DrawerSensorVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty DrawerSensorVisibilityProperty = DependencyProperty.Register("DrawerSensorVisibility", typeof(string), typeof(PrinterCard));
+        #endregion
 
         public string UnrecoverableError
         {
