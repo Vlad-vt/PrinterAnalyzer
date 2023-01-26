@@ -48,7 +48,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
                 errorStatus.Add("* Head temp error : ", "Yes");
             else
                 errorStatus.Add("* Head temp error : ", "No");
-`
+
             if (status == ASB.ASB_AUTOCUTTER_ERR)
                 errorStatus.Add("* AutoCutter error : ", "Yes");
             else

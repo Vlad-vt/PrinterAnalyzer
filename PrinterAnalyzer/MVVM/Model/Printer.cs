@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace PrinterAnalyzer.MVVM.Model
 {
@@ -21,49 +22,98 @@ namespace PrinterAnalyzer.MVVM.Model
             set
             {
                 _errors = value;
-                for(int i = 0; i < _errors.Count; i++)
+                if (_errors.GetValueOrDefault("* Printer is offline") == "Yes")
                 {
-                    try
-                    {
-                        VoltageError = _errors.GetValueOrDefault("* Voltage error : ");
-                    }
-                    catch
-                    {
-
-                    }
+                    IsOnline = "Offline";
+                    WorkingColor = "#FFFF623E";
+                    NoResponseError = "Printer is offline";
+                    NoResponseVisibility = "Visible";
                 }
-            }
-        }
+                else
+                {
+                    IsOnline = "Online";
+                    WorkingColor = "#FF47FF3E";
+                    NoResponseVisibility = "Collapsed";
+                }
 
-        private string _workingStatus;
-        public string WorkingStatus
-        {
-            get
-            {
-                return _workingStatus;
-            }
-            set
-            {
-                _workingStatus = value;
+                if (_errors.GetValueOrDefault("* Voltage error : ") == "Yes")
+                {
+                    VoltageVisibility = "Visible";
+                    VoltageError = "* Voltage error : " + _errors.GetValueOrDefault("* Voltage error : ");
+                    VoltageColor = "#FFFF623E";
+                }
+                else if(_errors.GetValueOrDefault("* Voltage error : ") == "No")
+                {
+                    VoltageVisibility = "Visible";
+                    VoltageError = "* Voltage error : " + _errors.GetValueOrDefault("* Voltage error : ");
+                    VoltageColor = "#FF47FF3E";
+                }
+                else
+                {
+                    VoltageVisibility = "Collapsed";
+                }
                 OnPropertyChanged();
             }
         }
 
-        private string _workingIcon;
+        private string _isOnline;
+        public string IsOnline
+        {
+            get
+            {
+                return _isOnline;
+            }
+            set
+            {
+                _isOnline = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _workingColor;
 
         [JsonIgnore]
-        public string WorkingIcon
+        public string WorkingColor
         {
             get
             {
-                return _workingIcon;
+                return _workingColor;
             }
             set
             {
-                _workingIcon = value;
+                _workingColor = value;
                 OnPropertyChanged();
             }
         }
+
+        #region NoResponse Error
+
+        private string _noResponseError;
+
+        public string NoResponseError
+        {
+            get { return _noResponseError; }
+            set { _noResponseError = value; OnPropertyChanged(); }
+        }
+
+        private string _noResponseVisibility;
+
+        public string NoResponseVisibility
+        {
+            get
+            {
+                return _noResponseVisibility;
+            }
+            set
+            {
+                _noResponseVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Voltage Error
 
         private string _voltageError;
 
@@ -73,6 +123,331 @@ namespace PrinterAnalyzer.MVVM.Model
             set { _voltageError = value; OnPropertyChanged(); }
         }
 
+        private string _voltageColor;
+
+        public string VoltageColor
+        {
+            get
+            {
+                return _voltageColor;
+            }
+            set
+            {
+                _voltageColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _voltageVisibility;
+
+        public string VoltageVisibility
+        {
+            get
+            {
+                return _voltageVisibility;
+            }
+            set
+            {
+                _voltageVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Autocutter Error
+
+        private string _autocutterError;
+
+        public string AutocutterError
+        {
+            get { return _autocutterError; }
+            set { _autocutterError = value; OnPropertyChanged(); }
+        }
+
+        private string _autocutterColor;
+
+        public string AutocutterColor
+        {
+            get
+            {
+                return _autocutterColor;
+            }
+            set
+            {
+                _autocutterColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _autocutterVisibility;
+
+        public string AutocutterVisibility
+        {
+            get
+            {
+                return _autocutterVisibility;
+            }
+            set
+            {
+                _autocutterVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region HeadTemperature Error
+
+        private string _headTemperatureError;
+
+        public string HeadTemperatureError
+        {
+            get { return _headTemperatureError; }
+            set { _headTemperatureError = value; OnPropertyChanged(); }
+        }
+
+        private string _headTemperatureColor;
+
+        public string HeadTemperatureColor
+        {
+            get
+            {
+                return _headTemperatureColor;
+            }
+            set
+            {
+                _headTemperatureColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _headTemperatureVisibility;
+
+        public string HeadTemperatureVisibility
+        {
+            get
+            {
+                return _headTemperatureVisibility;
+            }
+            set
+            {
+                _headTemperatureVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Out Of Paper Error
+
+        private string _outOfPaperError;
+
+        public string OutOfPaperError
+        {
+            get { return _outOfPaperError; }
+            set { _outOfPaperError = value; OnPropertyChanged(); }
+        }
+
+        private string _outOfPaperErrorColor;
+
+        public string OutOfPaperErrorColor
+        {
+            get
+            {
+                return _outOfPaperErrorColor;
+            }
+            set
+            {
+                _outOfPaperErrorColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _outOfPaperErrorVisibility;
+
+        public string OutOfPaperErrorVisibility
+        {
+            get
+            {
+                return _outOfPaperErrorVisibility;
+            }
+            set
+            {
+                _outOfPaperErrorVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Paper Jam Error
+
+        private string _paperJamError;
+
+        public string PaperJamErrorError
+        {
+            get { return _paperJamError; }
+            set { _paperJamError = value; OnPropertyChanged(); }
+        }
+
+        private string _paperJamColor;
+
+        public string PaperJamColor
+        {
+            get
+            {
+                return _paperJamColor;
+            }
+            set
+            {
+                _paperJamError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _paperJamErrorVisibility;
+
+        public string PaperJamErrorVisibility
+        {
+            get
+            {
+                return _paperJamErrorVisibility;
+            }
+            set
+            {
+                _paperJamErrorVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Cover/Platen Open Error
+
+        private string _coverPlatenOpenError;
+
+        public string CoverPlatenOpenError
+        {
+            get { return _coverPlatenOpenError; }
+            set { _coverPlatenOpenError = value; OnPropertyChanged(); }
+        }
+
+        private string _coverPlatenOpenErrorColor;
+
+        public string CoverPlatenOpenErrorColor
+        {
+            get
+            {
+                return _coverPlatenOpenErrorColor;
+            }
+            set
+            {
+                _coverPlatenOpenError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _coverPlatenOpenErrorVisibility;
+
+        public string CoverPlatenOpenErrorVisibility
+        {
+            get
+            {
+                return _coverPlatenOpenErrorVisibility;
+            }
+            set
+            {
+                _coverPlatenOpenErrorVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Paper feed status Error
+
+        private string _paperFeedStatusError;
+
+        public string PaperFeedStatusError
+        {
+            get { return _paperFeedStatusError; }
+            set { _paperFeedStatusError = value; OnPropertyChanged(); }
+        }
+
+        private string _paperFeedStatusErrorColor;
+
+        public string PaperFeedStatusErrorColor
+        {
+            get
+            {
+                return _paperFeedStatusErrorColor;
+            }
+            set
+            {
+                _paperFeedStatusErrorColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _paperFeedStatusVisibility;
+
+        public string PaperFeedStatusVisibility
+        {
+            get
+            {
+                return _paperFeedStatusVisibility;
+            }
+            set
+            {
+                _paperFeedStatusVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Paper Near End Error
+
+        private string _paperNearEndError;
+
+        public string PaperNearEndErrorError
+        {
+            get { return _paperNearEndError; }
+            set { _paperNearEndError = value; OnPropertyChanged(); }
+        }
+
+        private string _paperNearEndErrorColor;
+
+        public string PaperNearEndErrorColor
+        {
+            get
+            {
+                return _paperNearEndErrorColor;
+            }
+            set
+            {
+                _paperNearEndError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _paperNearEndErrorVisibility;
+
+        public string PaperNearEndErrorVisibility
+        {
+            get
+            {
+                return _paperNearEndErrorVisibility;
+            }
+            set
+            {
+                _paperNearEndErrorVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
 
         public Printer()
         {

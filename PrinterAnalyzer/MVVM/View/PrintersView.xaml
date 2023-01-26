@@ -80,7 +80,16 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <dc:PrinterCard Title="{Binding Name}" Number="{Binding Errors}" NetworkData="{Binding NetworkData}" WorkingIcon="{Binding WorkingColor}" WorkingStatus="{Binding IsOnline}" Icon="Printer" Background1="#6B9FF0" Background2="#4D66F0" 
-                             EllipseBackground1="#FF3861DE" EllipseBackground2="#FF89A6FF" Margin="0,0,0,50"/>
+                             EllipseBackground1="#FF3861DE" EllipseBackground2="#FF89A6FF" Margin="0,0,0,50"
+                                                        VoltageError="{Binding VoltageError}"
+                                                        VoltageForeground="{Binding VoltageColor}"
+                                                        VoltageVisibility="{Binding VoltageVisibility}"
+                                                        PaperJamError="{Binding PaperJamError}"
+                                                        PaperJamForeground="{Binding PaperJamColor}"
+                                                        PaperJamVisibility="{Binding PaperJamVisibility}"
+                                                        NoResponseError="{Binding NoResponseError}"
+                                                        NoResponseForeground= "#FFFF623E"
+                                                        NoResponseVisibility="{Binding NoResponseVisibility}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>

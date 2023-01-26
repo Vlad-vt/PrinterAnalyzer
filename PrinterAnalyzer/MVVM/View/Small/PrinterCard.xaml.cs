@@ -25,6 +25,7 @@ namespace PrinterAnalyzer.MVVM.View.Small
             InitializeComponent();
         }
 
+        #region Default Properties
         public string Title
         {
             get
@@ -90,6 +91,9 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty NumberProperty = DependencyProperty.Register("Number", typeof(string), typeof(PrinterCard));
 
+        #endregion
+
+        #region Voltage
         public string VoltageError
         {
             get
@@ -103,6 +107,35 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty VoltageProperty = DependencyProperty.Register("VoltageError", typeof(string), typeof(PrinterCard));
 
+        public string VoltageForeground
+        {
+            get
+            {
+                return (string)GetValue(VoltageForegroundProperty);
+            }
+            set
+            {
+                SetValue(VoltageForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty VoltageForegroundProperty = DependencyProperty.Register("VoltageForeground", typeof(string), typeof(PrinterCard));
+
+        public string VoltageVisibility
+        {
+            get
+            {
+                return (string)GetValue(VoltageVisibilityProperty);
+            }
+            set
+            {
+                SetValue(VoltageVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty VoltageVisibilityProperty = DependencyProperty.Register("VoltageVisibility", typeof(string), typeof(PrinterCard));
+
+        #endregion
+
+        #region HeadError
         public string HeadError
         {
             get
@@ -116,6 +149,35 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty HeadErrorProperty = DependencyProperty.Register("HeadError", typeof(string), typeof(PrinterCard));
 
+        public string HeadErrorForeground
+        {
+            get
+            {
+                return (string)GetValue(HeadErrorForegroundProperty);
+            }
+            set
+            {
+                SetValue(HeadErrorForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty HeadErrorForegroundProperty = DependencyProperty.Register("HeadErrorForeground", typeof(string), typeof(PrinterCard));
+
+        public string HeadErrorVisibility
+        {
+            get
+            {
+                return (string)GetValue(HeadErrorVisibilityProperty);
+            }
+            set
+            {
+                SetValue(HeadErrorVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty HeadErrorVisibilityProperty = DependencyProperty.Register("HeadErrorVisibility", typeof(string), typeof(PrinterCard));
+
+        #endregion
+
+        #region Autocutter
         public string AutocutterError
         {
             get
@@ -129,6 +191,36 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty AutocutterErrorProperty = DependencyProperty.Register("AutocutterError", typeof(string), typeof(PrinterCard));
 
+        public string AutocutterForeground
+        {
+            get
+            {
+                return (string)GetValue(AutocutterForegroundProperty);
+            }
+            set
+            {
+                SetValue(AutocutterForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty AutocutterForegroundProperty = DependencyProperty.Register("AutocutterForeground", typeof(string), typeof(PrinterCard));
+
+        public string AutocutterVisibility
+        {
+            get
+            {
+                return (string)GetValue(AutocutterVisibilityProperty);
+            }
+            set
+            {
+                SetValue(AutocutterVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty AutocutterVisibilityProperty = DependencyProperty.Register("AutocutterVisibility", typeof(string), typeof(PrinterCard));
+
+
+        #endregion
+
+        #region Out-Of-Paper
         public string OutOfPaperError
         {
             get
@@ -142,6 +234,35 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty OutOfPaperErrorProperty = DependencyProperty.Register("OutOfPaperError", typeof(string), typeof(PrinterCard));
 
+        public string OutOfPaperForeground
+        {
+            get
+            {
+                return (string)GetValue(OutOfPaperForegroundProperty);
+            }
+            set
+            {
+                SetValue(OutOfPaperForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty OutOfPaperForegroundProperty = DependencyProperty.Register("OutOfPaperForeground", typeof(string), typeof(PrinterCard));
+
+        public string OutOfPaperVisibility
+        {
+            get
+            {
+                return (string)GetValue(OutOfPaperVisibilityProperty);
+            }
+            set
+            {
+                SetValue(OutOfPaperVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty OutOfPaperVisibilityProperty = DependencyProperty.Register("OutOfPaperVisibility", typeof(string), typeof(PrinterCard));
+
+        #endregion
+
+        #region PaperNearEndError
         public string PaperNearEndError
         {
             get
@@ -155,6 +276,36 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty PaperNearEndErrorProperty = DependencyProperty.Register("PaperNearEndError", typeof(string), typeof(PrinterCard));
 
+        public string PaperNearEndForeground
+        {
+            get
+            {
+                return (string)GetValue(PaperNearEndForegroundProperty);
+            }
+            set
+            {
+                SetValue(PaperNearEndForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PaperNearEndForegroundProperty = DependencyProperty.Register("PaperNearEndForeground", typeof(string), typeof(PrinterCard));
+
+        public string PaperNearEndVisibility
+        {
+            get
+            {
+                return (string)GetValue(PaperNearEndVisibilityProperty);
+            }
+            set
+            {
+                SetValue(PaperNearEndVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PaperNearEndVisibilityProperty = DependencyProperty.Register("PaperNearEndVisibility", typeof(string), typeof(PrinterCard));
+
+
+        #endregion
+
+        #region PaperJam Error
         public string PaperJamError
         {
             get
@@ -167,6 +318,34 @@ namespace PrinterAnalyzer.MVVM.View.Small
             }
         }
         public static readonly DependencyProperty PaperJamErrorProperty = DependencyProperty.Register("PaperJamError", typeof(string), typeof(PrinterCard));
+
+        public string PaperJamForeground
+        {
+            get
+            {
+                return (string)GetValue(PaperJamForegroundProperty);
+            }
+            set
+            {
+                SetValue(PaperJamForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PaperJamForegroundProperty = DependencyProperty.Register("PaperJamForeground", typeof(string), typeof(PrinterCard));
+
+        public string PaperJamVisibility
+        {
+            get
+            {
+                return (string)GetValue(PaperJamVisibilityProperty);
+            }
+            set
+            {
+                SetValue(PaperJamVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PaperJamVisibilityProperty = DependencyProperty.Register("PaperJamVisibility", typeof(string), typeof(PrinterCard));
+
+        #endregion
 
         public string CoverOpenError
         {
@@ -220,6 +399,7 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty FeedSwitchStateErrorProperty = DependencyProperty.Register("FeedSwitchStateError", typeof(string), typeof(PrinterCard));
 
+        #region NoResponse Error
         public string NoResponseError
         {
             get
@@ -233,7 +413,34 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty NoResponseErrorProperty = DependencyProperty.Register("NoResponseError", typeof(string), typeof(PrinterCard));
 
+        public string NoResponseForeground
+        {
+            get
+            {
+                return (string)GetValue(NoResponseForegroundProperty);
+            }
+            set
+            {
+                SetValue(NoResponseForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty NoResponseForegroundProperty = DependencyProperty.Register("NoResponseForeground", typeof(string), typeof(PrinterCard));
 
+        public string NoResponseVisibility
+        {
+            get
+            {
+                return (string)GetValue(NoResponseVisibilityProperty);
+            }
+            set
+            {
+                SetValue(NoResponseVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty NoResponseVisibilityProperty = DependencyProperty.Register("NoResponseVisibility", typeof(string), typeof(PrinterCard));
+
+
+        #endregion
         public string Icon
         {
             get
