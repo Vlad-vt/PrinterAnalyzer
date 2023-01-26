@@ -87,6 +87,9 @@
                                                         PaperJamError="{Binding PaperJamError}"
                                                         PaperJamForeground="{Binding PaperJamColor}"
                                                         PaperJamVisibility="{Binding PaperJamVisibility}"
+                                                        OutOfPaperError="{Binding OutOfPaperError}"
+                                                        OutOfPaperForeground="{Binding OutOfPaperColor}"
+                                                        OutOfPaperVisibility="{Binding OutOfPaperVisibility}"
                                                         NoResponseError="{Binding NoResponseError}"
                                                         NoResponseForeground= "#FFFF623E"
                                                         NoResponseVisibility="{Binding NoResponseVisibility}"/>

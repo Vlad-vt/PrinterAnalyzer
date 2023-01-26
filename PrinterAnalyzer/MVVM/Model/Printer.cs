@@ -36,6 +36,7 @@ namespace PrinterAnalyzer.MVVM.Model
                     NoResponseVisibility = "Collapsed";
                 }
 
+                #region VoltageChecking
                 if (_errors.GetValueOrDefault("* Voltage error : ") == "Yes")
                 {
                     VoltageVisibility = "Visible";
@@ -52,6 +53,65 @@ namespace PrinterAnalyzer.MVVM.Model
                 {
                     VoltageVisibility = "Collapsed";
                 }
+                #endregion
+
+                #region AutocutterChecking
+                if (_errors.GetValueOrDefault("* AutoCutter error : ") == "Yes")
+                {
+                    AutocutterVisibility = "Visible";
+                    AutocutterError = "* AutoCutter error : " + _errors.GetValueOrDefault("* AutoCutter error : ");
+                    AutocutterColor = "#FFFF623E";
+                }
+                else if (_errors.GetValueOrDefault("* AutoCutter error : ") == "No")
+                {
+                    AutocutterVisibility = "Visible";
+                    AutocutterError = "* AutoCutter error : " + _errors.GetValueOrDefault("* AutoCutter error : ");
+                    AutocutterColor = "#FF47FF3E";
+                }
+                else
+                {
+                    AutocutterVisibility = "Collapsed";
+                }
+                #endregion
+
+                #region OutOfPaperChecking
+                if (_errors.GetValueOrDefault("* Out-of-paper error : ") == "Yes")
+                {
+                    OutOfPaperVisibility = "Visible";
+                    OutOfPaperError = "* Out-of-paper error : " + _errors.GetValueOrDefault("* Out-of-paper error : ");
+                    OutOfPaperColor = "#FFFF623E";
+                }
+                else if (_errors.GetValueOrDefault("* Out-of-paper error : ") == "No")
+                {
+                    OutOfPaperVisibility = "Visible";
+                    OutOfPaperError = "* Out-of-paper error : " + _errors.GetValueOrDefault("* Out-of-paper error : ");
+                    OutOfPaperColor = "#FF47FF3E";
+                }
+                else
+                {
+                    OutOfPaperVisibility = "Collapsed";
+                }
+                #endregion
+
+                #region PaperJamChecking
+                if (_errors.GetValueOrDefault("* Mark paper jam error : ") == "Yes")
+                {
+                    PaperJamVisibility = "Visible";
+                    PaperJamError = "* Mark paper jam error : " + _errors.GetValueOrDefault("* Mark paper jam error : ");
+                    PaperJamColor = "#FFFF623E";
+                }
+                else if (_errors.GetValueOrDefault("* Mark paper jam error : ") == "No")
+                {
+                    PaperJamVisibility = "Visible";
+                    PaperJamError = "* Mark paper jam error : " + _errors.GetValueOrDefault("* Mark paper jam error : ");
+                    PaperJamColor = "#FF47FF3E";
+                }
+                else
+                {
+                    PaperJamVisibility = "Collapsed";
+                }
+                #endregion
+
                 OnPropertyChanged();
             }
         }
@@ -249,32 +309,32 @@ namespace PrinterAnalyzer.MVVM.Model
             set { _outOfPaperError = value; OnPropertyChanged(); }
         }
 
-        private string _outOfPaperErrorColor;
+        private string _outOfPaperColor;
 
-        public string OutOfPaperErrorColor
+        public string OutOfPaperColor
         {
             get
             {
-                return _outOfPaperErrorColor;
+                return _outOfPaperColor;
             }
             set
             {
-                _outOfPaperErrorColor = value;
+                _outOfPaperColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _outOfPaperErrorVisibility;
+        private string _outOfPaperVisibility;
 
-        public string OutOfPaperErrorVisibility
+        public string OutOfPaperVisibility
         {
             get
             {
-                return _outOfPaperErrorVisibility;
+                return _outOfPaperVisibility;
             }
             set
             {
-                _outOfPaperErrorVisibility = value;
+                _outOfPaperVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -285,7 +345,7 @@ namespace PrinterAnalyzer.MVVM.Model
 
         private string _paperJamError;
 
-        public string PaperJamErrorError
+        public string PaperJamError
         {
             get { return _paperJamError; }
             set { _paperJamError = value; OnPropertyChanged(); }
@@ -308,7 +368,7 @@ namespace PrinterAnalyzer.MVVM.Model
 
         private string _paperJamErrorVisibility;
 
-        public string PaperJamErrorVisibility
+        public string PaperJamVisibility
         {
             get
             {
