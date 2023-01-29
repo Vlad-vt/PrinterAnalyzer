@@ -83,8 +83,10 @@
                 <Separator Grid.Row="1" Height="1" Margin="10,0,80,-10" Background="#e0e0e0"/>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,15,0,15">
                     <TextBlock Text="Errors:" Foreground="#5e6366" FontSize="15" FontWeight="SemiBold" Margin="10,5,20,0" Visibility="Collapsed"/>
-                    <TextBlock Text="{Binding Path=WorkingStatus, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" FontSize="15" FontWeight="SemiBold" Margin="10,5,5,0"/>
-                    <md:PackIcon Kind="CircleSlice8" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Margin="0,9,20,0"/>
+                    <TextBlock Text="{Binding Path=WorkingStatus, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" FontSize="15" FontWeight="SemiBold" Margin="0,5,5,0"/>
+                    <md:PackIcon Kind="CircleSlice8" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Margin="0,9,0,0"/>
+                    <TextBlock Text=":" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Visibility="{Binding Path=ErrorsListVisibility,ElementName=PrinterCardf}" FontSize="15" FontWeight="SemiBold" Margin="2,5,5,0"/>
+                    <TextBlock Text="{Binding Path=ErrorsList, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Visibility="{Binding Path=ErrorsListVisibility,ElementName=PrinterCardf}" FontSize="12" TextWrapping="WrapWithOverflow" Width="100" Height="auto" FontWeight="SemiBold" Margin="10,5,5,0"/>
                 </StackPanel>
             </StackPanel>
 

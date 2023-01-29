@@ -112,7 +112,9 @@
                                                         FeedSwitchStateVisibility="{Binding FeedSwitchStateVisibility}"
                                                         HeadError="{Binding HeadTemperatureError}"
                                                         HeadErrorForeground="{Binding HeadTemperatureColor}"
-                                                        HeadErrorVisibility="{Binding HeadTemperatureVisibility}"/>
+                                                        HeadErrorVisibility="{Binding HeadTemperatureVisibility}"
+                                                        ErrorsList="{Binding ErrorsList}"
+                                                        ErrorsListVisibility="{Binding ErrorsListVisibility}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>

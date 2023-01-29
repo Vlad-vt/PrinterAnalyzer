@@ -43,222 +43,245 @@ namespace PrinterAnalyzer.MVVM.Model
                         NoResponseVisibility = "Collapsed";
                     }
 
-                    #region Battery Checking
-                    switch (_errors.GetValueOrDefault("Battery"))
-                    {
-                        case "Full":
-                            BatteryStatus = "BatteryHigh";
-                            BatteryColor = "#f7941d";
-                            break;
-                        case "Medium":
-                            BatteryStatus = "BatteryMedium";
-                            BatteryColor = "#f7941d";
-                            break;
-                        case "Low":
-                            BatteryStatus = "BatteryLow";
-                            BatteryColor = "#f7941d";
-                            break;
-                        default:
-                            BatteryStatus = "BatteryHigh";
-                            BatteryColor = "#f7941d";
-                            break;
-                    }
-                    #endregion
+                #region Battery Checking
+                switch (_errors.GetValueOrDefault("Battery"))
+                {
+                    case "Full":
+                        BatteryStatus = "BatteryHigh";
+                        BatteryColor = "#f7941d";
+                        break;
+                    case "Medium":
+                        BatteryStatus = "BatteryMedium";
+                        BatteryColor = "#f7941d";
+                        break;
+                    case "Low":
+                        BatteryStatus = "BatteryLow";
+                        BatteryColor = "#f7941d";
+                        break;
+                    default:
+                        BatteryStatus = "BatteryHigh";
+                        BatteryColor = "#f7941d";
+                        break;
+                }
+                #endregion
 
-                    #region VoltageChecking
-                    if (_errors.GetValueOrDefault("* Voltage error : ") == "Yes")
-                    {
-                        printerAction?.Invoke($"{Name} has voltage error");
-                        VoltageVisibility = "Visible";
-                        VoltageError = "Error";
-                        VoltageColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
-                    }
-                    else if (_errors.GetValueOrDefault("* Voltage error : ") == "No")
-                    {
-                        VoltageVisibility = "Visible";
-                        VoltageError = "OK";
-                        VoltageColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        VoltageVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region VoltageChecking
+                if (_errors.GetValueOrDefault("* Voltage error : ") == "Yes")
+                {
+                    printerAction?.Invoke($"{Name} has voltage error");
+                    VoltageVisibility = "Visible";
+                    VoltageError = "Error";
+                    VoltageColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList += $"{Name} has voltage error\n";
+                }
+                else if (_errors.GetValueOrDefault("* Voltage error : ") == "No")
+                {
+                    VoltageVisibility = "Visible";
+                    VoltageError = "OK";
+                    VoltageColor = "#FF47FF3E";
+                }
+                else
+                {
+                    VoltageVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region HeadTemperature
-                    if (_errors.GetValueOrDefault("* Head temp error : ") == "Yes")
-                    {
-                        printerAction?.Invoke($"{Name} has temperature error");
-                        HeadTemperatureVisibility = "Visible";
-                        HeadTemperatureError = "Error";
-                        HeadTemperatureColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
-                    }
-                    else if (_errors.GetValueOrDefault("* Voltage error : ") == "No")
-                    {
-                        HeadTemperatureVisibility = "Visible";
-                        HeadTemperatureError = "OK";
-                        HeadTemperatureColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        HeadTemperatureVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region HeadTemperature
+                if (_errors.GetValueOrDefault("* Head temp error : ") == "Yes")
+                {
+                    printerAction?.Invoke($"{Name} has temperature error");
+                    HeadTemperatureVisibility = "Visible";
+                    HeadTemperatureError = "Error";
+                    HeadTemperatureColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList += $"{Name} has temperature error\n";
+                }
+                else if (_errors.GetValueOrDefault("* Voltage error : ") == "No")
+                {
+                    HeadTemperatureVisibility = "Visible";
+                    HeadTemperatureError = "OK";
+                    HeadTemperatureColor = "#FF47FF3E";
+                }
+                else
+                {
+                    HeadTemperatureVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region FeedSwitchState
-                    if (_errors.GetValueOrDefault("* Paper feed status : ") == "Off")
-                    {
-                        printerAction?.Invoke($"{Name} has temperature error");
-                        FeedSwitchStateVisibility = "Visible";
-                        FeedSwitchStateError = "Error";
-                        FeedSwitchStateColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
-                    }
-                    else if (_errors.GetValueOrDefault("* Paper feed status : ") == "On")
-                    {
-                        FeedSwitchStateVisibility = "Visible";
-                        FeedSwitchStateError = "OK";
-                        FeedSwitchStateColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                         FeedSwitchStateVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region FeedSwitchState
+                if (_errors.GetValueOrDefault("* Paper feed status : ") == "Off")
+                {
+                    printerAction?.Invoke($"{Name} has temperature error");
+                    FeedSwitchStateVisibility = "Visible";
+                    FeedSwitchStateError = "Error";
+                    FeedSwitchStateColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList += $"{Name} has temperature error\n";
+                }
+                else if (_errors.GetValueOrDefault("* Paper feed status : ") == "On")
+                {
+                    FeedSwitchStateVisibility = "Visible";
+                    FeedSwitchStateError = "OK";
+                    FeedSwitchStateColor = "#FF47FF3E";
+                }
+                else
+                {
+                    FeedSwitchStateVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region AutocutterChecking
-                    if (_errors.GetValueOrDefault("* AutoCutter error : ") == "Yes")
-                    {
-                        printerAction?.Invoke($"{Name} has autocutter error");
-                        AutocutterVisibility = "Visible";
-                        AutocutterError = "Error";
-                        AutocutterColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
-                    }
-                    else if (_errors.GetValueOrDefault("* AutoCutter error : ") == "No")
-                    {
-                        AutocutterVisibility = "Visible";
-                        AutocutterError = "OK";
-                        AutocutterColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        AutocutterVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region AutocutterChecking
+                if (_errors.GetValueOrDefault("* AutoCutter error : ") == "Yes")
+                {
+                    printerAction?.Invoke($"{Name} has autocutter error");
+                    AutocutterVisibility = "Visible";
+                    AutocutterError = "Error";
+                    AutocutterColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList += $"{Name} has autocutter error\n";
+                }
+                else if (_errors.GetValueOrDefault("* AutoCutter error : ") == "No")
+                {
+                    AutocutterVisibility = "Visible";
+                    AutocutterError = "OK";
+                    AutocutterColor = "#FF47FF3E";
+                }
+                else
+                {
+                    AutocutterVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region OutOfPaperChecking
-                    if (_errors.GetValueOrDefault("* Out-of-paper error : ") == "Yes")
-                    {
-                        printerAction?.Invoke($"{Name} has out of paper error");
-                        OutOfPaperVisibility = "Visible";
-                        OutOfPaperError = "Error";
-                        OutOfPaperColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
-                    }
-                    else if (_errors.GetValueOrDefault("* Out-of-paper error : ") == "No")
-                    {
-                        OutOfPaperVisibility = "Visible";
-                        OutOfPaperError = "OK";
-                        OutOfPaperColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        OutOfPaperVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region OutOfPaperChecking
+                if (_errors.GetValueOrDefault("* Out-of-paper error : ") == "Yes")
+                {
+                    printerAction?.Invoke($"{Name} has out of paper error");
+                    OutOfPaperVisibility = "Visible";
+                    OutOfPaperError = "Error";
+                    OutOfPaperColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList = $"{Name} has out of paper error\n";
+                }
+                else if (_errors.GetValueOrDefault("* Out-of-paper error : ") == "No")
+                {
+                    OutOfPaperVisibility = "Visible";
+                    OutOfPaperError = "OK";
+                    OutOfPaperColor = "#FF47FF3E";
+                }
+                else
+                {
+                    OutOfPaperVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region PaperJamChecking
-                    if (_errors.GetValueOrDefault("* Mark paper jam error : ") == "Yes")
-                    {
-                        printerAction?.Invoke($"{Name} has paper jam error");
-                        PaperJamVisibility = "Visible";
-                        PaperJamError = "Error";
-                        PaperJamColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
-                    }
-                    else if (_errors.GetValueOrDefault("* Mark paper jam error : ") == "No")
-                    {
-                        PaperJamVisibility = "Visible";
-                        PaperJamError = "OK";
-                        PaperJamColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        PaperJamVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region PaperJamChecking
+                if (_errors.GetValueOrDefault("* Mark paper jam error : ") == "Yes")
+                {
+                    printerAction?.Invoke($"{Name} has paper jam error");
+                    PaperJamVisibility = "Visible";
+                    PaperJamError = "Error";
+                    PaperJamColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList = $"{Name} has paper jam error\n";
+                }
+                else if (_errors.GetValueOrDefault("* Mark paper jam error : ") == "No")
+                {
+                    PaperJamVisibility = "Visible";
+                    PaperJamError = "OK";
+                    PaperJamColor = "#FF47FF3E";
+                }
+                else
+                {
+                    PaperJamVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region Cover/Platen open
-                    if (_errors.GetValueOrDefault("* Cover/Platen open error : ") == "Yes")
-                    {
-                        printerAction?.Invoke($"{Name} has cover/platen open error");
-                        CoverPlatenOpenErrorVisibility = "Visible";
-                        CoverPlatenOpenError = "Error";
-                        CoverPlatenOpenErrorColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
-                    }
-                    else if (_errors.GetValueOrDefault("* Cover/Platen open error : ") == "No")
-                    {
-                        CoverPlatenOpenErrorVisibility = "Visible";
-                        CoverPlatenOpenError = "OK";
-                        CoverPlatenOpenErrorColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        CoverPlatenOpenErrorVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region Cover/Platen open
+                if (_errors.GetValueOrDefault("* Cover/Platen open error : ") == "Yes")
+                {
+                    printerAction?.Invoke($"{Name} has cover/platen open error");
+                    CoverPlatenOpenErrorVisibility = "Visible";
+                    CoverPlatenOpenError = "Error";
+                    CoverPlatenOpenErrorColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList += $"{Name} has cover/platen open error\n";
+                }
+                else if (_errors.GetValueOrDefault("* Cover/Platen open error : ") == "No")
+                {
+                    CoverPlatenOpenErrorVisibility = "Visible";
+                    CoverPlatenOpenError = "OK";
+                    CoverPlatenOpenErrorColor = "#FF47FF3E";
+                }
+                else
+                {
+                    CoverPlatenOpenErrorVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region Paper Near End
-                    if (_errors.GetValueOrDefault("* Paper-near-end error : ") == "Yes")
-                    {
-                        PaperNearEndErrorVisibility = "Visible";
-                        PaperNearEndError = "Warning";
-                        PaperNearEndErrorColor = "#f7941d";
-                    }
-                    else if (_errors.GetValueOrDefault("* Paper-near-end error : ") == "No")
-                    {
-                        PaperNearEndErrorVisibility = "Visible";
-                        PaperNearEndError = "OK";
-                        PaperNearEndErrorColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        PaperNearEndErrorVisibility = "Collapsed";
-                    }
-                    #endregion
+                #region Paper Near End
+                if (_errors.GetValueOrDefault("* Paper-near-end error : ") == "Yes")
+                {
+                    PaperNearEndErrorVisibility = "Visible";
+                    PaperNearEndError = "Warning";
+                    PaperNearEndErrorColor = "#f7941d";
+                }
+                else if (_errors.GetValueOrDefault("* Paper-near-end error : ") == "No")
+                {
+                    PaperNearEndErrorVisibility = "Visible";
+                    PaperNearEndError = "OK";
+                    PaperNearEndErrorColor = "#FF47FF3E";
+                }
+                else
+                {
+                    PaperNearEndErrorVisibility = "Collapsed";
+                }
+                #endregion
 
-                    #region Drawer Sensor Error
-                    if (_errors.GetValueOrDefault("* Drawer sensor status : ") == "Off")
+                #region Drawer Sensor Error
+                if (_errors.GetValueOrDefault("* Drawer sensor status : ") == "Off")
+                {
+                    printerAction?.Invoke($"{Name} has drawer sensor error");
+                    DrawerSensorErrorVisibility = "Visible";
+                    DrawerSensorError = "Error";
+                    DrawerSensorErrorColor = "#FFFF623E";
+                    IsOnline = "Errors";
+                    WorkingColor = "#FFFF623E";
+                    ErrorsList += $"{Name} has drawer sensor error\n";
+                }
+                else if (_errors.GetValueOrDefault("* Drawer sensor status : ") == "On")
+                {
+                    DrawerSensorErrorVisibility = "Visible";
+                    DrawerSensorError = "OK";
+                    DrawerSensorErrorColor = "#FF47FF3E";
+                }
+                else
+                {
+                    DrawerSensorErrorVisibility = "Collapsed";
+                }
+                #endregion
+
+                if (IsOnline == "Errors")
+                {
+                    ErrorsListVisibility = "Visible";
+                    for (int i = 0; i < errorsList.Count; i++)
                     {
-                        printerAction?.Invoke($"{Name} has drawer sensor error");
-                        DrawerSensorErrorVisibility = "Visible";
-                        DrawerSensorError = "Error";
-                        DrawerSensorErrorColor = "#FFFF623E";
-                        IsOnline = "Errors";
-                        WorkingColor = "#FFFF623E";
+                        ErrorsList += errorsList[i] + "\n";
                     }
-                    else if (_errors.GetValueOrDefault("* Drawer sensor status : ") == "On")
-                    {
-                        DrawerSensorErrorVisibility = "Visible";
-                        DrawerSensorError = "OK";
-                        DrawerSensorErrorColor = "#FF47FF3E";
-                    }
-                    else
-                    {
-                        DrawerSensorErrorVisibility = "Collapsed";
-                    }
-                    #endregion
+                    errorsList.Clear();
+                }
+                else
+                {
+                    ErrorsListVisibility = "Collapsed";
+                }
+
                 
                /* else
                 {
@@ -414,6 +437,36 @@ namespace PrinterAnalyzer.MVVM.Model
                     #endregion
                 }*/
 
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> errorsList;
+
+        private string _errorsList;
+        public string ErrorsList
+        {
+            get
+            {
+                return _errorsList;
+            }
+            set
+            {
+                _errorsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _errorsListVisibility;
+        public string ErrorsListVisibility
+        {
+            get
+            {
+                return _errorsListVisibility;
+            }
+            set
+            {
+                _errorsListVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -889,6 +942,8 @@ namespace PrinterAnalyzer.MVVM.Model
         {
             MachineName = Environment.MachineName;
             Name = name;
+            ErrorsListVisibility = "Visible";
+            ErrorsList += "Out of paper\n Salalnd\ndasdassdadsadsa";
         }
     }
 }

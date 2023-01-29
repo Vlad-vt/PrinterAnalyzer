@@ -459,6 +459,34 @@ namespace PrinterAnalyzer.MVVM.View.Small
         public static readonly DependencyProperty DrawerSensorVisibilityProperty = DependencyProperty.Register("DrawerSensorVisibility", typeof(string), typeof(PrinterCard));
         #endregion
 
+        #region ErrorsList
+        public string ErrorsList
+        {
+            get
+            {
+                return (string)GetValue(ErrorsListProperty);
+            }
+            set
+            {
+                SetValue(ErrorsListProperty, value);
+            }
+        }
+        public static readonly DependencyProperty ErrorsListProperty = DependencyProperty.Register("ErrorsList", typeof(string), typeof(PrinterCard));
+
+        public string ErrorsListVisibility
+        {
+            get
+            {
+                return (string)GetValue(ErrorsListVisibilityProperty);
+            }
+            set
+            {
+                SetValue(ErrorsListVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty ErrorsListVisibilityProperty = DependencyProperty.Register("ErrorsListVisibility", typeof(string), typeof(PrinterCard));
+
+        #endregion
         public string UnrecoverableError
         {
             get
