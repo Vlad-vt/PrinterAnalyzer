@@ -26,8 +26,8 @@
         <Border Grid.RowSpan="2" CornerRadius="10,0,0,10">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Color="#FF587FFF" Offset="0"/>
-                    <GradientStop Color="#FF448BFF" Offset="1"/>
+                    <GradientStop Color="#e0e0e0" Offset="0"/>
+                    <GradientStop Color="#e0e0e0" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
             <StackPanel>
@@ -36,16 +36,16 @@
                     <Border CornerRadius="10" Width="40" Height="40">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                <GradientStop Color="#FF8DF7FF" Offset="0"/>
-                                <GradientStop Color="#FFB9B7FF" Offset="1"/>
+                                <GradientStop Color="#FFFFE68D" Offset="0"/>
+                                <GradientStop Color="#FFD86D00" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
-                        <TextBlock Text="PA" Foreground="#ffff" FontSize="22" FontWeight="SemiBold"
+                        <TextBlock Text="PA" Foreground="#5e6366" FontSize="22" FontWeight="SemiBold"
                                    TextAlignment="Center" VerticalAlignment="Center" Margin="3,0,0,2"/>
                     </Border>
                     <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                        <TextBlock Text="Printer Analyzer" FontSize="15" Margin="0,0,0,5" Foreground="White"/>
-                        <TextBlock Text="v1.0.0" FontSize="11" Foreground="White"/>
+                        <TextBlock Text="Printer Analyzer" FontSize="15" Margin="0,0,0,5" Foreground="#5e6366"/>
+                        <TextBlock Text="v1.0.0" FontSize="11" Foreground="#5e6366"/>
                     </StackPanel>
                 </StackPanel>
                 <Separator Height="0.8" Margin="20,30" Background="White"/>
@@ -53,15 +53,15 @@
                 <!--Menu Buttons-->
                 <Button Command="{Binding ShowSII_RP_E10View}"  Style="{Binding RPE10buttonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="White"/>
-                        <TextBlock Text="SII RP-E10" Style="{StaticResource menuButtonText}" Foreground="White"/>
+                        <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="#5e6366"/>
+                        <TextBlock Text="SII RP-E10" Style="{StaticResource menuButtonText}" Foreground="#5e6366"/>
                     </StackPanel>
                 </Button>
 
                 <Button Command="{Binding ShowSII_RP_F10_G10View}" Style="{Binding RPF10G10buttonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="White"/>
-                        <TextBlock Text="SII (RP-F10/G10)" Style="{StaticResource menuButtonText}" Foreground="White"/>
+                        <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="#5e6366"/>
+                        <TextBlock Text="SII (RP-F10/G10)" Style="{StaticResource menuButtonText}" Foreground="#5e6366"/>
                     </StackPanel>
                 </Button>
 
@@ -72,20 +72,20 @@
         <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  CornerRadius="0,10,10,0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                    <GradientStop Color="#FF64A5C1" Offset="0"/>
-                    <GradientStop Color="#FF5F94FF" Offset="1"/>
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
         <StackPanel Grid.Column="1" Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding HideProgram}" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Cursor="Hand" Margin="0,-1,0,0">
-                <md:PackIcon Kind="WindowMinimize"/>
+                <md:PackIcon Kind="WindowMinimize" Foreground="#5e6366"/>
             </Button>
             <Button Command="{Binding MaximizeProgram}" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Cursor="Hand" Margin="0,-1,0,0">
-                <md:PackIcon Kind="WindowMaximize"/>
+                <md:PackIcon Kind="WindowMaximize" Foreground="#5e6366"/>
             </Button>
             <Button Command="{Binding ExitProgram}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Cursor="Hand" Margin="0,-1,3,0">
-                <md:PackIcon Kind="CloseBold"/>
+                <md:PackIcon Kind="CloseBold" Foreground="#5e6366"/>
             </Button>
         </StackPanel>
         <ContentControl Content="{Binding CurrentView}" Grid.Column="1" Grid.Row="1"/>

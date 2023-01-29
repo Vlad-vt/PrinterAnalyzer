@@ -49,15 +49,15 @@ namespace PrinterAnalyzer.Communication.RP_E10
             else
                 errorStatus.Add("* Head temp error : ", "No");
 
-            if (status == ASB.ASB_AUTOCUTTER_ERR)
-                errorStatus.Add("* AutoCutter error : ", "Yes");
-            else
+            if ((status & ASB.ASB_AUTOCUTTER_ERR) == 0)
                 errorStatus.Add("* AutoCutter error : ", "No");
-
-            if (status == ASB.ASB_RECEIPT_END)
-                errorStatus.Add("* Out-of-paper error : ", "Yes");
             else
+                errorStatus.Add("* AutoCutter error : ", "Yes");
+
+            if ((status & ASB.ASB_RECEIPT_END) == 0)
                 errorStatus.Add("* Out-of-paper error : ", "No");
+            else
+                errorStatus.Add("* Out-of-paper error : ", "Yes");
 
             if (status == ASB.ASB_RECEIPT_NEAR_END)
                 errorStatus.Add("* Paper-near-end error : ", "Yes");
@@ -69,10 +69,10 @@ namespace PrinterAnalyzer.Communication.RP_E10
             else
                 errorStatus.Add("* Mark paper jam error : ", "No");
 
-            if (status == ASB.ASB_COVER_OPEN)
-                errorStatus.Add("* Cover/Platen open error : ", "Yes");
-            else
+            if ((status & ASB.ASB_COVER_OPEN) == 0)
                 errorStatus.Add("* Cover/Platen open error : ", "No");
+            else
+                errorStatus.Add("* Cover/Platen open error : ", "Yes");
 
             if (status == ASB.ASB_PAPER_FEED)
                 errorStatus.Add("* Paper feed status : ", "Off");

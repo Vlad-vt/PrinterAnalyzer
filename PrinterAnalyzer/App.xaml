@@ -38,15 +38,15 @@
                         <Setter Property="Background">
                             <Setter.Value>
                                 <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                                    <GradientStop Color="#7FB2ECFF" Offset="0"/>
-                                    <GradientStop Color="#495385" Offset="3"/>
+                                    <GradientStop Color="#f7941d" Offset="0"/>
+                                    <GradientStop Color="#f7941d" Offset="3"/>
                                 </LinearGradientBrush>
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" BorderThickness="4,0,0,0" BorderBrush="#a5a1f5">
+                                    <Border Background="{TemplateBinding Background}" BorderThickness="4,0,0,0" BorderBrush="White">
                                         <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
@@ -73,8 +73,8 @@
                 <Setter Property="Background">
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                            <GradientStop Color="#7FB2ECFF" Offset="0"/>
-                            <GradientStop Color="#495385" Offset="3"/>
+                            <GradientStop Color="#f7941d" Offset="0"/>
+                            <GradientStop Color="#FF848484" Offset="3"/>
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
@@ -86,7 +86,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" BorderThickness="4,0,0,0" BorderBrush="#a5a1f5">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="4,0,0,0" BorderBrush="White">
                                 <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
@@ -96,7 +96,7 @@
 
             <Style x:Key="topMenuButton" TargetType="Button">
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="#9eabe2"/>
+                <Setter Property="Foreground" Value="#f7941d"/>
                 <Setter Property="Margin" Value="50,35,0,0"/>
                 <Setter Property="Height" Value="30"/>
                 <Setter Property="Width" Value="80"/>
@@ -113,7 +113,7 @@
                 </Setter>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#5b60c4"/>
+                        <Setter Property="Background" Value="#f7941d"/>
                         <Setter Property="Foreground" Value="#ffffff"/>
                     </Trigger>
                 </Style.Triggers>
@@ -131,7 +131,7 @@
                 <Setter Property="Width" Value="18"/>
                 <Setter Property="Height" Value="18"/>
                 <Setter Property="Margin" Value="0,3,0,0"/>
-                <Setter Property="Foreground" Value="#7b82ea"/>
+                <Setter Property="Foreground" Value="#f7941d"/>
             </Style>
 
             <DataTemplate DataType = "{x:Type viewModel:InfoCardViewModel}">

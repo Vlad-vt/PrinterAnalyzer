@@ -16,7 +16,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--Title-->
-        <TextBlock Text="{Binding PrinterTypeName}" FontSize="26" Foreground="White" HorizontalAlignment="Left" Margin="50,35,0,20"/>
+        <TextBlock Text="{Binding PrinterTypeName}" FontSize="26" Foreground="#5e6366" HorizontalAlignment="Left" Margin="50,35,0,20"/>
 
 
         <!--Orders Section-->
@@ -25,9 +25,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="380"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="1"  CornerRadius="20" Padding="35,25" Background="#FF5BB6FF" Margin="50,10,10,40">
+            <Border Grid.Column="1"  CornerRadius="20" Padding="35,25" Background="#e0e0e0" Margin="50,10,10,40">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="25" Direction="-100" Color="#FF6EB3FF"/>
+                    <DropShadowEffect BlurRadius="25" Direction="-100" Color="#FFE8E8E8"/>
                 </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -35,8 +35,8 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,15">
-                        <md:PackIcon Kind="CircleOutline" Style="{StaticResource titleIcon}"/>
-                        <TextBlock Text="Last actions" Style="{StaticResource titleText}"/>
+                        <md:PackIcon Kind="CircleOutline" Style="{StaticResource titleIcon}" Foreground="#5e6366"/>
+                        <TextBlock Text="Last actions" Style="{StaticResource titleText}" Foreground="#5e6366"/>
                     </StackPanel>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
@@ -57,9 +57,9 @@
                 </Grid>
             </Border>
             <!--Chart Section-->
-            <Border Grid.Column="0" CornerRadius="20" Padding="35,25" Background="#FF5BB6FF" Margin="50,10,10,40">
+            <Border Grid.Column="0" CornerRadius="20" Padding="35,25" Background="#e0e0e0" Margin="50,10,10,40">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="25" Direction="-100" Color="#FF6EB3FF"/>
+                    <DropShadowEffect BlurRadius="25" Direction="-100" Color="#FFE8E8E8"/>
                 </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -67,20 +67,22 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,25">
-                        <md:PackIcon Kind="CircleOutline" Style="{StaticResource titleIcon}"/>
-                        <TextBlock Text="Connected printers" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10,0,220,0"/>
+                        <md:PackIcon Kind="CircleOutline" Style="{StaticResource titleIcon}" Foreground="#5e6366"/>
+                        <TextBlock Text="Connected printers" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10,0,220,0" Foreground="#5e6366"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,0,25">
-                        <TextBlock Text="Found: " Style="{StaticResource titleText}" Foreground="#FFFFFCBB"/>
-                        <TextBlock Text="{Binding PrintersCount}" Style="{StaticResource titleText}"/>
+                        <TextBlock Text="Found: " Style="{StaticResource titleText}" Foreground="#5e6366"/>
+                        <TextBlock Text="{Binding PrintersCount}" Style="{StaticResource titleText}" Foreground="#5e6366"/>
                     </StackPanel>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <ItemsControl ItemsSource="{Binding PrintersList}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <dc:PrinterCard Title="{Binding Name}" Number="{Binding Errors}" NetworkData="{Binding NetworkData}" WorkingIcon="{Binding WorkingColor}" WorkingStatus="{Binding IsOnline}" Icon="Printer" Background1="#6B9FF0" Background2="#4D66F0" 
+                                        <dc:PrinterCard Title="{Binding Name}" Number="{Binding Errors}" NetworkData="{Binding NetworkData}" WorkingIcon="{Binding WorkingColor}" WorkingStatus="{Binding IsOnline}" Icon="Printer" Background1="#f2f2f2" Background2="#f2f2f2" 
                              EllipseBackground1="#FF3861DE" EllipseBackground2="#FF89A6FF" Margin="0,0,0,50"
+                                                        BatteryChargeStatus="{Binding BatteryStatus}"
+                                                        BatteryChargeColor="{Binding BatteryColor}"
                                                         VoltageError="{Binding VoltageError}"
                                                         VoltageForeground="{Binding VoltageColor}"
                                                         VoltageVisibility="{Binding VoltageVisibility}"
@@ -94,14 +96,23 @@
                                                         PaperNearEndForeground="{Binding PaperNearEndColor}"
                                                         PaperNearEndVisibility="{Binding PaperNearEndVisibility}"
                                                         DrawerSensorError="{Binding DrawerSensorError}"
-                                                        DrawerSensorForeground="{Binding DrawerSensorForeground}"
-                                                        DrawerSensorVisibility="{Binding DrawerSensorVisibility}"
+                                                        DrawerSensorForeground="{Binding DrawerSensorErrorColor}"
+                                                        DrawerSensorVisibility="{Binding DrawerSensorErrorVisibility}"
                                                         CoverOpenError="{Binding CoverPlatenOpenError}"
                                                         CoverOpenForeground="{Binding CoverPlatenOpenErrorColor}"
                                                         CoverOpenVisibility="{Binding CoverPlatenOpenErrorVisibility}"
                                                         NoResponseError="{Binding NoResponseError}"
                                                         NoResponseForeground= "#FFFF623E"
-                                                        NoResponseVisibility="{Binding NoResponseVisibility}"/>
+                                                        NoResponseVisibility="{Binding NoResponseVisibility}"
+                                                        AutocutterError="{Binding AutocutterError}"
+                                                        AutocutterForeground="{Binding AutocutterColor}"
+                                                        AutocutterVisibility="{Binding AutocutterVisibility}"
+                                                        FeedSwitchStateError="{Binding FeedSwitchStateError}"
+                                                        FeedSwitchStateForeground="{Binding FeedSwitchStateColor}"
+                                                        FeedSwitchStateVisibility="{Binding FeedSwitchStateVisibility}"
+                                                        HeadError="{Binding HeadTemperatureError}"
+                                                        HeadErrorForeground="{Binding HeadTemperatureColor}"
+                                                        HeadErrorVisibility="{Binding HeadTemperatureVisibility}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>

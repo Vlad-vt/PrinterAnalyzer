@@ -25,6 +25,35 @@ namespace PrinterAnalyzer.MVVM.View.Small
             InitializeComponent();
         }
 
+        #region Battery Charge
+        public string BatteryChargeStatus
+        {
+            get
+            {
+                return (string)GetValue(BatteryChargeStatusProperty);
+            }
+            set
+            {
+                SetValue(BatteryChargeStatusProperty, value);
+            }
+        }
+        public static readonly DependencyProperty BatteryChargeStatusProperty = DependencyProperty.Register("BatteryChargeStatus", typeof(string), typeof(PrinterCard));
+
+        public string BatteryChargeColor
+        {
+            get
+            {
+                return (string)GetValue(BatteryChargeColorProperty);
+            }
+            set
+            {
+                SetValue(BatteryChargeColorProperty, value);
+            }
+        }
+        public static readonly DependencyProperty BatteryChargeColorProperty = DependencyProperty.Register("BatteryChargeColor", typeof(string), typeof(PrinterCard));
+
+        #endregion
+
         #region Default Properties
         public string Title
         {
@@ -443,6 +472,7 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty UnrecoverableErrorProperty = DependencyProperty.Register("UnrecoverableError", typeof(string), typeof(PrinterCard));
 
+        #region FeedSwitchState
         public string FeedSwitchStateError
         {
             get
@@ -455,6 +485,34 @@ namespace PrinterAnalyzer.MVVM.View.Small
             }
         }
         public static readonly DependencyProperty FeedSwitchStateErrorProperty = DependencyProperty.Register("FeedSwitchStateError", typeof(string), typeof(PrinterCard));
+
+        public string FeedSwitchStateForeground
+        {
+            get
+            {
+                return (string)GetValue(FeedSwitchStateForegroundProperty);
+            }
+            set
+            {
+                SetValue(FeedSwitchStateForegroundProperty, value);
+            }
+        }
+        public static readonly DependencyProperty FeedSwitchStateForegroundProperty = DependencyProperty.Register("FeedSwitchStateForeground", typeof(string), typeof(PrinterCard));
+
+        public string FeedSwitchStateVisibility
+        {
+            get
+            {
+                return (string)GetValue(FeedSwitchStateVisibilityProperty);
+            }
+            set
+            {
+                SetValue(FeedSwitchStateVisibilityProperty, value);
+            }
+        }
+        public static readonly DependencyProperty FeedSwitchStateVisibilityProperty = DependencyProperty.Register("FeedSwitchStateVisibility", typeof(string), typeof(PrinterCard));
+
+        #endregion
 
         #region NoResponse Error
         public string NoResponseError

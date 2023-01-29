@@ -1,12 +1,27 @@
 ﻿using SII.SDK.PosPrinter;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace PrinterAnalyzer.Communication.RP_F10_G10
 {
     internal class DllFuncF10G10
     {
+        [DllImport("winspool.Drv", EntryPoint = "DocumentPropertiesW", SetLastError = true,
+        ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+        private static extern int DocumentProperties(IntPtr hwnd, IntPtr hPrinter,
+        [MarshalAs(UnmanagedType.LPWStr)] string pDeviceNameg,
+        IntPtr pDevModeOutput, IntPtr pDevModeInput, int fMode);
+
+        [DllImport("kernel32.dll", ExactSpelling = true)]
+        public static extern IntPtr GlobalFree(IntPtr handle);
+
+        [DllImport("kernel32.dll", ExactSpelling = true)]
+        public static extern IntPtr GlobalLock(IntPtr handle);
+
+        [DllImport("kernel32.dll", ExactSpelling = true)]
+        public static extern IntPtr GlobalUnlock(IntPtr handle);
         // Callback handler definition
         public delegate void callbackEventHandler(Dictionary<string,string> msg);
         public event callbackEventHandler MyCallbackEvent;
@@ -105,15 +120,15 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             else
                 errorStatus.Add("* Head temp error : ", "No");
 
-            if (status == ASB.ASB_AUTOCUTTER_ERR)
-                errorStatus.Add("* AutoCutter error : ", "Yes");
-            else
+            if ((status & ASB.ASB_AUTOCUTTER_ERR) == 0)
                 errorStatus.Add("* AutoCutter error : ", "No");
-
-            if (status == ASB.ASB_RECEIPT_END)
-                errorStatus.Add("* Out-of-paper error : ", "Yes");
             else
+                errorStatus.Add("* AutoCutter error : ", "Yes");
+
+            if ((status & ASB.ASB_RECEIPT_END) == 0)
                 errorStatus.Add("* Out-of-paper error : ", "No");
+            else
+                errorStatus.Add("* Out-of-paper error : ", "Yes");
 
             if (status == ASB.ASB_RECEIPT_NEAR_END)
                 errorStatus.Add("* Paper-near-end error : ", "Yes");
@@ -125,10 +140,10 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             else
                 errorStatus.Add("* Mark paper jam error : ", "No");
 
-            if (status == ASB.ASB_COVER_OPEN)
-                errorStatus.Add("* Cover/Platen open error : ", "Yes");
-            else
+            if ((status & ASB.ASB_COVER_OPEN) == 0)
                 errorStatus.Add("* Cover/Platen open error : ", "No");
+            else
+                errorStatus.Add("* Cover/Platen open error : ", "Yes");
 
             if (status == ASB.ASB_PAPER_FEED)
                 errorStatus.Add("* Paper feed status : ", "Off");
@@ -164,6 +179,13 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
                 errorStatus.Add("* Unrecover error : ", "Yes");
             else
                 errorStatus.Add("* Unrecover error : ", "No");
+            if (status == ASB.ASB_BATTERY_FULL && status == ASB.ASB_BATTERY_MIDDLE && status == ASB.ASB_BATTERY_LOW)
+                errorStatus.Add("Battery", "Full");
+            else if (status == ASB.ASB_BATTERY_MIDDLE)
+                errorStatus.Add("Battery", "Medium");
+            else if (status == ASB.ASB_BATTERY_LOW)
+                errorStatus.Add("Battery", "Low");
+
 
             MyCallbackEvent(errorStatus);
             return;

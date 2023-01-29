@@ -12,7 +12,7 @@
                 <Setter Property="Background" Value="Transparent"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#364c8f"/>
+                        <Setter Property="Background" Value="#f7941d"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -20,13 +20,13 @@
 
         <StackPanel Orientation="Horizontal">
             <Grid Width="45" Height="45" Margin="25,0,0,0">
-                <Border CornerRadius="10" Background="#4D66F0"/>
+                <Border CornerRadius="10" Background="#f7941d"/>
                 <md:PackIcon Kind="{Binding Path=Icon, ElementName=action}" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
 
             <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                <TextBlock Text="{Binding Path=Title, ElementName=action}" FontSize="14" Foreground="White"/>
-                <TextBlock Text="{Binding Path=Number, ElementName=action}" FontSize="11" Foreground="White" Margin="0,3,0,0"/>
+                <TextBlock Text="{Binding Path=Title, ElementName=action}" FontSize="14" Foreground="#5e6366"/>
+                <TextBlock Text="{Binding Path=Number, ElementName=action}" FontSize="11" Foreground="#5e6366" Margin="0,3,0,0"/>
             </StackPanel>
         </StackPanel>
 

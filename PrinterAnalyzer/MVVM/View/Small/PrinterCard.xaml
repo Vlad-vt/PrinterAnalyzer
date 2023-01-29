@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PrinterAnalyzer.MVVM.View.Small"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Name="PrinterCardf" MinWidth="520" Width="auto" MaxWidth="1000" Height="auto">
+             Name="PrinterCardf" MinWidth="520" Width="auto" Height="auto">
     <Border Margin="0,0,25,0" CornerRadius="15">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
@@ -21,32 +21,69 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="0" Grid.RowSpan="4" Margin="10,10,0,0" VerticalAlignment="Top" Orientation="Vertical">
-                <TextBlock Text="{Binding Path=Title, ElementName=PrinterCardf}" Foreground="#FFBAFFA3" FontSize="18" Margin="0,0,0,5" FontWeight="Bold"/>
-                <StackPanel Orientation="Horizontal" Margin="0,2,0,0" Visibility="Hidden">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding Path=Title, ElementName=PrinterCardf}" Foreground="#5e6366" FontSize="18" Margin="10,10,0,5" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Charge: " Foreground="#5e6366" FontSize="14" Margin="0,15,0,5" FontWeight="Bold" HorizontalAlignment="Right"/>
+                <md:PackIcon Kind="{Binding Path=BatteryChargeStatus,ElementName=PrinterCardf}" Foreground="{Binding Path=BatteryChargeColor,ElementName=PrinterCardf}" Margin="0,5,0,5" Width="35" Height="35"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.RowSpan="4" Margin="10,50,0,0" VerticalAlignment="Top" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="0,2,0,0" Visibility="Collapsed">
                     <TextBlock Text="Network data: " Foreground="#FFF2FFB0" FontSize="15" FontWeight="SemiBold"/>
                     <TextBlock Text="{Binding Path=NetworkData, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" FontWeight="SemiBold" Margin="7, 2, 0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                    <TextBlock Text="Errors: " Foreground="OrangeRed" FontWeight="SemiBold" FontSize="18"/>
+                    <TextBlock Text="Status: " Foreground="#f7941d" FontWeight="SemiBold" FontSize="18"/>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Path=VoltageError, ElementName=PrinterCardf}" Foreground="{Binding Path=VoltageForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=AutocutterError, ElementName=PrinterCardf}" Foreground="{Binding Path=AutocutterForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=AutocutterVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=CoverOpenError, ElementName=PrinterCardf}" Foreground="{Binding Path=CoverOpenError,ElementName=PrinterCardf}" Visibility="{Binding Path=CoverOpenVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=DrawerSensorError, ElementName=PrinterCardf}" Foreground="{Binding Path=DrawerSensorForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=DrawerSensorVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=FeedSwitchStateError, ElementName=PrinterCardf}" Foreground="#ffffff" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=HeadError, ElementName=PrinterCardf}" Foreground="{Binding Path=HeadErrorForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=HeadErrorVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=PaperJamError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperJamForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=PaperJamVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=OutOfPaperError, ElementName=PrinterCardf}" Foreground="{Binding Path=OutOfPaperForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=OutOfPaperVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=PaperNearEndError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperNearEndForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=PaperNearEndVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Path=NoResponseError, ElementName=PrinterCardf}" Foreground="{Binding Path=NoResponseForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=NoResponseVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Voltage error : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=VoltageError, ElementName=PrinterCardf}" Foreground="{Binding Path=VoltageForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* AutoCutter error : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=AutocutterVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=AutocutterError, ElementName=PrinterCardf}" Foreground="{Binding Path=AutocutterForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=AutocutterVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Cover/Platen open error : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=CoverOpenVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=CoverOpenError, ElementName=PrinterCardf}" Foreground="{Binding Path=CoverOpenForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=CoverOpenVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Drawer sensor status : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=DrawerSensorVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=DrawerSensorError, ElementName=PrinterCardf}" Foreground="{Binding Path=DrawerSensorForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=DrawerSensorVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Paper feed status : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=FeedSwitchStateVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=FeedSwitchStateError, ElementName=PrinterCardf}" Foreground="{Binding Path=FeedSwitchStateForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=FeedSwitchStateVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Head temp error : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=HeadErrorVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=HeadError, ElementName=PrinterCardf}" Foreground="{Binding Path=HeadErrorForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=HeadErrorVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Mark paper jam error : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=PaperJamVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=PaperJamError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperJamForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=PaperJamVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Out-of-paper error : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=OutOfPaperVisibility,ElementName=PrinterCardf}"/>
+                            <TextBlock Text="{Binding Path=OutOfPaperError, ElementName=PrinterCardf}" Foreground="{Binding Path=OutOfPaperForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=OutOfPaperVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                       
+                            <TextBlock Text="{Binding Path=NoResponseError, ElementName=PrinterCardf}" Foreground="{Binding Path=NoResponseForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=NoResponseVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Path=PaperNearEndError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperNearEndForeground,ElementName=PrinterCardf}" Visibility="Collapsed" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                     </StackPanel>
                 </StackPanel>
-                <Separator Grid.Row="1" Height="1" Margin="10,0,80,-10" Background="#FF8FA8FF"/>
-                <StackPanel Grid.Row="2" Orientation="Horizontal">
-                    <TextBlock Text="Status:" Foreground="#FFF2FFB0" FontSize="15" FontWeight="SemiBold" Margin="10,5,20,0"/>
-                    <TextBlock Text="{Binding Path=WorkingStatus, ElementName=PrinterCardf}" Foreground="White" FontSize="12" FontWeight="SemiBold" Margin="0,8,5,0"/>
+                <Separator Grid.Row="1" Height="1" Margin="10,0,80,-10" Background="#e0e0e0"/>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,15,0,15">
+                    <TextBlock Text="Errors:" Foreground="#5e6366" FontSize="15" FontWeight="SemiBold" Margin="10,5,20,0" Visibility="Collapsed"/>
+                    <TextBlock Text="{Binding Path=WorkingStatus, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" FontSize="15" FontWeight="SemiBold" Margin="10,5,5,0"/>
                     <md:PackIcon Kind="CircleSlice8" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Margin="0,9,20,0"/>
                 </StackPanel>
             </StackPanel>
@@ -61,7 +98,6 @@
                     </LinearGradientBrush>
                 </Ellipse.Fill>
             </Ellipse>-->
-
             <!--<md:PackIcon Kind="{Binding Path=Icon, ElementName=PrinterCardf}" Grid.RowSpan="3" Margin="0,0,40,240" Width="50" Height="50" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>-->
         </Grid>
     </Border>
