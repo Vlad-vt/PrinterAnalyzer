@@ -18,6 +18,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="210"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -75,32 +77,200 @@
                             <TextBlock Text="{Binding Path=OutOfPaperError, ElementName=PrinterCardf}" Foreground="{Binding Path=OutOfPaperForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=OutOfPaperVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                         </StackPanel>
 
-                       
-                            <TextBlock Text="{Binding Path=NoResponseError, ElementName=PrinterCardf}" Foreground="{Binding Path=NoResponseForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=NoResponseVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding Path=PaperNearEndError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperNearEndForeground,ElementName=PrinterCardf}" Visibility="Collapsed" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+
+                        <TextBlock Text="{Binding Path=NoResponseError, ElementName=PrinterCardf}" Foreground="{Binding Path=NoResponseForeground,ElementName=PrinterCardf}" Visibility="{Binding Path=NoResponseVisibility,ElementName=PrinterCardf}" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Path=PaperNearEndError, ElementName=PrinterCardf}" Foreground="{Binding Path=PaperNearEndForeground,ElementName=PrinterCardf}" Visibility="Collapsed" FontSize="14" Width="250" Height="30" TextWrapping="WrapWithOverflow" Margin="7, 3.5, 0,0" FontWeight="SemiBold"/>
                     </StackPanel>
                 </StackPanel>
-                <Separator Grid.Row="1" Height="1" Margin="10,0,80,-10" Background="#e0e0e0"/>
+                <Separator Grid.Row="1" Height="1" Margin="10,0,80, 0" Background="#e0e0e0"/>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,15,0,15">
                     <TextBlock Text="Errors:" Foreground="#5e6366" FontSize="15" FontWeight="SemiBold" Margin="10,5,20,0" Visibility="Collapsed"/>
                     <TextBlock Text="{Binding Path=WorkingStatus, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" FontSize="15" FontWeight="SemiBold" Margin="0,5,5,0"/>
                     <md:PackIcon Kind="CircleSlice8" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Margin="0,9,0,0"/>
                     <TextBlock Text=":" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Visibility="{Binding Path=ErrorsListVisibility,ElementName=PrinterCardf}" FontSize="15" FontWeight="SemiBold" Margin="2,5,5,0"/>
-                    <TextBlock Text="{Binding Path=ErrorsList, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Visibility="{Binding Path=ErrorsListVisibility,ElementName=PrinterCardf}" FontSize="12" TextWrapping="WrapWithOverflow" Width="100" Height="auto" FontWeight="SemiBold" Margin="10,5,5,0"/>
+                    <TextBlock Text="{Binding Path=ErrorsList, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Visibility="{Binding Path=ErrorsListVisibility,ElementName=PrinterCardf}" FontSize="15" TextWrapping="WrapWithOverflow" Width="300" Height="auto" FontWeight="SemiBold" Margin="10,5,5,0"/>
+                </StackPanel>
+                <Separator Grid.Row="3" Height="1" Margin="10,0,80,-10" Background="#e0e0e0"/>
+                
+                
+                
+                <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,30,0,0">
+                    <TextBlock Text="Settings: " Foreground="#f7941d" FontWeight="SemiBold" FontSize="18"/>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Speed : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="Low" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Medium" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="2" Background="#5e6366" BorderThickness="0" Content="High" Width="auto" Height="30" Margin="10,0,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Direction : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="Forward" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Backward" Width="auto" Height="30" Margin="10,0,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="* Margin : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="Min margin" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Min top margin" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Min bottom margin" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Max margin" Width="auto" Height="30" Margin="10,15,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="* Paper cut : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="No cut" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content=" Full cut (by jobs)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Partial cut (by jobs)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Full cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Partial cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Partial cut (between pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Feed to cut position : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="Enabled" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Disabled" Width="auto" Height="30" Margin="10,0,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="* Paper size : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="Letter" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="A4" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="80 mm (72×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="58mm (54×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="* Print start logo : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="* Orientation : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="Portrait" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Landscape" Width="auto" Height="30" Margin="10,0,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,30">
+                            <TextBlock Text="* Watermark : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Upper left" Width="auto" Height="30" Margin="10,0,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Top center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Upper right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="Lower left" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="0" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="Bottom center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                                <Button Grid.Column="1" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="Lower right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                            </Grid>
+                        </StackPanel>
+
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-
-
-<!--
-            <Ellipse Grid.RowSpan="3" Width="200" Height="auto" MaxHeight="250" Margin="0, -280, -100, 0" HorizontalAlignment="Right">
-                <Ellipse.Fill>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                        <GradientStop Color="{Binding Path=EllipseBackground1, ElementName=PrinterCardf}" Offset="0"/>
-                        <GradientStop Color="{Binding Path=EllipseBackground2, ElementName=PrinterCardf}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Ellipse.Fill>
-            </Ellipse>-->
-            <!--<md:PackIcon Kind="{Binding Path=Icon, ElementName=PrinterCardf}" Grid.RowSpan="3" Margin="0,0,40,240" Width="50" Height="50" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>-->
         </Grid>
     </Border>
 </UserControl>

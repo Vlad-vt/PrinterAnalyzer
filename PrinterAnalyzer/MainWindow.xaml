@@ -8,7 +8,7 @@
         xmlns:uc="clr-namespace:PrinterAnalyzer.MVVM.View"
         xmlns:local="clr-namespace:PrinterAnalyzer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="740" Width="1280" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="740" Width="1480" WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" MouseMove="rctHeader_MouseMove"  MouseDown="rctHeader_MouseLeftButtonDown" MouseUp="rctHeader_MouseLeftButtonUp" WindowState="Minimized">
     <Window.DataContext>
         <viewModel:MainWindowViewModel/>

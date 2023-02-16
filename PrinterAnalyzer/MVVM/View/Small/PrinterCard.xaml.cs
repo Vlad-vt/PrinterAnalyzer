@@ -584,6 +584,8 @@ namespace PrinterAnalyzer.MVVM.View.Small
 
 
         #endregion
+
+        #region Default Properties
         public string Icon
         {
             get
@@ -648,5 +650,13 @@ namespace PrinterAnalyzer.MVVM.View.Small
             }
         }
         public static readonly DependencyProperty EllipseBackground2Property = DependencyProperty.Register("EllipseBackground2", typeof(Color), typeof(PrinterCard));
+
+        #endregion
+
+        #region Settings
+
+   
+
+        #endregion
     }
 }
