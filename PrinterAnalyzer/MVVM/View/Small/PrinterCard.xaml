@@ -91,7 +91,8 @@
                     <TextBlock Text="{Binding Path=ErrorsList, ElementName=PrinterCardf}" Foreground="{Binding Path=WorkingIcon, ElementName=PrinterCardf}" Visibility="{Binding Path=ErrorsListVisibility,ElementName=PrinterCardf}" FontSize="15" TextWrapping="WrapWithOverflow" Width="300" Height="auto" FontWeight="SemiBold" Margin="10,5,5,0"/>
                 </StackPanel>
                 <Separator Grid.Row="3" Height="1" Margin="10,0,80,-10" Background="#e0e0e0"/>
-           
+                <ContentControl Content="{Binding Path=SettingsView,ElementName=PrinterCardf}" Grid.Row="4"/>
+
             </StackPanel>
         </Grid>
     </Border>

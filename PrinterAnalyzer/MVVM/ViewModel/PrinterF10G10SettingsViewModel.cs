@@ -3,7 +3,7 @@ using System;
 
 namespace PrinterAnalyzer.MVVM.ViewModel
 {
-    internal class PrinterSettingsViewModel : ObservableObject
+    internal class PrinterF10G10SettingsViewModel : ObservableObject
     {
         #region SPEED
         public RelayCommand speedHigh { get; set; }
@@ -11,7 +11,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         public RelayCommand speedMiddleSilent { get; set; }
         #endregion
 
-        public PrinterSettingsViewModel()
+        public PrinterF10G10SettingsViewModel()
         {
             #region SPEED Commands
             speedHigh = new RelayCommand(obj => { ChangeSpeedToHigh();});

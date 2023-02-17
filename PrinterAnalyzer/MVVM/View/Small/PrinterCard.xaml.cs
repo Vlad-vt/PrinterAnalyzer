@@ -500,6 +500,19 @@ namespace PrinterAnalyzer.MVVM.View.Small
         }
         public static readonly DependencyProperty UnrecoverableErrorProperty = DependencyProperty.Register("UnrecoverableError", typeof(string), typeof(PrinterCard));
 
+        public object SettingsView
+        {
+            get
+            {
+                return (object)GetValue(SettingsViewProperty);
+            }
+            set
+            {
+                SetValue(SettingsViewProperty, value);
+            }
+        }
+        public static readonly DependencyProperty SettingsViewProperty = DependencyProperty.Register("SettingsView", typeof(object), typeof(PrinterCard));
+
         #region FeedSwitchState
         public string FeedSwitchStateError
         {
