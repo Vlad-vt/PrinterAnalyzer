@@ -221,25 +221,44 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             //bring up the printer preferences dialog
             #endregion
 
+            try
+            {
+                byte[] bytes = BitConverter.GetBytes(id);
+                uint size = 1;
+                switch(propertyType)
+                {
+                    case PropertyType.Speed:
+                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.SPEED, bytes, size);
+                        break;
+                    case PropertyType.Direction:
+                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.DIRECTION, bytes, size);
+                        break;
+                    case PropertyType.Margin:
+                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.MARGIN, bytes, size);
+                        break;
+                    case PropertyType.PaperCut:
+                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.CUT, bytes, size);
+                        break;
+                    case PropertyType.Orientation:
+                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.ORIENTATION, bytes, size);
+                        break;
+                    case PropertyType.FeedToCutPosition:
+                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, size);
+                        break;
+                }
+                DocumentProperties(IntPtr.Zero, gPrinter, iPrinterName, gDevModeData, gPInfo.pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER | 983040);
+            }
+            catch(Exception e)
+            {
 
-
-            byte[] bytes = BitConverter.GetBytes(0);
-            uint size = 1;
-            statusAPI.SetProperty(gDevModeData, PropertyId.SPEED, bytes, size).ToString();
-            bytes = BitConverter.GetBytes(0);
-            System.Windows.Forms.MessageBox.Show(statusAPI.SetProperty(gDevModeData, PropertyId.CUT, bytes, size).ToString());
-            DocumentProperties(IntPtr.Zero, gPrinter, iPrinterName, gDevModeData
-                , gPInfo.pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER | 983040);//PRINTER_ACCESS_ADMINISTER);
-            //update driver dependent part of the DEVMODE 
+            }
             Marshal.StructureToPtr(gPInfo, gPtrPrinterInfo, false);
             gLastError = Marshal.GetLastWin32Error();
             gNRet = Convert.ToInt16(SetPrinter(gPrinter, 2, gPtrPrinterInfo, 0));
             Marshal.FreeHGlobal(gPtrPrinterInfo);
             if (gNRet == 0)
             {
-                //Unable to set extern printer settings.
                 gLastError = Marshal.GetLastWin32Error();
-                //throw new Win32Exception(gLastError);
             }
             if (gPrinter != IntPtr.Zero)
             {
