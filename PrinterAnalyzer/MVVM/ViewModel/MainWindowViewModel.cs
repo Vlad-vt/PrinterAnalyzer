@@ -56,7 +56,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         private object _settingsView;
 
-        public object CurrentSettingsView
+        public object CurrentView
         {
             get 
             { 

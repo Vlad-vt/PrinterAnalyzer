@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PrinterAnalyzer.MVVM.View.Small
 {
     /// <summary>
-    /// Interaction logic for PrinterF10G10Settings.xaml
+    /// Interaction logic for PrinterSettingsF10G10.xaml
     /// </summary>
-    public partial class PrinterF10G10Settings : UserControl
+    public partial class PrinterSettingsF10G10 : UserControl
     {
-        public PrinterF10G10Settings()
+        public PrinterSettingsF10G10()
         {
             InitializeComponent();
         }

@@ -144,16 +144,17 @@
                 <viewsm:InfoAction/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:PrinterCardViewModel}"
-                 <viewsm:PrinterCard/>
-            </DataTemplate>
-
-                <DataTemplate DataType="{x:Type viewModel:PrinterF10G10SettingsViewModel}">
-                <viewsm:PrinterF10G10Settings/>
+            <DataTemplate DataType = "{x:Type viewModel:PrinterSettingsF10G10ViewModel}">
+                <viewsm:PrinterSettingsF10G10/>
             </DataTemplate>
 
 
-                <DataTemplate DataType="{x:Type viewModel:PrintersViewModel}">
+            <DataTemplate DataType="{x:Type viewModel:PrinterCardViewModel}">
+                <viewsm:PrinterCard/>
+            </DataTemplate>
+
+
+            <DataTemplate DataType="{x:Type viewModel:PrintersViewModel}">
                 <view:PrintersView/>
             </DataTemplate>
         </ResourceDictionary>

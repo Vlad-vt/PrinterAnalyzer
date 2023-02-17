@@ -79,7 +79,7 @@
                             <ItemsControl ItemsSource="{Binding PrintersList}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <dc:PrinterCard SettingsView="{Binding }" Title="{Binding Name}" Number="{Binding Errors}" NetworkData="{Binding NetworkData}" WorkingIcon="{Binding WorkingColor}" WorkingStatus="{Binding IsOnline}" Icon="Printer" Background1="#f2f2f2" Background2="#f2f2f2" 
+                                        <dc:PrinterCard SettingsView="{Binding CurrentSettingsView}" Title="{Binding Name}" Number="{Binding Errors}" NetworkData="{Binding NetworkData}" WorkingIcon="{Binding WorkingColor}" WorkingStatus="{Binding IsOnline}" Icon="Printer" Background1="#f2f2f2" Background2="#f2f2f2" 
                              EllipseBackground1="#FF3861DE" EllipseBackground2="#FF89A6FF" Margin="0,0,0,50"
                                                         BatteryChargeStatus="{Binding BatteryStatus}"
                                                         BatteryChargeColor="{Binding BatteryColor}"

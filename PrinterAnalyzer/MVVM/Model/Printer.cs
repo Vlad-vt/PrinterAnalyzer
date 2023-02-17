@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using PrinterAnalyzer.MVVM.Model.PrinterProperties;
 using PrinterAnalyzer.Enums;
+using PrinterAnalyzer.MVVM.ViewModel;
 
 namespace PrinterAnalyzer.MVVM.Model
 {
@@ -783,6 +784,22 @@ namespace PrinterAnalyzer.MVVM.Model
 
         #endregion
 
+
+
+        private object _settingsView;
+
+        public object CurrentSettingsView
+        {
+            get
+            {
+                return _settingsView;
+            }
+            set
+            {
+                _settingsView = value;
+                OnPropertyChanged();
+            }
+        }
         public Printer()
         {
             MachineName = Environment.MachineName;
@@ -799,6 +816,8 @@ namespace PrinterAnalyzer.MVVM.Model
                     properties = new Properties_RP_F10_G10();
                     break;
             }
+            var printer = this;
+            CurrentSettingsView = new PrinterSettingsF10G10ViewModel(ref printer);
         }
     }
 }
