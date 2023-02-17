@@ -787,11 +787,17 @@ namespace PrinterAnalyzer.MVVM.Model
             MachineName = Environment.MachineName;
         }
 
-        public Printer(string name)
+        public Printer(string name, PrinterType printerType)
         {
             MachineName = Environment.MachineName;
             Name = name;
             errorsList = new List<string>();
+            switch(printerType)
+            {
+                case PrinterType.RP_F10_G10:
+                    properties = new Properties_RP_F10_G10();
+                    break;
+            }
         }
     }
 }

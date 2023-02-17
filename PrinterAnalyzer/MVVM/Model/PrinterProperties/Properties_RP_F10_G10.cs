@@ -4,7 +4,9 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 {
     public class Properties_RP_F10_G10 : Properties
     {
-        public Dictionary<PropertyType, Dictionary<int , string>> PropertiesList { get; set; }
+        private Dictionary<PropertyType, Dictionary<int , string>> PropertiesList { get; set; }
+
+        public Dictionary<PropertyType, int> CurrentProperties { get; private set; }
 
         public Properties_RP_F10_G10()
         {
@@ -63,6 +65,11 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 
             #endregion
 
+        }
+
+        public void ChangeParameter(string PrinterName, ref object statusAPI ,PropertyType property, int id)
+        {
+            PrinterSettings.ChangePrinterSetting(PrinterName, ref statusAPI, property, id);
         }
     }
 }

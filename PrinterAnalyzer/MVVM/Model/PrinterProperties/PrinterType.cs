@@ -1,6 +1,6 @@
 ﻿namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 {
-    enum PrinterType
+    public enum PrinterType
     {
         RP_F10_G10
     }
