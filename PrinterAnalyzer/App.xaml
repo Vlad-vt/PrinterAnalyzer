@@ -144,7 +144,11 @@
                 <viewsm:InfoAction/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:PrinterF10G10SettingsViewModel}">
+            <DataTemplate DataType="{x:Type viewModel:PrinterCardViewModel}"
+                 <viewsm:PrinterCard/>
+            </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewModel:PrinterF10G10SettingsViewModel}">
                 <viewsm:PrinterF10G10Settings/>
             </DataTemplate>
 

@@ -16,8 +16,6 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         public PrintersViewModel PVM { get; set; }
 
-        public PrinterF10G10SettingsViewModel PFG10VM { get; set; }
-
         #region MenuButtonsStyles
         private Style _RPE10buttonStyle;
         public Style RPE10buttonStyle
@@ -54,20 +52,6 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         {
             get { return _activeButtonStyle; }
             set { _activeButtonStyle = value; }
-        }
-
-        private object _currentView;
-        public object CurrentView
-        {
-            get
-            {
-                return _currentView;
-            }
-            set
-            {
-                _currentView = value;
-                OnPropertyChanged();
-            }
         }
 
         private object _settingsView;
@@ -115,7 +99,6 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             RPF10G10buttonStyle = Application.Current.FindResource("menuButton") as Style;
             ActiveButtonStyle = "menuButtonActive";
             PVM = new PrintersViewModel();
-            PFG10VM = new PrinterF10G10SettingsViewModel();
             PrinterChanged += PVM.PrinterChanged;
             PrinterChanged.Invoke(PrinterType.SII_RP_E10);
 
@@ -165,7 +148,6 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             #endregion
 
             CurrentView = PVM;
-            CurrentSettingsView = PFG10VM;
         }
 
     }
