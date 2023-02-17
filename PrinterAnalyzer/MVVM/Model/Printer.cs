@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using PrinterAnalyzer.MVVM.Model.PrinterProperties;
+using PrinterAnalyzer.Enums;
 
 namespace PrinterAnalyzer.MVVM.Model
 {
@@ -794,7 +795,7 @@ namespace PrinterAnalyzer.MVVM.Model
             errorsList = new List<string>();
             switch(printerType)
             {
-                case PrinterType.RP_F10_G10:
+                case PrinterType.SII_RP_F10_G10:
                     properties = new Properties_RP_F10_G10();
                     break;
             }

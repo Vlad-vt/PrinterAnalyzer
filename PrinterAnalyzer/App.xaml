@@ -143,6 +143,8 @@
             <DataTemplate DataType = "{x:Type viewModel:InfoActionViewModel}">
                 <viewsm:InfoAction/>
             </DataTemplate>
+            
+            
 
             <DataTemplate DataType="{x:Type viewModel:PrintersViewModel}">
                 <view:PrintersView/>

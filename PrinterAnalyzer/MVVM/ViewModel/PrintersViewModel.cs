@@ -86,7 +86,14 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
                 if (printerName.StartsWith("SII"))
                 {
-                    PrintersMainList.Add(new Printer(printerName));
+                    if (printerName.Contains("E10"))
+                    {
+                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_E10));
+                    }
+                    else if (printerName.Contains("G10"))
+                    {
+                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_F10_G10));
+                    }
                 }
             }
         }
@@ -119,7 +126,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_E10:
                         if (PrintersMainList[i].Name.Contains("E10"))
                         {
-                            PrintersList.Add(new Printer(PrintersMainList[i].Name));
+                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_RP_E10));
                             PrintersList[count].printerAction += AddNewAction;
                             count++;
                             m_DLLFuncE10.OpenSamp(PrintersMainList[i].Name);
@@ -129,7 +136,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_F10_G10:
                         if (PrintersMainList[i].Name.Contains("F10") || PrintersMainList[i].Name.Contains("G10"))
                         {
-                            PrintersList.Add(new Printer(PrintersMainList[i].Name));
+                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_RP_F10_G10));
                             PrintersList[count].printerAction += AddNewAction;
                             count++;
                             m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[i].Name);

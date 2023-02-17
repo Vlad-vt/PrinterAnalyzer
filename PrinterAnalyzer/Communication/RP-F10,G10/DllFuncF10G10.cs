@@ -1,4 +1,5 @@
-﻿using PrinterAnalyzer.MVVM.Model.PrinterProperties;
+﻿using PrinterAnalyzer.Enums;
+using PrinterAnalyzer.MVVM.Model.PrinterProperties;
 using SII.SDK.PosPrinter;
 using System;
 using System.Collections.Generic;
@@ -97,13 +98,13 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             m_BarcodeScannerAPI.BarcodeDataCallback += new BarcodeScannerAPI.BarcodeDataCallbackHandler(CbBarcodeDataFuncSampProc);
         }
 
-        public void ChangeParameter(Properties properties,string PrinterName,PrinterType printerType, PropertyType propertyType, int id)
+        public void ChangeParameter(Properties properties,string PrinterName, PrinterType printerType, PropertyType propertyType, int id)
         {
             try
             {
                 switch(printerType)
                 {
-                    case PrinterType.RP_F10_G10:
+                    case PrinterType.SII_RP_F10_G10:
                         (properties as Properties_RP_F10_G10).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
                         break;
                 }
