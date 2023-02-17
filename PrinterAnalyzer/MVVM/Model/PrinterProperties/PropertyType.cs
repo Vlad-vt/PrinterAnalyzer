@@ -1,6 +1,6 @@
 ﻿namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 {
-    enum PropertyType
+    public enum PropertyType
     {
         Speed,
         Direction,
