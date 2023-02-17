@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using PrinterAnalyzer.MVVM.Model.PrinterProperties;
 
 namespace PrinterAnalyzer.MVVM.Model
 {
@@ -15,6 +16,8 @@ namespace PrinterAnalyzer.MVVM.Model
         public delegate void PrinterAction(string action);
 
         public event PrinterAction printerAction;
+
+        public Properties properties { get; set; }
 
         private Dictionary<string, string> _errors;
         public Dictionary<string, string> Errors
