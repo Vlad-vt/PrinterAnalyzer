@@ -60,9 +60,9 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         private List<Printer> PrintersMainList;
 
-        private DllFuncE10 m_DLLFuncE10;
+        public static DllFuncE10 m_DLLFuncE10;
 
-        private DllFuncF10G10 m_DLLFuncF10G10;
+        public static DllFuncF10G10 m_DLLFuncF10G10;
 
         public PrintersViewModel()
         {

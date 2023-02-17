@@ -18,9 +18,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="High" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Middle(Quality)" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="2" Background="#5e6366" BorderThickness="0" Content="Middle(Silent)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedHigh}" Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="High" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedMidQuality}" Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Middle(Quality)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedMidSilence}" Grid.Column="2" Background="#5e6366" BorderThickness="0" Content="Middle(Silent)" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 
