@@ -211,7 +211,7 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
         private const int PRINTER_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | PRINTER_ACCESS_ADMINISTER | PRINTER_ACCESS_USE;
         private const int PRINTER_ACCESS_USE = 8; //0x8
 
-        public static bool ChangePrinterSetting(string iPrinterName, ref object statusAPI, PropertyType propertyType, int id)//ref StatusAPI statusAPI)
+        public static bool ChangePrinterSetting(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)//ref StatusAPI statusAPI)
         {
             #region DEVMODE Structure
             gDevMode = GetPrinterSettings(iPrinterName);
@@ -228,22 +228,22 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
                 switch(propertyType)
                 {
                     case PropertyType.Speed:
-                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.SPEED, bytes, size);
+                        statusAPI.SetProperty(gDevModeData, PropertyId.SPEED, bytes, size);
                         break;
                     case PropertyType.Direction:
-                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.DIRECTION, bytes, size);
+                        statusAPI.SetProperty(gDevModeData, PropertyId.DIRECTION, bytes, size);
                         break;
                     case PropertyType.Margin:
-                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.MARGIN, bytes, size);
+                        statusAPI.SetProperty(gDevModeData, PropertyId.MARGIN, bytes, size);
                         break;
                     case PropertyType.PaperCut:
-                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.CUT, bytes, size);
+                        statusAPI.SetProperty(gDevModeData, PropertyId.CUT, bytes, size);
                         break;
                     case PropertyType.Orientation:
-                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.ORIENTATION, bytes, size);
+                        statusAPI.SetProperty(gDevModeData, PropertyId.ORIENTATION, bytes, size);
                         break;
                     case PropertyType.FeedToCutPosition:
-                        (statusAPI as SII.SDK.PosPrinter.StatusAPI).SetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, size);
+                        statusAPI.SetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, size);
                         break;
                 }
                 DocumentProperties(IntPtr.Zero, gPrinter, iPrinterName, gDevModeData, gPInfo.pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER | 983040);
