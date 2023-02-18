@@ -1,6 +1,8 @@
 ﻿using SII.SDK.PosPrinter;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Windows;
 
 namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 {
@@ -211,6 +213,65 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
         private const int PRINTER_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | PRINTER_ACCESS_ADMINISTER | PRINTER_ACCESS_USE;
         private const int PRINTER_ACCESS_USE = 8; //0x8
 
+
+        public static Dictionary<PropertyType, int> GetCurrentProperties(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI)
+        {
+            try
+            {
+                #region DEVMODE Structure
+                gDevMode = GetPrinterSettings(iPrinterName);
+                Marshal.StructureToPtr(gDevMode, gDevModeData, true);
+                gPInfo.pDevMode = gDevModeData;
+                gPInfo.pSecurityDescriptor = IntPtr.Zero;
+                #endregion
+
+                Dictionary<PropertyType, int> properties = new Dictionary<PropertyType, int>();
+                byte[] bytes = new byte[256];
+                uint size = 10;
+                foreach (PropertyType propertyType in Enum.GetValues(typeof(PropertyType)))
+                {
+                    switch (propertyType)
+                    {
+                        case PropertyType.Speed:
+                            if(statusAPI.GetProperty(gDevModeData, PropertyId.SPEED, bytes, ref size) == ErrorCode.SUCCESS);
+                            {
+                                properties.Add(PropertyType.Speed, BitConverter.ToInt32(bytes, 0));
+                            }
+                            break;
+                        case PropertyType.Direction:
+                            statusAPI.GetProperty(gDevModeData, PropertyId.DIRECTION, bytes, ref size);
+                            properties.Add(PropertyType.Direction, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.FeedToCutPosition:
+                            statusAPI.GetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, ref size);
+                            properties.Add(PropertyType.FeedToCutPosition, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.Margin:
+                            statusAPI.GetProperty(gDevModeData, PropertyId.MARGIN, bytes, ref size);
+                            properties.Add(PropertyType.Margin, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.PaperCut:
+                            statusAPI.GetProperty(gDevModeData, PropertyId.CUT, bytes, ref size);
+                            properties.Add(PropertyType.PaperCut, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.Orientation:
+                            statusAPI.GetProperty(gDevModeData, PropertyId.ORIENTATION, bytes, ref size);
+                            properties.Add(PropertyType.Orientation, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.Watermark:
+                            statusAPI.GetProperty(gDevModeData, PropertyId.WATERMARK, bytes, ref size);
+                            properties.Add(PropertyType.Watermark, BitConverter.ToInt32(bytes, 0));
+                            break;
+                    }
+                }
+                return properties;
+            }
+            catch(Exception e)
+            {
+                //System.Windows.MessageBox.Show(e.Message);
+                return null;
+            }
+        }
         public static bool ChangePrinterSetting(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)//ref StatusAPI statusAPI)
         {
             #region DEVMODE Structure
@@ -218,7 +279,6 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             Marshal.StructureToPtr(gDevMode, gDevModeData, true);
             gPInfo.pDevMode = gDevModeData;
             gPInfo.pSecurityDescriptor = IntPtr.Zero;
-            //bring up the printer preferences dialog
             #endregion
 
             try

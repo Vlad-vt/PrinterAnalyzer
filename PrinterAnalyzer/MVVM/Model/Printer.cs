@@ -15,6 +15,8 @@ namespace PrinterAnalyzer.MVVM.Model
 
         public string Name { get; set; }
 
+        public PrinterType printerType { get; set; }
+
         public delegate void PrinterAction(string action);
 
         public event PrinterAction printerAction;
@@ -805,11 +807,21 @@ namespace PrinterAnalyzer.MVVM.Model
             MachineName = Environment.MachineName;
         }
 
-        public Printer(string name, PrinterType printerType)
+        public void UpdateSettings()
+        {
+            //OnUpdateSettings?.Invoke();
+        }
+
+        public delegate void UpdateSet();
+
+        public event UpdateSet OnUpdateSettings;
+
+        public Printer(string name, PrinterType printerType, bool viewModelInit)
         {
             MachineName = Environment.MachineName;
             Name = name;
             errorsList = new List<string>();
+            this.printerType = printerType;
             switch(printerType)
             {
                 case PrinterType.SII_RP_F10_G10:
@@ -817,7 +829,8 @@ namespace PrinterAnalyzer.MVVM.Model
                     break;
             }
             var printer = this;
-            CurrentSettingsView = new PrinterSettingsF10G10ViewModel(ref printer);
+            if(viewModelInit)
+                CurrentSettingsView = new PrinterSettingsF10G10ViewModel(ref printer);
         }
     }
 }

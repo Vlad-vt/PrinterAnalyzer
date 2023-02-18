@@ -98,6 +98,24 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             m_BarcodeScannerAPI.BarcodeDataCallback += new BarcodeScannerAPI.BarcodeDataCallbackHandler(CbBarcodeDataFuncSampProc);
         }
 
+        public Dictionary<PropertyType, int> GetCurrentPrinterSettings(Properties properties, string PrinterName, PrinterType printerType)
+        {
+            try
+            {
+                switch (printerType)
+                {
+                    case PrinterType.SII_RP_F10_G10:
+                        return (properties as Properties_RP_F10_G10).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
+                    default:
+                        return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void ChangeParameter(Properties properties,string PrinterName, PrinterType printerType, PropertyType propertyType, int id)
         {
             try

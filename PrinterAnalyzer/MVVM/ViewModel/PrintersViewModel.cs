@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Drawing.Printing;
 using System.Windows;
 using System.Windows.Forms;
+using PrinterAnalyzer.MVVM.Model.PrinterProperties;
+using System.Threading;
 
 namespace PrinterAnalyzer.MVVM.ViewModel
 {
@@ -76,23 +78,57 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncF10G10.CallbackStatusSamp(false);
             CreatePrinterList();
+            Thread thread = new Thread(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(3000);
+                    GetPrintersSettings();
+                }
+            });
+            thread.IsBackground = true;
+            thread.Start();
         }
+
+        public delegate void Changes();
+
+        public static event Changes SettingsChanges;
+
+
 
         private void CreatePrinterList()
         {
-            for (int index = 0; index < PrinterSettings.InstalledPrinters.Count; index++)
+            for (int index = 0; index < System.Drawing.Printing.PrinterSettings.InstalledPrinters.Count; index++)
             {
-                string printerName = PrinterSettings.InstalledPrinters[index];
+                string printerName = System.Drawing.Printing.PrinterSettings.InstalledPrinters[index];
 
                 if (printerName.StartsWith("SII"))
                 {
                     if (printerName.Contains("E10"))
                     {
-                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_E10));
+                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_E10, false));
                     }
                     else if (printerName.Contains("G10"))
                     {
-                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_F10_G10));
+                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_F10_G10, false));
+                    }
+                }
+            }
+        }
+
+        private void GetPrintersSettings()
+        {
+            for(int i=0;i<PrintersMainList.Count;i++) 
+            {
+                if (PrintersMainList[i].printerType == PrinterType.SII_RP_F10_G10)
+                {
+                    (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
+                    for(int j=0;j<PrintersList.Count;j++) 
+                    {
+                        if (PrintersMainList[i].Name == PrintersList[j].Name)
+                        {
+                            PrintersList[j].properties = PrintersMainList[i].properties;
+                        }
                     }
                 }
             }
@@ -126,7 +162,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_E10:
                         if (PrintersMainList[i].Name.Contains("E10"))
                         {
-                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_RP_E10));
+                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_RP_E10, true));
                             PrintersList[count].printerAction += AddNewAction;
                             count++;
                             m_DLLFuncE10.OpenSamp(PrintersMainList[i].Name);
@@ -136,7 +172,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_F10_G10:
                         if (PrintersMainList[i].Name.Contains("F10") || PrintersMainList[i].Name.Contains("G10"))
                         {
-                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_RP_F10_G10));
+                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_RP_F10_G10, true));
                             PrintersList[count].printerAction += AddNewAction;
                             count++;
                             m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[i].Name);

@@ -6,12 +6,12 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
     {
         private Dictionary<PropertyType, Dictionary<int , string>> PropertiesList { get; set; }
 
-        public Dictionary<PropertyType, int> CurrentProperties { get; private set; }
+        public Dictionary<PropertyType, int> CurrentProperties { get; set; }
 
         public Properties_RP_F10_G10()
         {
             PropertiesList = new Dictionary<PropertyType, Dictionary<int,string>>();
-
+            CurrentProperties = new Dictionary<PropertyType, int>();
             #region Properties Initialization
 
             PropertiesList.Add(PropertyType.Speed, new Dictionary<int, string>
@@ -65,6 +65,12 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 
             #endregion
 
+        }
+
+        public Dictionary<PropertyType, int> GetCurrentPrinterSettings(string PrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI)
+        {
+            CurrentProperties = PrinterSettings.GetCurrentProperties(PrinterName, ref statusAPI);
+            return CurrentProperties;
         }
 
         public void ChangeParameter(string PrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI ,PropertyType property, int id)

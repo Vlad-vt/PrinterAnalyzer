@@ -94,7 +94,15 @@
                 </Setter>
             </Style>
 
-      
+            <Style x:Key="defaultTopMenuButtons" TargetType="{x:Type md:PackIcon}">
+                <Setter Property="Foreground" Value="#5e6366"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="#f7941d"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
 
             <Style x:Key="topMenuButton" TargetType="Button">
                 <Setter Property="Background" Value="Transparent"/>

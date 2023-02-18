@@ -18,9 +18,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Command="{Binding SpeedHigh}" Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="High" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Command="{Binding SpeedMidQuality}" Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Middle(Quality)" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Command="{Binding SpeedMidSilence}" Grid.Column="2" Background="#5e6366" BorderThickness="0" Content="Middle(Silent)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedHigh}" Grid.Column="0" Background="{Binding SpeedHighColor}" BorderThickness="0" Content="High" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedMidQuality}" Grid.Column="1" Background="{Binding SpeedMidQualityColor}" BorderThickness="0" Content="Middle(Quality)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedMidSilence}" Grid.Column="2" Background="{Binding SpeedMidSilenceColor}" BorderThickness="0" Content="Middle(Silent)" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -34,8 +34,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="Forward" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Backward" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding DirectionForwardCommand}" Grid.Column="0" Background="{Binding DirectionForwardColor}" BorderThickness="0" Content="Forward" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding DirectionBackwardCommand}" Grid.Column="1" Background="{Binding DirectionBackwardColor}" BorderThickness="0" Content="Backward" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -52,10 +52,10 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="Min margin" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Min top margin" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Min bottom margin" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Max margin" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MinMarg}" Grid.Column="0" Grid.Row="0" Background="{Binding MinMargColor}" BorderThickness="0" Content="Min margin" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding MinTopMarg}" Grid.Column="1" Grid.Row="0"  Background="{Binding MinTopMargColor}" BorderThickness="0" Content="Min top margin" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding MinBottomMarg}" Grid.Column="0" Grid.Row="1"  Background="{Binding MinBottomMargColor}" BorderThickness="0" Content="Min bottom margin" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MaxMarg}" Grid.Column="1" Grid.Row="1"  Background="{Binding MaxMargColor}" BorderThickness="0" Content="Max margin" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
 
