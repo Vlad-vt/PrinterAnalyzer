@@ -807,15 +807,6 @@ namespace PrinterAnalyzer.MVVM.Model
             MachineName = Environment.MachineName;
         }
 
-        public void UpdateSettings()
-        {
-            //OnUpdateSettings?.Invoke();
-        }
-
-        public delegate void UpdateSet();
-
-        public event UpdateSet OnUpdateSettings;
-
         public Printer(string name, PrinterType printerType, bool viewModelInit)
         {
             MachineName = Environment.MachineName;
