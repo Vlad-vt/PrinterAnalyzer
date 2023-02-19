@@ -498,7 +498,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                 while (true)
                 {
                     GetChanges();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                 }
             });
             thread.IsBackground = true;
@@ -535,6 +535,149 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             SpeedMidSilenceColor = "#f7941d";
                         });
                         break;
+                }
+                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
+                {
+                    case 0:
+                        App.Current.Dispatcher.Invoke(() =>
+                        {
+                            DirectionForwardColor = "#f7941d";
+                            DirectionBackwardColor = "#5e6366";
+                        });
+                        break;
+                    case 1:
+                        App.Current.Dispatcher.Invoke(() =>
+                        {
+                            DirectionForwardColor = "#5e6366";
+                            DirectionBackwardColor = "#f7941d";
+                        });
+                        break;
+                    case 3:
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            DirectionForwardColor = "#5e6366";
+                            DirectionBackwardColor = "#f7941d";
+                        });
+                        break;
+                }
+                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
+                {
+                    case 0:
+                        {
+                            MinMargColor = "#f7941d";
+                            MinTopMargColor = "#5e6366";
+                            MinBottomMargColor = "#5e6366";
+                            MaxMargColor = "#5e6366";
+                            break;
+                        }
+                    case 1:
+                        {
+                            MinMargColor = "#5e6366";
+                            MinTopMargColor = "#f7941d";
+                            MinBottomMargColor = "#5e6366";
+                            MaxMargColor = "#5e6366";
+                            break;
+                        }
+                    case 2:
+                        {
+                            MinMargColor = "#5e6366";
+                            MinTopMargColor = "#5e6366";
+                            MinBottomMargColor = "#f7941d";
+                            MaxMargColor = "#5e6366";
+                            break;
+                        }
+                    case 3:
+                        {
+                            MinMargColor = "#5e6366";
+                            MinTopMargColor = "#5e6366";
+                            MinBottomMargColor = "#5e6366";
+                            MaxMargColor = "#f7941d";
+                            break;
+                        }
+                }
+                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
+                {
+                    case 0:
+                        {
+                            FeedEnabledColor = "#f7941d";
+                            FeedDisabledColor = "#5e6366";
+                            break;
+                        }
+                    case 1:
+                        {
+                            FeedEnabledColor = "#5e6366";
+                            FeedDisabledColor = "#f7941d";
+                            break;
+                        }
+                    case 3:
+                        {
+                            FeedEnabledColor = "#5e6366";
+                            FeedDisabledColor = "#f7941d";
+                            break;
+                        }
+                }
+                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
+                {
+                    case 0:
+                        {
+                            CutNoCutColor = "#f7941d";
+                            CutFullCutByJobColor = "#5e6366";
+                            CutPartialCutByJobsColor = "#5e6366";
+                            CutFullCutByPageColor = "#5e6366";
+                            CutPartialCutByPageColor = "#5e6366";
+                            CutPartialCutBetweenPagesColor = "#5e6366";
+                            break;
+                        }
+                    case 1:
+                        {
+                            CutNoCutColor = "#5e6366";
+                            CutFullCutByJobColor = "#f7941d";
+                            CutPartialCutByJobsColor = "#5e6366";
+                            CutFullCutByPageColor = "#5e6366";
+                            CutPartialCutByPageColor = "#5e6366";
+                            CutPartialCutBetweenPagesColor = "#5e6366";
+                            break;
+                        }
+                    case 2:
+                        {
+                            CutNoCutColor = "#5e6366";
+                            CutFullCutByJobColor = "#5e6366";
+                            CutPartialCutByJobsColor = "#f7941d";
+                            CutFullCutByPageColor = "#5e6366";
+                            CutPartialCutByPageColor = "#5e6366";
+                            CutPartialCutBetweenPagesColor = "#5e6366";
+                            break;
+                        }
+                    case 3:
+                        {
+                            CutNoCutColor = "#5e6366";
+                            CutFullCutByJobColor = "#5e6366";
+                            CutPartialCutByJobsColor = "#5e6366";
+                            CutFullCutByPageColor = "#f7941d";
+                            CutPartialCutByPageColor = "#5e6366";
+                            CutPartialCutBetweenPagesColor = "#5e6366";
+                            break;
+                        }
+                    case 4:
+                        {
+                            CutNoCutColor = "#5e6366";
+                            CutFullCutByJobColor = "#5e6366";
+                            CutPartialCutByJobsColor = "#5e6366";
+                            CutFullCutByPageColor = "#5e6366";
+                            CutPartialCutByPageColor = "#f7941d";
+                            CutPartialCutBetweenPagesColor = "#5e6366";
+                            break;
+                        }
+                    case 5:
+                        {
+                            CutNoCutColor = "#5e6366";
+                            CutFullCutByJobColor = "#5e6366";
+                            CutPartialCutByJobsColor = "#5e6366";
+                            CutFullCutByPageColor = "#5e6366";
+                            CutPartialCutByPageColor = "#5e6366";
+                            CutPartialCutBetweenPagesColor = "#f7941d";
+                            break;
+                        }
                 }
             }
             catch { }   
@@ -584,22 +727,22 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region Margin Commands
         private void MarginToMin()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 0);
+            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 0);
             ChangeMarginButtonColor(0);
         }
         private void MarginToTopMin()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 1);
+            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 1);
             ChangeMarginButtonColor(1);
         }
         private void MarginBottomMin()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 3);
+            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 2);
             ChangeMarginButtonColor(2);
         }
         private void MarginToMax()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 3);
+            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 3);
             ChangeMarginButtonColor(3);
         }
         private void ChangeMarginButtonColor(int id)
