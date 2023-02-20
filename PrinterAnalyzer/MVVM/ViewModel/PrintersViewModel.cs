@@ -131,6 +131,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 PrintersList[j].properties = PrintersMainList[i].properties;
                             }
                         }
+                        NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10_G10, (PrintersMainList[i].properties as Properties_RP_E10).CurrentProperties);
                         break;
                     case PrinterType.SII_RP_F10_G10:
                         (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
@@ -141,20 +142,12 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 PrintersList[j].properties = PrintersMainList[i].properties;
                             }
                         }
+                        NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10_G10, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
                         break;
                 }
-                /*if (PrintersMainList[i].printerType == PrinterType.SII_RP_F10_G10)
-                {
-                    (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
-                    for (int j = 0; j < PrintersList.Count; j++) 
-                    {
-                        if (PrintersMainList[i].Name == PrintersList[j].Name)
-                        {
-                            PrintersList[j].properties = PrintersMainList[i].properties;
-                        }
-                    }
-                }*/
             }
+            //System.Windows.Forms.MessageBox.Show(NetworkData.GetInstance().SendDefaultSettings().Result);
+            //System.Windows.Forms.MessageBox.Show(NetworkData.GetInstance().SendSettings().Result);
         }
 
         private void AddNewAction(string action)
