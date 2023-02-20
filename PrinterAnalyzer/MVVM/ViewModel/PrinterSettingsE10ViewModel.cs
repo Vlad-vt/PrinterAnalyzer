@@ -707,22 +707,22 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region Speed Commands
         private void SpeedToLow()
         {
-            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 1);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_E10, Model.PrinterProperties.PropertyType.Speed, 1);
             ChangeSpeedButtonColor(1);
         }
         private void SpeedToHigh()
         {
-            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 3);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_E10, Model.PrinterProperties.PropertyType.Speed, 3);
             ChangeSpeedButtonColor(3);
         }
         private void SpeedToMidQuality()
         {
-            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 2);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_E10, Model.PrinterProperties.PropertyType.Speed, 2);
             ChangeSpeedButtonColor(2);
         }
         private void SpeedToMidSilence()
         {
-            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_E10, Model.PrinterProperties.PropertyType.Speed, 0);
             ChangeSpeedButtonColor(0);
         }
         private void ChangeSpeedButtonColor(int id)

@@ -444,6 +444,70 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             return Convert.ToBoolean(gNRet);
         }
 
+        public static bool ChangePrinterSettings(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, Dictionary<PropertyType, int> settingsList)
+        {
+            #region DEVMODE Structure
+            gDevMode = GetPrinterSettings(iPrinterName);
+            Marshal.StructureToPtr(gDevMode, gDevModeData, true);
+            gPInfo.pDevMode = gDevModeData;
+            gPInfo.pSecurityDescriptor = IntPtr.Zero;
+            #endregion
+
+            try
+            {
+                byte[] bytes;
+                uint size = 1;
+                foreach (PropertyType propertyType in Enum.GetValues(typeof(PropertyType)))
+                {
+                    switch (propertyType)
+                    {
+                        case PropertyType.Speed:
+                            bytes = BitConverter.GetBytes(settingsList.GetValueOrDefault(PropertyType.Speed));
+                            statusAPI.SetProperty(gDevModeData, PropertyId.SPEED, bytes, size);
+                            break;
+                        case PropertyType.Direction:
+                            bytes = BitConverter.GetBytes(settingsList.GetValueOrDefault(PropertyType.Direction));
+                            statusAPI.SetProperty(gDevModeData, PropertyId.DIRECTION, bytes, size);
+                            break;
+                        case PropertyType.Margin:
+                            bytes = BitConverter.GetBytes(settingsList.GetValueOrDefault(PropertyType.Margin));
+                            statusAPI.SetProperty(gDevModeData, PropertyId.MARGIN, bytes, size);
+                            break;
+                        case PropertyType.PaperCut:
+                            bytes = BitConverter.GetBytes(settingsList.GetValueOrDefault(PropertyType.PaperCut));
+                            statusAPI.SetProperty(gDevModeData, PropertyId.CUT, bytes, size);
+                            break;
+                        case PropertyType.Orientation:
+                            bytes = BitConverter.GetBytes(settingsList.GetValueOrDefault(PropertyType.Orientation));
+                            statusAPI.SetProperty(gDevModeData, PropertyId.ORIENTATION, bytes, size);
+                            break;
+                        case PropertyType.FeedToCutPosition:
+                            bytes = BitConverter.GetBytes(settingsList.GetValueOrDefault(PropertyType.FeedToCutPosition));
+                            statusAPI.SetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, size);
+                            break;
+                    }
+                }
+                DocumentProperties(IntPtr.Zero, gPrinter, iPrinterName, gDevModeData, gPInfo.pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER | 983040);
+            }
+            catch (Exception e)
+            {
+
+            }
+            Marshal.StructureToPtr(gPInfo, gPtrPrinterInfo, false);
+            gLastError = Marshal.GetLastWin32Error();
+            gNRet = Convert.ToInt16(SetPrinter(gPrinter, 2, gPtrPrinterInfo, 0));
+            Marshal.FreeHGlobal(gPtrPrinterInfo);
+            if (gNRet == 0)
+            {
+                gLastError = Marshal.GetLastWin32Error();
+            }
+            if (gPrinter != IntPtr.Zero)
+            {
+                ClosePrinter(gPrinter);
+            }
+            return Convert.ToBoolean(gNRet);
+        }
+
         private static DEVMODE GetPrinterSettings(string PrinterName)
         {
             DEVMODE lDevMode;

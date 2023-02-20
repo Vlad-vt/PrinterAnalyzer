@@ -284,12 +284,20 @@ namespace PrinterAnalyzer.MVVM.Model
                         ErrorsList += errorsList[i];
                     }
                     errorsList.Clear();
+                    if (CurrentSettingsView == null)
+                    {
+                        NetworkData.GetInstance().SendStatus(printerType, IsOnline, ErrorsList);
+                    }
                 }
                 else
                 {
                     ErrorsListVisibility = "Collapsed";
+                    if (CurrentSettingsView == null)
+                    {
+                        NetworkData.GetInstance().SendStatus(printerType, IsOnline, "-");
+                    }
                 }
-
+                
 
                 OnPropertyChanged();
             }

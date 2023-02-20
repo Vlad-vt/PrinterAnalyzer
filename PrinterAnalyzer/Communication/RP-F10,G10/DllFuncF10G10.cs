@@ -25,7 +25,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
         [DllImport("kernel32.dll", ExactSpelling = true)]
         public static extern IntPtr GlobalUnlock(IntPtr handle);
         // Callback handler definition
-        public delegate void callbackEventHandler(Dictionary<string,string> msg);
+        public delegate void callbackEventHandler(Dictionary<string,string> msg, PrinterType printerType);
         public event callbackEventHandler MyCallbackEvent;
 
         // The property indicating whether to display barcode data as text
@@ -133,6 +133,23 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             }
         }
 
+        public void ChangeParameters(Properties properties, Dictionary<PropertyType, int> settingsList, string PrinterName, PrinterType printerType)
+        {
+            try
+            {
+                switch (printerType)
+                {
+                    case PrinterType.SII_RP_F10_G10:
+                        (properties as Properties_RP_F10_G10).ChangeParameters(PrinterName, ref m_StatusAPI, settingsList);
+                        break;
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
         //	Callback status function sample
         private void CbStatusFuncSampProc(ASB status)
         {
@@ -140,7 +157,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             if (status == ASB.ASB_NO_RESPONSE)
             {
                 errorStatus.Add("* Printer is offline", "Yes");
-                MyCallbackEvent(errorStatus);
+                MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10_G10);
                 return;
             }
             else
@@ -224,7 +241,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
                 errorStatus.Add("Battery", "Low");
 
 
-            MyCallbackEvent(errorStatus);
+            MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10_G10);
             return;
         }
 

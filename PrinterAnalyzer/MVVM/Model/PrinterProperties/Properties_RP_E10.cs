@@ -18,7 +18,6 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
         {
             PropertiesList = new Dictionary<PropertyType, Dictionary<int, string>>();
             CurrentProperties = new Dictionary<PropertyType, int>();
-            ChangesDone = true;
             #region Properties Initialization
 
             PropertiesList.Add(PropertyType.Speed, new Dictionary<int, string>
@@ -71,7 +70,7 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             });
 
             #endregion
-
+            ChangesDone = true;
         }
 
         public Dictionary<PropertyType, Dictionary<int, string>> GetDefaultPrinterSettings()
@@ -84,7 +83,7 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             Dictionary<PropertyType, int> tempDictionary = PrinterSettings.GetCurrentProperties(PrinterName, ref statusAPI);
             foreach (PropertyType propertyType in Enum.GetValues(typeof(PropertyType)))
             {
-                if (tempDictionary.GetValueOrDefault(PropertyType.Speed) != CurrentProperties.GetValueOrDefault(PropertyType.Speed))
+                if (tempDictionary.GetValueOrDefault(propertyType) != CurrentProperties.GetValueOrDefault(propertyType))
                 {
                     ChangesDone = true;
                     break;

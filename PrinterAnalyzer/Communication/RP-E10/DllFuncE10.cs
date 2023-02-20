@@ -10,7 +10,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
 {
     public class DllFuncE10
     {
-        public delegate void callbackEventHandler(Dictionary<string, string> msg);
+        public delegate void callbackEventHandler(Dictionary<string, string> msg, PrinterType printerType);
         public event callbackEventHandler myCallbackEvent;
 
 
@@ -33,7 +33,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
             {
                 switch (printerType)
                 {
-                    case PrinterType.SII_RP_F10_G10:
+                    case PrinterType.SII_RP_E10:
                         return (properties as Properties_RP_E10).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
                     default:
                         return null;
@@ -51,7 +51,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
             {
                 switch (printerType)
                 {
-                    case PrinterType.SII_RP_F10_G10:
+                    case PrinterType.SII_RP_E10:
                         (properties as Properties_RP_E10).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
                         break;
                 }
@@ -67,7 +67,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
             if (status == ASB.ASB_NO_RESPONSE)
             {
                 errorStatus.Add("* Printer is offline", "Yes");
-                myCallbackEvent(errorStatus);
+                myCallbackEvent(errorStatus, PrinterType.SII_RP_E10);
                 return;
             }
             else
@@ -144,7 +144,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
             else
                 errorStatus.Add("* Unrecover error : ", "No");
 
-            myCallbackEvent(errorStatus);
+            myCallbackEvent(errorStatus, PrinterType.SII_RP_E10);
 
             return;
         }
