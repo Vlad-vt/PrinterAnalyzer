@@ -16,11 +16,15 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Command="{Binding SpeedHigh}" Grid.Column="0" Background="{Binding SpeedHighColor}" BorderThickness="0" Content="High" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Command="{Binding SpeedMidQuality}" Grid.Column="1" Background="{Binding SpeedMidQualityColor}" BorderThickness="0" Content="Middle(Quality)" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Command="{Binding SpeedMidSilence}" Grid.Column="2" Background="{Binding SpeedMidSilenceColor}" BorderThickness="0" Content="Middle(Silent)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Command="{Binding SpeedLow}" Grid.Column="0" Background="{Binding SpeedLowColor}" BorderThickness="0" Content="Low" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Row="0" Command="{Binding SpeedHigh}" Grid.Column="1" Background="{Binding SpeedHighColor}" BorderThickness="0" Content="High" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Row="1" Command="{Binding SpeedMidQuality}" Grid.Column="0" Background="{Binding SpeedMidQualityColor}" BorderThickness="0" Content="Middle(Quality)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Row="1" Command="{Binding SpeedMidSilence}" Grid.Column="1" Background="{Binding SpeedMidSilenceColor}" BorderThickness="0" Content="Middle(Silent)" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 

@@ -71,13 +71,13 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 
         }
 
-        public Dictionary<PropertyType, int> GetCurrentPrinterSettings(string PrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI)
+        public Dictionary<PropertyType, int> GetCurrentPrinterSettings(string PrinterName, ref SiiPrinterSdk.StatusAPI statusAPI)
         {
             CurrentProperties = PrinterSettings.GetCurrentProperties(PrinterName, ref statusAPI);
             return CurrentProperties;
         }
 
-        public void ChangeParameter(string PrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType property, int id)
+        public void ChangeParameter(string PrinterName, ref SiiPrinterSdk.StatusAPI statusAPI, PropertyType property, int id)
         {
             PrinterSettings.ChangePrinterSetting(PrinterName, ref statusAPI, property, id);
         }

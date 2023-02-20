@@ -10,6 +10,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
     internal class PrinterSettingsE10ViewModel : ObservableObject
     {
         #region Speed
+        public RelayCommand SpeedLow { get; set; }
         public RelayCommand SpeedHigh { get; set; }
         public RelayCommand SpeedMidQuality { get; set; }
         public RelayCommand SpeedMidSilence { get; set; }
@@ -24,6 +25,20 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             set
             {
                 _speedHighColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _speedLowColor;
+        public string SpeedLowColor
+        {
+            get
+            {
+                return _speedLowColor;
+            }
+            set
+            {
+                _speedLowColor = value;
                 OnPropertyChanged();
             }
         }
@@ -507,19 +522,30 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         {
             try
             {
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Speed))
+                switch ((_printer.properties as Properties_RP_E10).CurrentProperties.GetValueOrDefault(PropertyType.Speed))
                 {
                     case 0:
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            SpeedHighColor = "#f7941d";
+                            SpeedLowColor = "#5e6366";
+                            SpeedHighColor = "#5e6366";
                             SpeedMidQualityColor = "#5e6366";
-                            SpeedMidSilenceColor = "#5e6366";
+                            SpeedMidSilenceColor = "#f7941d";
                         });
                         break;
                     case 1:
                         Application.Current.Dispatcher.Invoke(() =>
                         {
+                            SpeedLowColor = "#f7941d";
+                            SpeedHighColor = "#5e6366";
+                            SpeedMidQualityColor = "#f7941d";
+                            SpeedMidSilenceColor = "#5e6366";
+                        });
+                        break;
+                    case 2:
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            SpeedLowColor = "#5e6366";
                             SpeedHighColor = "#5e6366";
                             SpeedMidQualityColor = "#f7941d";
                             SpeedMidSilenceColor = "#5e6366";
@@ -528,13 +554,14 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case 3:
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            SpeedHighColor = "#5e6366";
+                            SpeedLowColor = "#5e6366";
+                            SpeedHighColor = "#f7941d";
                             SpeedMidQualityColor = "#5e6366";
-                            SpeedMidSilenceColor = "#f7941d";
+                            SpeedMidSilenceColor = "#5e6366";
                         });
                         break;
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
+                switch ((_printer.properties as Properties_RP_E10).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
                 {
                     case 0:
                         App.Current.Dispatcher.Invoke(() =>
@@ -550,15 +577,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             DirectionBackwardColor = "#f7941d";
                         });
                         break;
-                    case 3:
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            DirectionForwardColor = "#5e6366";
-                            DirectionBackwardColor = "#f7941d";
-                        });
-                        break;
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
+                switch ((_printer.properties as Properties_RP_E10).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
                 {
                     case 0:
                         {
@@ -593,7 +613,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             break;
                         }
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
+                switch ((_printer.properties as Properties_RP_E10).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
                 {
                     case 0:
                         {
@@ -614,7 +634,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             break;
                         }
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
+                switch ((_printer.properties as Properties_RP_E10).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
                 {
                     case 0:
                         {
@@ -686,7 +706,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region Speed Commands
         private void SpeedToHigh()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 0);
             ChangeSpeedButtonColor(0);
         }
         private void SpeedToMidQuality()

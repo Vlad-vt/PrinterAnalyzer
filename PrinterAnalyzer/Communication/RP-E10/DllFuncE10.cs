@@ -1,4 +1,6 @@
-﻿using SiiPrinterSdk;
+﻿using PrinterAnalyzer.Enums;
+using PrinterAnalyzer.MVVM.Model.PrinterProperties;
+using SiiPrinterSdk;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,7 +27,40 @@ namespace PrinterAnalyzer.Communication.RP_E10
             m_StatusAPI.StatusCallback += new StatusAPI.StatusCallbackHandler(CbFuncSampProc);
         }
 
-        //	Callback status function sample
+        public Dictionary<PropertyType, int> GetCurrentPrinterSettings(Properties properties, string PrinterName, PrinterType printerType)
+        {
+            try
+            {
+                switch (printerType)
+                {
+                    case PrinterType.SII_RP_F10_G10:
+                        return (properties as Properties_RP_E10).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
+                    default:
+                        return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public void ChangeParameter(Properties properties, string PrinterName, PrinterType printerType, PropertyType propertyType, int id)
+        {
+            try
+            {
+                switch (printerType)
+                {
+                    case PrinterType.SII_RP_F10_G10:
+                        (properties as Properties_RP_E10).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
+                        break;
+                }
+            }
+            catch
+            {
+
+            }
+        }
         private void CbFuncSampProc(ASB status)
         {
             Dictionary<string, string> errorStatus = new Dictionary<string, string>();
