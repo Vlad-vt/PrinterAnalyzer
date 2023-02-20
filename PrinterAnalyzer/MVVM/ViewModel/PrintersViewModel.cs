@@ -120,17 +120,40 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         {
             for(int i=0;i<PrintersMainList.Count;i++) 
             {
-                if (PrintersMainList[i].printerType == PrinterType.SII_RP_F10_G10)
+                switch(PrintersMainList[i].printerType)
+                {
+                    case PrinterType.SII_RP_E10:
+                        (PrintersMainList[i].properties).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
+                        for (int j = 0; j < PrintersList.Count; j++)
+                        {
+                            if (PrintersMainList[i].Name == PrintersList[j].Name)
+                            {
+                                PrintersList[j].properties = PrintersMainList[i].properties;
+                            }
+                        }
+                        break;
+                    case PrinterType.SII_RP_F10_G10:
+                        (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
+                        for (int j = 0; j < PrintersList.Count; j++)
+                        {
+                            if (PrintersMainList[i].Name == PrintersList[j].Name)
+                            {
+                                PrintersList[j].properties = PrintersMainList[i].properties;
+                            }
+                        }
+                        break;
+                }
+                /*if (PrintersMainList[i].printerType == PrinterType.SII_RP_F10_G10)
                 {
                     (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
-                    for(int j=0;j<PrintersList.Count;j++) 
+                    for (int j = 0; j < PrintersList.Count; j++) 
                     {
                         if (PrintersMainList[i].Name == PrintersList[j].Name)
                         {
                             PrintersList[j].properties = PrintersMainList[i].properties;
                         }
                     }
-                }
+                }*/
             }
         }
 
