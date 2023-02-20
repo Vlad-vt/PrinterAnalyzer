@@ -12,10 +12,13 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 
         public Dictionary<PropertyType, int> CurrentProperties { get; set; }
 
+        public bool ChangesDone { get; set; }
+
         public Properties_RP_E10()
         {
             PropertiesList = new Dictionary<PropertyType, Dictionary<int, string>>();
             CurrentProperties = new Dictionary<PropertyType, int>();
+            ChangesDone = true;
             #region Properties Initialization
 
             PropertiesList.Add(PropertyType.Speed, new Dictionary<int, string>
@@ -78,7 +81,16 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 
         public Dictionary<PropertyType, int> GetCurrentPrinterSettings(string PrinterName, ref SiiPrinterSdk.StatusAPI statusAPI)
         {
-            CurrentProperties = PrinterSettings.GetCurrentProperties(PrinterName, ref statusAPI);
+            Dictionary<PropertyType, int> tempDictionary = PrinterSettings.GetCurrentProperties(PrinterName, ref statusAPI);
+            foreach (PropertyType propertyType in Enum.GetValues(typeof(PropertyType)))
+            {
+                if (tempDictionary.GetValueOrDefault(PropertyType.Speed) != CurrentProperties.GetValueOrDefault(PropertyType.Speed))
+                {
+                    ChangesDone = true;
+                    break;
+                }
+            }
+            CurrentProperties = tempDictionary;
             return CurrentProperties;
         }
 
