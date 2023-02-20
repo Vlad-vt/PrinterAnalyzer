@@ -11,6 +11,8 @@ namespace PrinterAnalyzer
     {
         private static NetworkData _singleton;
 
+        private List<string> defaultPrinterSettingsDevices;
+
         public static NetworkData GetInstance()
         {
             if(_singleton == null)
@@ -19,9 +21,15 @@ namespace PrinterAnalyzer
             }
             return _singleton;
         }
-        public async Task<string> SendDefaultSettings()
+
+        public NetworkData()
         {
-            Dictionary<PropertyType, Dictionary<int, string>> PropertiesList;
+            defaultPrinterSettingsDevices = new List<string>();
+        }
+
+        public async Task<string> SendDefaultSettings(PrinterType printerType, Dictionary<PropertyType, Dictionary<int, string>> propertiesList)
+        {
+            /*Dictionary<PropertyType, Dictionary<int, string>> PropertiesList;
             PropertiesList = new Dictionary<PropertyType, Dictionary<int, string>>();
             PropertiesList.Add(PropertyType.Speed, new Dictionary<int, string>
             {  {0, "High" },
@@ -71,16 +79,28 @@ namespace PrinterAnalyzer
             {
                 {0, "Forward" },
                 {1, "Backward" }
-            });
+            });*/
 
-            string json = JsonConvert.SerializeObject(PropertiesList, Formatting.Indented);
+            bool sendDefSet = true;
+
+            for(int i = 0; i < defaultPrinterSettingsDevices.Count; i++)
+            {
+                if(printerType.ToString() == defaultPrinterSettingsDevices[i])
+                    sendDefSet = false;
+            }
+            if (!sendDefSet)
+                return null;
+
+            string json = JsonConvert.SerializeObject(propertiesList, Formatting.Indented);
 
             using (var client = new HttpClient())
             {
                 var requestContent = new FormUrlEncodedContent(new[] {
-                new KeyValuePair<string, string>("settings", json)
+                new KeyValuePair<string, string>("MachineName", System.Environment.MachineName),
+                new KeyValuePair<string, string>("PrinterGeneralType", printerType.ToString()),
+                new KeyValuePair<string, string>("DefaultPrinterSettings", json)
             });
-
+                defaultPrinterSettingsDevices.Add(printerType.ToString());
                 var response = await client.PostAsync("https://seiko.hosting9.tn-rechenzentrum1.de/api/api.php", requestContent);
 
                 var responseContent = await response.Content.ReadAsStringAsync();

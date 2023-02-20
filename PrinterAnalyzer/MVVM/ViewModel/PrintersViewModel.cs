@@ -131,7 +131,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 PrintersList[j].properties = PrintersMainList[i].properties;
                             }
                         }
-                        NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10_G10, (PrintersMainList[i].properties as Properties_RP_E10).CurrentProperties);
+                        NetworkData.GetInstance().SendDefaultSettings(PrinterType.SII_RP_E10, (PrintersMainList[i].properties as Properties_RP_E10).GetDefaultPrinterSettings());
+                        //NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_E10, (PrintersMainList[i].properties as Properties_RP_E10).CurrentProperties);
                         break;
                     case PrinterType.SII_RP_F10_G10:
                         (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
@@ -142,7 +143,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 PrintersList[j].properties = PrintersMainList[i].properties;
                             }
                         }
-                        NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10_G10, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
+                        NetworkData.GetInstance().SendDefaultSettings(PrinterType.SII_RP_E10, (PrintersMainList[i].properties as Properties_RP_F10_G10).GetDefaultPrinterSettings());
+                        //NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10_G10, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
                         break;
                 }
             }
