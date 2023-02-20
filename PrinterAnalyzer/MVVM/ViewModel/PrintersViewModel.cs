@@ -86,7 +86,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                 while (true)
                 {
                     Thread.Sleep(1000);
-                    GetPrintersSettings();
+                    //GetPrintersSettings();
                 }
             });
             thread.IsBackground = true;

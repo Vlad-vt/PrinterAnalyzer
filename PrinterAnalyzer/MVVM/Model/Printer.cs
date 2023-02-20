@@ -821,6 +821,7 @@ namespace PrinterAnalyzer.MVVM.Model
             MachineName = Environment.MachineName;
             Name = name;
             errorsList = new List<string>();
+            Errors = new Dictionary<string, string>();
             this.printerType = printerType;
             switch(printerType)
             {
