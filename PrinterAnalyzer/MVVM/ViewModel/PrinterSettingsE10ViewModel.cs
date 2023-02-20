@@ -487,6 +487,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         public PrinterSettingsE10ViewModel(ref Printer printer)
         {
             _printer = printer;
+            SpeedLow = new RelayCommand(o => SpeedToLow());
             SpeedHigh = new RelayCommand(o => SpeedToHigh());
             SpeedMidQuality = new RelayCommand(o => SpeedToMidQuality());
             SpeedMidSilence = new RelayCommand(o => SpeedToMidSilence());
@@ -704,20 +705,25 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
 
         #region Speed Commands
+        private void SpeedToLow()
+        {
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 1);
+            ChangeSpeedButtonColor(1);
+        }
         private void SpeedToHigh()
         {
-            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 0);
-            ChangeSpeedButtonColor(0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 3);
+            ChangeSpeedButtonColor(3);
         }
         private void SpeedToMidQuality()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 1);
-            ChangeSpeedButtonColor(1);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 2);
+            ChangeSpeedButtonColor(2);
         }
         private void SpeedToMidSilence()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 3);
-            ChangeSpeedButtonColor(2);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Speed, 0);
+            ChangeSpeedButtonColor(0);
         }
         private void ChangeSpeedButtonColor(int id)
         {
@@ -745,22 +751,22 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region Margin Commands
         private void MarginToMin()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 0);
             ChangeMarginButtonColor(0);
         }
         private void MarginToTopMin()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 1);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 1);
             ChangeMarginButtonColor(1);
         }
         private void MarginBottomMin()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 2);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 2);
             ChangeMarginButtonColor(2);
         }
         private void MarginToMax()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 3);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Margin, 3);
             ChangeMarginButtonColor(3);
         }
         private void ChangeMarginButtonColor(int id)
@@ -798,12 +804,12 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region DirectionCommands
         private void DirectionForward()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Direction, 0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Direction, 0);
             ChangeDirectionButtonColor(0);
         }
         private void DirectionBackward()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Direction, 1);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Direction, 1);
             ChangeDirectionButtonColor(1);
         }
         private void ChangeDirectionButtonColor(int id)
@@ -825,13 +831,13 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region OrientationCommands
         private void SetOrientationPortrait()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Orientation, 0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Orientation, 0);
             ChangeOrientationButtonColor(0);
         }
 
         private void SetOrientationLandscape()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Orientation, 1);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.Orientation, 1);
             ChangeOrientationButtonColor(1);
         }
 
@@ -854,12 +860,12 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region FeedPosition Commands
         private void EnableFeed()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.FeedToCutPosition, 0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.FeedToCutPosition, 0);
             ChangeFeedButtonColor(0);
         }
         private void DisableFeed()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.FeedToCutPosition, 1);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.FeedToCutPosition, 1);
             ChangeFeedButtonColor(1);
         }
         private void ChangeFeedButtonColor(int id)
@@ -881,37 +887,37 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region PaperCut
         private void SetCutNoCut()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 0);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 0);
             ChangeCutButtonColor(0);
         }
 
         private void SetFullCutByJob()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 1);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 1);
             ChangeCutButtonColor(1);
         }
 
         private void SetPartialCutByJobs()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 2);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 2);
             ChangeCutButtonColor(2);
         }
 
         private void SetFullCutByPage()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 3);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 3);
             ChangeCutButtonColor(3);
         }
 
         private void SetPartialCutByPage()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 4);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 4);
             ChangeCutButtonColor(4);
         }
 
         private void SetPartialCutBetweenPages()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 5);
+            PrintersViewModel.m_DLLFuncE10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10_G10, Model.PrinterProperties.PropertyType.PaperCut, 5);
             ChangeCutButtonColor(5);
         }
 

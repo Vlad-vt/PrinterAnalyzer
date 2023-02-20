@@ -156,6 +156,10 @@
                 <viewsm:PrinterSettingsF10G10/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:PrinterSettingsE10ViewModel}">
+                <viewsm:PrinterSettingsE10/>
+            </DataTemplate>
+
 
             <DataTemplate DataType="{x:Type viewModel:PrinterCardViewModel}">
                 <viewsm:PrinterCard/>

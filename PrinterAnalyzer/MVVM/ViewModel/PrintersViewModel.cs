@@ -123,7 +123,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                 switch(PrintersMainList[i].printerType)
                 {
                     case PrinterType.SII_RP_E10:
-                        (PrintersMainList[i].properties).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
+                        (PrintersMainList[i].properties as Properties_RP_E10).CurrentProperties = m_DLLFuncE10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
                         for (int j = 0; j < PrintersList.Count; j++)
                         {
                             if (PrintersMainList[i].Name == PrintersList[j].Name)

@@ -6,6 +6,7 @@ using System.Drawing;
 using PrinterAnalyzer.MVVM.Model.PrinterProperties;
 using PrinterAnalyzer.Enums;
 using PrinterAnalyzer.MVVM.ViewModel;
+using Windows.ApplicationModel.Activation;
 
 namespace PrinterAnalyzer.MVVM.Model
 {
@@ -816,12 +817,22 @@ namespace PrinterAnalyzer.MVVM.Model
             switch(printerType)
             {
                 case PrinterType.SII_RP_F10_G10:
+                    if (viewModelInit)
+                    {
+                        var printer = this;
+                        CurrentSettingsView = new PrinterSettingsF10G10ViewModel(ref printer);
+                    }
                     properties = new Properties_RP_F10_G10();
                     break;
+                case PrinterType.SII_RP_E10:
+                    if (viewModelInit)
+                    {
+                        var printer = this;
+                        CurrentSettingsView = new PrinterSettingsE10ViewModel(ref printer);
+                    }
+                    properties = new Properties_RP_E10();
+                    break;
             }
-            var printer = this;
-            if(viewModelInit)
-                CurrentSettingsView = new PrinterSettingsF10G10ViewModel(ref printer);
         }
     }
 }
