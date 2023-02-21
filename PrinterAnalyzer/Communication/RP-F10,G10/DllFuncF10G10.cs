@@ -104,7 +104,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             {
                 switch (printerType)
                 {
-                    case PrinterType.SII_RP_F10_G10:
+                    case PrinterType.SII_RP_F10:
                         return (properties as Properties_RP_F10_G10).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
                     default:
                         return null;
@@ -122,7 +122,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             {
                 switch(printerType)
                 {
-                    case PrinterType.SII_RP_F10_G10:
+                    case PrinterType.SII_RP_F10:
                         (properties as Properties_RP_F10_G10).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
                         break;
                 }
@@ -139,7 +139,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             {
                 switch (printerType)
                 {
-                    case PrinterType.SII_RP_F10_G10:
+                    case PrinterType.SII_RP_F10:
                         (properties as Properties_RP_F10_G10).ChangeParameters(PrinterName, ref m_StatusAPI, settingsList);
                         break;
                 }
@@ -157,7 +157,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             if (status == ASB.ASB_NO_RESPONSE)
             {
                 errorStatus.Add("* Printer is offline", "Yes");
-                MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10_G10);
+                MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10);
                 return;
             }
             else
@@ -241,7 +241,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
                 errorStatus.Add("Battery", "Low");
 
 
-            MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10_G10);
+            MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10);
             return;
         }
 
