@@ -110,7 +110,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_E10:
                         RPE10buttonStyle = Application.Current.FindResource("menuButton") as Style;
                         break;
-                    case PrinterType.SII_RP_F10_G10:
+                    case PrinterType.SII_RP_F10:
                         RPF10G10buttonStyle = Application.Current.FindResource("menuButton") as Style;
                         break;
                 }
@@ -131,11 +131,11 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_E10:
                         RPE10buttonStyle = Application.Current.FindResource("menuButton") as Style;
                         break;
-                    case PrinterType.SII_RP_F10_G10:
+                    case PrinterType.SII_RP_F10:
                         RPF10G10buttonStyle = Application.Current.FindResource("menuButton") as Style;
                         break;
                 }
-                _PrinterType = PrinterType.SII_RP_F10_G10;
+                _PrinterType = PrinterType.SII_RP_F10;
                 RPF10G10buttonStyle = Application.Current.FindResource("menuButtonActive") as Style;
                 Thread commandThread = new Thread(() =>
                 {
@@ -143,7 +143,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                 });
                 commandThread.IsBackground = true;
                 commandThread.Start();
-                PrinterChanged.Invoke(PrinterType.SII_RP_F10_G10);
+                PrinterChanged.Invoke(PrinterType.SII_RP_F10);
             });
             #endregion
 

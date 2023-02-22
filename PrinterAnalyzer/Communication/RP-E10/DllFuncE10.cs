@@ -61,6 +61,24 @@ namespace PrinterAnalyzer.Communication.RP_E10
 
             }
         }
+
+
+        public void ChangeParameters(Properties properties, Dictionary<PropertyType, int> settingsList, string PrinterName, PrinterType printerType)
+        {
+            try
+            {
+                switch (printerType)
+                {
+                    case PrinterType.SII_RP_E10:
+                        (properties as Properties_RP_E10).ChangeParameters(PrinterName, ref m_StatusAPI, settingsList);
+                        break;
+                }
+            }
+            catch
+            {
+
+            }
+        }
         private void CbFuncSampProc(ASB status)
         {
             Dictionary<string, string> errorStatus = new Dictionary<string, string>();

@@ -825,7 +825,7 @@ namespace PrinterAnalyzer.MVVM.Model
             this.printerType = printerType;
             switch(printerType)
             {
-                case PrinterType.SII_RP_F10_G10:
+                case PrinterType.SII_RP_F10:
                     if (viewModelInit)
                     {
                         var printer = this;

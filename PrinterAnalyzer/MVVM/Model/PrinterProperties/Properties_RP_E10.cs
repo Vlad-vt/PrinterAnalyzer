@@ -97,5 +97,10 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
         {
             PrinterSettings.ChangePrinterSetting(PrinterName, ref statusAPI, property, id);
         }
+
+        public void ChangeParameters(string PrinterName, ref SiiPrinterSdk.StatusAPI statusAPI, Dictionary<PropertyType, int> settingsList)
+        {
+            PrinterSettings.ChangePrinterSettings(PrinterName, ref statusAPI, settingsList);
+        }
     }
 }

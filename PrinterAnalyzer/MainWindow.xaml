@@ -70,7 +70,7 @@
                 <Button Command="{Binding ShowSII_RP_F10_G10View}" Style="{Binding RPF10G10buttonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="#5e6366"/>
-                        <TextBlock Text="SII (RP-F10/G10)" Style="{StaticResource menuButtonText}" Foreground="#5e6366"/>
+                        <TextBlock Text="SII RP-F10" Style="{StaticResource menuButtonText}" Foreground="#5e6366"/>
                     </StackPanel>
                 </Button>
 
