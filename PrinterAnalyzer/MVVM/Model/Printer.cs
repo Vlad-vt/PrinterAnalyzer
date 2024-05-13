@@ -292,10 +292,10 @@ namespace PrinterAnalyzer.MVVM.Model
                 else
                 {
                     ErrorsListVisibility = "Collapsed";
-                    if (CurrentSettingsView == null)
-                    {
+                    //if (CurrentSettingsView == null)
+                    //{
                         NetworkData.GetInstance().SendStatus(printerType, IsOnline, "-");
-                    }
+                    //}
                 }
                 
 
