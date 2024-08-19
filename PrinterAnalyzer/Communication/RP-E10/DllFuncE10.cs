@@ -13,7 +13,7 @@ namespace PrinterAnalyzer.Communication.RP_E10
         public delegate void callbackEventHandler(Dictionary<string, string> msg, PrinterType printerType);
         public event callbackEventHandler myCallbackEvent;
 
-
+        
         static uint indexCapability = 0;        // Index of the table for ID of the GetPrinCapability function. 
         static uint indexCounter = 0;           // Index of the table for ID of the GetCounter function.
         static uint callbackMsgNum = 0;         // Message number for the callback
