@@ -132,64 +132,28 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             #region MenuButtons Commands
             ShowSII_RP_E10View = new RelayCommand(async o =>
             {
-                switch (_PrinterType)
-                {
-                    case PrinterType.SII_RP_E10:
-                        RPE10buttonStyle = _menuButtonStyle;
-                        break;
-                    case PrinterType.SII_RP_F10:
-                        RPF10G10buttonStyle = _menuButtonStyle;
-                        break;
-                    case PrinterType.SII_MP_B30L:
-                        MPB30LbuttonStyle = _menuButtonStyle;
-                        break;
-                }
+                ResetButtonStyles(_PrinterType);
+
                 _PrinterType = PrinterType.SII_RP_E10;
+
                 RPE10buttonStyle = _menuButtonActiveStyle;
+
                 await Task.Run(() =>
                 {
                     CurrentView = PVM;
                 });
+                
                 PrinterChanged.Invoke(PrinterType.SII_RP_E10);
             });
-            ShowSII_RP_F10_G10View = new RelayCommand(async o =>
+            ShowSII_RP_F10_G10View = new RelayCommand(async o => SII_RP_F10_G10_Click());
+            ShowSII_MP_B30LView= new RelayCommand(async o =>
             {
-                switch (_PrinterType)
-                {
-                    case PrinterType.SII_RP_E10:
-                        RPE10buttonStyle = _menuButtonStyle;
-                        break;
-                    case PrinterType.SII_RP_F10:
-                        RPF10G10buttonStyle = _menuButtonStyle;
-                        break;
-                    case PrinterType.SII_MP_B30L:
-                        MPB30LbuttonStyle = _menuButtonStyle;
-                        break;
-                }
+                ResetButtonStyles(_PrinterType);
+
                 _PrinterType = PrinterType.SII_RP_F10;
-                RPF10G10buttonStyle = _menuButtonActiveStyle;
-                await Task.Run(() =>
-                {
-                    CurrentView = PVM;
-                });
-                PrinterChanged.Invoke(PrinterType.SII_RP_F10);
-            });
-            ShowSII_RP_F10_G10View = new RelayCommand(async o =>
-            {
-                switch (_PrinterType)
-                {
-                    case PrinterType.SII_RP_E10:
-                        RPE10buttonStyle = _menuButtonStyle;
-                        break;
-                    case PrinterType.SII_RP_F10:
-                        RPF10G10buttonStyle = _menuButtonStyle;
-                        break;
-                    case PrinterType.SII_MP_B30L:
-                        MPB30LbuttonStyle = _menuButtonStyle;
-                        break;
-                }
-                _PrinterType = PrinterType.SII_RP_F10;
+
                 MPB30LbuttonStyle = _menuButtonActiveStyle;
+               
                 await Task.Run(() =>
                 {
                     CurrentView = PVM;
@@ -201,12 +165,72 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             CurrentView = PVM;
         }
 
+
+        private async Task SII_RP_E10_Click()
+        {
+            ResetButtonStyles(_PrinterType);
+
+            _PrinterType = PrinterType.SII_RP_F10;
+
+            RPF10G10buttonStyle = _menuButtonActiveStyle;
+
+            PrinterChanged.Invoke(PrinterType.SII_RP_F10);
+
+            await Task.Run(() =>
+            {
+                CurrentView = PVM;
+            });
+        }
+
+        private async Task SII_RP_F10_G10_Click()
+        {
+            ResetButtonStyles(_PrinterType);
+
+            _PrinterType = PrinterType.SII_RP_F10;
+
+            RPF10G10buttonStyle = _menuButtonActiveStyle;
+
+            PrinterChanged.Invoke(PrinterType.SII_RP_F10);
+
+            await Task.Run(() =>
+            {
+                CurrentView = PVM;
+            });
+        }
+
+        private async Task SII_MP_B30L_Click()
+        {
+            ResetButtonStyles(_PrinterType);
+
+            _PrinterType = PrinterType.SII_RP_F10;
+
+            RPF10G10buttonStyle = _menuButtonActiveStyle;
+
+            PrinterChanged.Invoke(PrinterType.SII_RP_F10);
+
+            await Task.Run(() =>
+            {
+                CurrentView = PVM;
+            });
+        }
+
         /// <summary>
         /// Reset button styles to chenge menu active button
         /// </summary>
-        private void ResetButtonStyles()
+        private void ResetButtonStyles(PrinterType printerType)
         {
-
+            switch (printerType)
+            {
+                case PrinterType.SII_RP_E10:
+                    RPE10buttonStyle = _menuButtonStyle;
+                    break;
+                case PrinterType.SII_RP_F10:
+                    RPF10G10buttonStyle = _menuButtonStyle;
+                    break;
+                case PrinterType.SII_MP_B30L:
+                    MPB30LbuttonStyle = _menuButtonStyle;
+                    break;
+            }
         }
 
     }
