@@ -134,6 +134,13 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         m_DLLFuncF10G10.CallbackStatusSamp(true);
                         num++;
                     }
+                    else if (printerName.Contains("B30"))
+                    {
+                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_F10, false));
+                        m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[num].Name);
+                        m_DLLFuncF10G10.CallbackStatusSamp(true);
+                        num++;
+                    }
                 }
             }
         }
