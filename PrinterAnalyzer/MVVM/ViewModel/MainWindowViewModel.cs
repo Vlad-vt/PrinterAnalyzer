@@ -45,6 +45,22 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             }
         }
 
+        private Style _MPB30LbuttonStyle;
+
+        public Style MPB30LbuttonStyle
+        {
+            get 
+            { 
+                return _MPB30LbuttonStyle; 
+            }
+            set 
+            { 
+                _MPB30LbuttonStyle = value; 
+                OnPropertyChanged();
+            }
+        }
+
+
         #endregion
 
         private string _activeButtonStyle;
@@ -74,8 +90,13 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         public RelayCommand ShowSII_RP_F10_G10View { get; set; }
 
+        public RelayCommand ShowSII_MP_B30LView { get; set; }
+
         private PrinterType _PrinterType;
 
+        private Style _menuButtonStyle;
+
+        private Style _menuButtonActiveStyle;
 
         public delegate void PrinterIsChanged(PrinterType menuButton);
 
@@ -113,6 +134,9 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_F10:
                         RPF10G10buttonStyle = Application.Current.FindResource("menuButton") as Style;
                         break;
+                    case PrinterType.SII_MP_B30L:
+                        MPB30LbuttonStyle = Application.Current.FindResource("menuButton") as Style;
+                        break;
                 }
                 _PrinterType = PrinterType.SII_RP_E10;
                 RPE10buttonStyle = Application.Current.FindResource("menuButtonActive") as Style;
@@ -134,9 +158,36 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     case PrinterType.SII_RP_F10:
                         RPF10G10buttonStyle = Application.Current.FindResource("menuButton") as Style;
                         break;
+                    case PrinterType.SII_MP_B30L:
+                        MPB30LbuttonStyle = Application.Current.FindResource("menuButton") as Style;
+                        break;
                 }
                 _PrinterType = PrinterType.SII_RP_F10;
                 RPF10G10buttonStyle = Application.Current.FindResource("menuButtonActive") as Style;
+                Thread commandThread = new Thread(() =>
+                {
+                    CurrentView = PVM;
+                });
+                commandThread.IsBackground = true;
+                commandThread.Start();
+                PrinterChanged.Invoke(PrinterType.SII_RP_F10);
+            });
+            ShowSII_RP_F10_G10View = new RelayCommand(o =>
+            {
+                switch (_PrinterType)
+                {
+                    case PrinterType.SII_RP_E10:
+                        RPE10buttonStyle = Application.Current.FindResource("menuButton") as Style;
+                        break;
+                    case PrinterType.SII_RP_F10:
+                        RPF10G10buttonStyle = Application.Current.FindResource("menuButton") as Style;
+                        break;
+                    case PrinterType.SII_MP_B30L:
+                        MPB30LbuttonStyle = Application.Current.FindResource("menuButton") as Style;
+                        break;
+                }
+                _PrinterType = PrinterType.SII_RP_F10;
+                MPB30LbuttonStyle = Application.Current.FindResource("menuButtonActive") as Style;
                 Thread commandThread = new Thread(() =>
                 {
                     CurrentView = PVM;
