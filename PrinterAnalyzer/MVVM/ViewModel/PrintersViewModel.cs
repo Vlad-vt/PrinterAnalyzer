@@ -69,6 +69,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         public static DllFuncF10G10 m_DLLFuncF10G10;
 
+        public static DllFuncF10G10 m_DLLFuncB30L;
+
         public PrintersViewModel()
         {
             ActionList = new ObservableCollection<PrinterAction>();
@@ -80,6 +82,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             m_DLLFuncF10G10 = new DllFuncF10G10();
             m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncF10G10.CallbackStatusSamp(false);
+            m_DLLFuncB30L = new DllFuncF10G10();
+            m_DLLFuncB30L.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
             CreatePrinterList();
             Thread thread = new Thread(() =>
             {
@@ -118,6 +122,13 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     else if (printerName.Contains("G10"))
                     {
                         PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_F10, false));
+                        m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[num].Name);
+                        m_DLLFuncF10G10.CallbackStatusSamp(true);
+                        num++;
+                    }
+                    else if(printerName.Contains("B30"))
+                    {
+                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_MP_B30L, false));
                         m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[num].Name);
                         m_DLLFuncF10G10.CallbackStatusSamp(true);
                         num++;
@@ -235,6 +246,10 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             else
                                 NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
                         }
+                        break;
+
+
+                    case PrinterType.SII_MP_B30L:
                         break;
                 }
             }
