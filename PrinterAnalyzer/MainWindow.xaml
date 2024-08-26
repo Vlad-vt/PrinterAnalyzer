@@ -74,7 +74,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Command="{Binding ShowSII_MP_B30L_View}" Style="{Binding MPB30LbuttonStyle}">
+                <Button Command="{Binding ShowSII_MP_B30LView}" Style="{Binding MPB30LbuttonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="Printer" Style="{StaticResource menuButtonIcon}" Foreground="#5e6366"/>
                         <TextBlock Text="SII MP-B30L" Style="{StaticResource menuButtonText}" Foreground="#5e6366"/>
