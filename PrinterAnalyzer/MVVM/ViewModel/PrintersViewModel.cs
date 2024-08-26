@@ -77,30 +77,37 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             ActionList = new ObservableCollection<PrinterAction>();
             PrintersList = new ObservableCollection<Printer>();
             PrintersMainList = new List<Printer>();
+            
             m_DLLFuncE10 = new DllFuncE10();
             m_DLLFuncE10.myCallbackEvent += new DllFuncE10.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncE10.CallbackSamp(false);
+            
             m_DLLFuncF10G10 = new DllFuncF10G10();
             m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncF10G10.CallbackStatusSamp(false);
             
+            m_DLLFuncB30L = new DllFuncF10G10();
+            m_DLLFuncB30L.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
+            m_DLLFuncB30L.CallbackStatusSamp(false);
+
             CreatePrinterList();
+            
             Thread thread = new Thread(() =>
             {
                 while (true)
                 {
                     Thread.Sleep(1000);
                     GetPrintersSettings();
-
                 }
             });
             thread.IsBackground = true;
             thread.Start();
+            
             Thread threadGC = new Thread(() =>
             {
                 while (true)
                 {
-                    Thread.Sleep(new TimeSpan(0,1,0));
+                    Thread.Sleep(new TimeSpan(0, 1, 0));
                     GC.Collect();
                 }
             });
@@ -139,9 +146,9 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     }
                     else if (printerName.Contains("B30"))
                     {
-                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_RP_F10, false));
-                        m_DLLFuncF10G10.OpenPrinterSamp(PrintersMainList[num].Name);
-                        m_DLLFuncF10G10.CallbackStatusSamp(true);
+                        PrintersMainList.Add(new Printer(printerName, PrinterType.SII_MP_B30L, false));
+                        m_DLLFuncB30L.OpenPrinterSamp(PrintersMainList[num].Name);
+                        m_DLLFuncB30L.CallbackStatusSamp(true);
                         num++;
                     }
                 }
@@ -332,6 +339,15 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             count++;
                         }
                         break;
+                    case PrinterType.SII_MP_B30L:
+                        if (PrintersMainList[i].Name.Contains("B30"))
+                        {
+                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_MP_B30L, true));
+                            PrintersList[count].printerAction += AddNewAction;
+                            PrintersList[count].Errors = PrintersMainList[i].Errors;
+                            count++;
+                        }
+                        break;
                 }
             }
             PrintersCount = PrintersList.Count.ToString();
@@ -346,6 +362,9 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     break;
                 case PrinterType.SII_RP_F10:
                     PrinterTypeName = "SII RP-F10, RP-G10 types printers data";
+                    break;
+                case PrinterType.SII_MP_B30L:
+                    PrinterTypeName = "SII MP-B30L type printers data";
                     break;
             }
             GetNewPrinterData(printerType);

@@ -125,6 +125,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             #region Init menu buttons
             RPE10buttonStyle = _menuButtonActiveStyle;
             RPF10G10buttonStyle = _menuButtonStyle;
+            MPB30LbuttonStyle = _menuButtonStyle;
             #endregion
 
 
