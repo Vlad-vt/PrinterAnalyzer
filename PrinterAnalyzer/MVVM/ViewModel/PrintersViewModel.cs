@@ -70,6 +70,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         public static DllFuncF10G10 m_DLLFuncF10G10;
 
+        public static DllFuncF10G10 m_DLLFuncB30L;
+
         public PrintersViewModel()
         {
             ActionList = new ObservableCollection<PrinterAction>();
@@ -81,6 +83,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             m_DLLFuncF10G10 = new DllFuncF10G10();
             m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncF10G10.CallbackStatusSamp(false);
+            
             CreatePrinterList();
             Thread thread = new Thread(() =>
             {

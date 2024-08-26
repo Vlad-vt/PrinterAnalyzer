@@ -514,7 +514,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             });
             thread.IsBackground = true;
             thread.Start();
-        }
+        } 
 
         private void GetChanges()
         {
