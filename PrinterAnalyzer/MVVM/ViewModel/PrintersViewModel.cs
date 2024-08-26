@@ -311,6 +311,15 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             count++;
                         }
                         break;
+                    case PrinterType.SII_MP_B30L:
+                        if (PrintersMainList[i].Name.Contains("B30"))
+                        {
+                            PrintersList.Add(new Printer(PrintersMainList[i].Name, PrinterType.SII_MP_B30L, true));
+                            PrintersList[count].printerAction += AddNewAction;
+                            PrintersList[count].Errors = PrintersMainList[i].Errors;
+                            count++;
+                        }
+                        break;
                 }
             }
             PrintersCount = PrintersList.Count.ToString();
@@ -325,6 +334,9 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     break;
                 case PrinterType.SII_RP_F10:
                     PrinterTypeName = "SII RP-F10, RP-G10 types printers data";
+                    break;
+                case PrinterType.SII_MP_B30L:
+                    PrinterTypeName = "SII MP-B30L types printers data";
                     break;
             }
             GetNewPrinterData(printerType);
