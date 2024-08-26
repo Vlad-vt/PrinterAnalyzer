@@ -464,5 +464,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #endregion
 
         private Printer _printer;
+
+
     }
 }
