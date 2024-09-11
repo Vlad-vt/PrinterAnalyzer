@@ -152,6 +152,10 @@
                 <viewsm:InfoAction/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:PrinterSettingsB30LViewModel}">
+                <viewsm:PrinterSettingsB30L/>
+            </DataTemplate>
+
             <DataTemplate DataType = "{x:Type viewModel:PrinterSettingsF10G10ViewModel}">
                 <viewsm:PrinterSettingsF10G10/>
             </DataTemplate>
