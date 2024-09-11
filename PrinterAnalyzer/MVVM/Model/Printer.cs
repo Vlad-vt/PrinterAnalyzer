@@ -841,6 +841,14 @@ namespace PrinterAnalyzer.MVVM.Model
                     }
                     properties = new Properties_RP_E10();
                     break;
+                case PrinterType.SII_MP_B30L:
+                    if(viewModelInit)
+                    {
+                        var printer = this;
+                        CurrentSettingsView =  new PrinterSettingsB30LViewModel(ref printer);
+                    }
+                    properties = new Properties_RP_F10_G10();
+                    break;
             }
         }
     }

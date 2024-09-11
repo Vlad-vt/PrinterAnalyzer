@@ -279,6 +279,56 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
                         }
                         break;
+                    case PrinterType.SII_MP_B30L:
+                        (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncB30L.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
+                        for (int j = 0; j < PrintersList.Count; j++)
+                        {
+                            if (PrintersMainList[i].Name == PrintersList[j].Name)
+                            {
+                                PrintersList[j].properties = PrintersMainList[i].properties;
+                            }
+                        }
+                        NetworkData.GetInstance().SendDefaultSettings(PrinterType.SII_MP_B30L, (PrintersMainList[i].properties as Properties_RP_F10_G10).GetDefaultPrinterSettings());
+                        if (NetworkData.GetInstance().GetCommands(PrinterType.SII_MP_B30L).Result != "ok")
+                        {
+                            JObject jObject = JObject.Parse(NetworkData.GetInstance().GetCommands(PrinterType.SII_MP_B30L).Result);
+                            NetworkData.GetInstance().printersId.Add(PrinterType.SII_MP_B30L, (string)jObject["internalID"]);
+
+                            if (jObject.ContainsKey("Print") && NetworkData.GetInstance().CanPrintPage == 0)
+                            {
+                                textOnPage = (string)jObject["textToPrint"];
+                                System.Diagnostics.Trace.WriteLine(textOnPage);
+                                NetworkData.GetInstance().CanPrintPage++;
+                                PrintDocument printDoc = new PrintDocument();
+                                printDoc.PrinterSettings.PrinterName = PrintersMainList[i].Name;
+                                printDoc.PrintPage += pd_PrintPage;
+                                printDoc.Print();
+                                NetworkData.GetInstance().SendInfoAboutPrint(PrinterType.SII_MP_B30L, NetworkData.GetInstance().printersId.GetValueOrDefault(PrinterType.SII_MP_B30L));
+                                NetworkData.GetInstance().printersId.Remove(PrinterType.SII_MP_B30L);
+                            }
+                            else
+                            {
+                                string settings = (string)jObject["settings"];
+                                Dictionary<PropertyType, int> settingsList = JsonConvert.DeserializeObject<Dictionary<PropertyType, int>>(settings);
+                                m_DLLFuncB30L.ChangeParameters(PrintersMainList[i].properties, settingsList, PrintersMainList[i].Name, PrinterType.SII_MP_B30L);
+                            }
+                        }
+                        else
+                        {
+                            NetworkData.GetInstance().CanPrintPage = 0;
+                        }
+                        if ((PrintersMainList[i].properties as Properties_RP_F10_G10).ChangesDone)
+                        {
+                            if (NetworkData.GetInstance().printersId.Count > 0 && NetworkData.GetInstance().printersId.ContainsKey(PrinterType.SII_MP_B30L))
+                            {
+                                var printersID = NetworkData.GetInstance().printersId.GetValueOrDefault(PrinterType.SII_MP_B30L);
+                                NetworkData.GetInstance().printersId.Remove(PrinterType.SII_MP_B30L);
+                                NetworkData.GetInstance().SendInfoAboutChanges(PrinterType.SII_MP_B30L, printersID);
+                            }
+                            else
+                                NetworkData.GetInstance().SendSettings(PrinterType.SII_MP_B30L, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
+                        }
+                        break;
                 }
             }
         }
