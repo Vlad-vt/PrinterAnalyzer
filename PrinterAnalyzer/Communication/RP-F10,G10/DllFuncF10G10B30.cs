@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PrinterAnalyzer.Communication.RP_F10_G10
 {
@@ -148,6 +149,28 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
 
             }
         }
+
+        public async Task ChangeParameterAsync(Properties properties, string PrinterName, PrinterType printerType, PropertyType propertyType, int id)
+        {
+            try
+            {
+                switch (printerType)
+                {
+                    case PrinterType.SII_RP_F10:
+                        (properties as Properties_RP_F10_G10_B30).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
+                        break;
+                    case PrinterType.SII_MP_B30L:
+                        await (properties as Properties_RP_F10_G10_B30).ChangeParameterAsync(PrinterName, m_StatusAPI, propertyType, id);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Обработка исключений
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+        }
+
 
         public void ChangeParameters(Properties properties, Dictionary<PropertyType, int> settingsList, string PrinterName, PrinterType printerType)
         {

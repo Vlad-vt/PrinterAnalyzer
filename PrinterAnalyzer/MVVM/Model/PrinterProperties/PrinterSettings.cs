@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
@@ -443,6 +444,79 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             }
             return Convert.ToBoolean(gNRet);
         }
+
+        public static async Task<bool> ChangePrinterSettingAsync(string iPrinterName, SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)
+        {
+            return await Task.Run(() =>
+            {
+                #region DEVMODE Structure
+                gDevMode = GetPrinterSettings(iPrinterName);
+                Marshal.StructureToPtr(gDevMode, gDevModeData, true);
+                gPInfo.pDevMode = gDevModeData;
+                gPInfo.pSecurityDescriptor = IntPtr.Zero;
+                #endregion
+
+                try
+                {
+                    byte[] bytes = BitConverter.GetBytes(id);
+                    uint size = 1;
+
+                    // Параллельное выполнение нескольких операций изменения свойств
+                    var tasks = new List<Task>();
+
+                    switch (propertyType)
+                    {
+                        case PropertyType.Speed:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.SPEED, bytes, size)));
+                            break;
+                        case PropertyType.Direction:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.DIRECTION, bytes, size)));
+                            break;
+                        case PropertyType.Margin:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.MARGIN, bytes, size)));
+                            break;
+                        case PropertyType.PaperCut:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.CUT, bytes, size)));
+                            break;
+                        case PropertyType.Orientation:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.ORIENTATION, bytes, size)));
+                            break;
+                        case PropertyType.FeedToCutPosition:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, size)));
+                            break;
+                    }
+
+                    // Ожидаем выполнения всех задач
+                    Task.WaitAll(tasks.ToArray());
+
+                    // Применение настроек через DocumentProperties
+                    DocumentProperties(IntPtr.Zero, gPrinter, iPrinterName, gDevModeData, gPInfo.pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER | 983040);
+                }
+                catch (Exception e)
+                {
+                    // Логгирование ошибки
+                    return false;
+                }
+
+                Marshal.StructureToPtr(gPInfo, gPtrPrinterInfo, false);
+                gLastError = Marshal.GetLastWin32Error();
+                gNRet = Convert.ToInt16(SetPrinter(gPrinter, 2, gPtrPrinterInfo, 0));
+                Marshal.FreeHGlobal(gPtrPrinterInfo);
+
+                if (gNRet == 0)
+                {
+                    gLastError = Marshal.GetLastWin32Error();
+                }
+
+                if (gPrinter != IntPtr.Zero)
+                {
+                    ClosePrinter(gPrinter);
+                }
+
+                return Convert.ToBoolean(gNRet);
+            });
+        }
+
 
         public static bool ChangePrinterSettings(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, Dictionary<PropertyType, int> settingsList)
         {

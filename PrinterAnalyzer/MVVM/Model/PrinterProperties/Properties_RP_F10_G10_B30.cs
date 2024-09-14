@@ -1,6 +1,7 @@
 ﻿using PrinterAnalyzer.Enums;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
 {
@@ -54,6 +55,14 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
         {
             PrinterSettings.ChangePrinterSetting(PrinterName, ref statusAPI, property, id);
         }
+
+        public async Task ChangeParameterAsync(string PrinterName, SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType property, int id)
+        {
+            await PrinterSettings.ChangePrinterSettingAsync(PrinterName, statusAPI, property, id);
+        }
+
+
+
 
         public void ChangeParameters(string PrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, Dictionary<PropertyType, int> settingsList)
         {

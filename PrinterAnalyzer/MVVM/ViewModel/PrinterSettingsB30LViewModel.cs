@@ -3,6 +3,7 @@ using PrinterAnalyzer.MVVM.Model;
 using PrinterAnalyzer.MVVM.Model.PrinterProperties;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace PrinterAnalyzer.MVVM.ViewModel
@@ -487,7 +488,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         public PrinterSettingsB30LViewModel(ref Printer printer)
         {
             _printer = printer;
-            SpeedSpecValue = new RelayCommand(o => SpeedToSpec());
+            SpeedSpecValue = new RelayCommand(async o => await SpeedToSpecAsync());
             SpeedStandard = new RelayCommand(o => SpeedToStandard());
             SpeedQuality1 = new RelayCommand(o => SpeedToQuality1());
             SpeedQuality2 = new RelayCommand(o => SpeedToQuality2());
@@ -506,11 +507,12 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             CutPartialCutBetweenPages = new RelayCommand(o => SetPartialCutBetweenPages());
             Thread thread = new Thread(() =>
             {
-                while (true)
-                {
+                //while (true)
+                //{
+                    Thread.Sleep(3000);
                     GetChanges();
-                    Thread.Sleep(2000);
-                }
+                    //Thread.Sleep(2000);
+                //}
             });
             thread.IsBackground = true;
             thread.Start();
@@ -692,14 +694,24 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
             ChangeSpeedButtonColor(0);
         }
+        private async Task SpeedToSpecAsync()
+        {
+            // Асинхронный вызов ChangeParameterAsync
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
+
+            // Вызов синхронного метода для смены цвета кнопки
+            ChangeSpeedButtonColor(0);
+        }
+
+
         private void SpeedToStandard()
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
+            //PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
             ChangeSpeedButtonColor(1);
         }
         private void SpeedToQuality1()
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
+            //PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
             ChangeSpeedButtonColor(2);
         }
         private void SpeedToQuality2()
