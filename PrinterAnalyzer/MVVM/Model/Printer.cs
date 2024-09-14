@@ -831,7 +831,7 @@ namespace PrinterAnalyzer.MVVM.Model
                         var printer = this;
                         CurrentSettingsView = new PrinterSettingsF10G10ViewModel(ref printer);
                     }
-                    properties = new Properties_RP_F10_G10();
+                    properties = new Properties_RP_F10_G10_B30(PrinterType.SII_RP_F10);
                     break;
                 case PrinterType.SII_RP_E10:
                     if (viewModelInit)
@@ -847,7 +847,7 @@ namespace PrinterAnalyzer.MVVM.Model
                         var printer = this;
                         CurrentSettingsView =  new PrinterSettingsB30LViewModel(ref printer);
                     }
-                    properties = new Properties_RP_F10_G10();
+                    properties = new Properties_RP_F10_G10_B30(PrinterType.SII_MP_B30L);
                     break;
             }
         }

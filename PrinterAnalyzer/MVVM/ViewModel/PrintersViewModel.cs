@@ -68,9 +68,9 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         public static DllFuncE10 m_DLLFuncE10;
 
-        public static DllFuncF10G10 m_DLLFuncF10G10;
+        public static DllFuncF10G10B30 m_DLLFuncF10G10;
 
-        public static DllFuncF10G10 m_DLLFuncB30L;
+        public static DllFuncF10G10B30 m_DLLFuncB30L;
 
         public PrintersViewModel()
         {
@@ -82,12 +82,12 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             m_DLLFuncE10.myCallbackEvent += new DllFuncE10.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncE10.CallbackSamp(false);
             
-            m_DLLFuncF10G10 = new DllFuncF10G10();
-            m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
+            m_DLLFuncF10G10 = new DllFuncF10G10B30();
+            m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10B30.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncF10G10.CallbackStatusSamp(false);
             
-            m_DLLFuncB30L = new DllFuncF10G10();
-            m_DLLFuncB30L.MyCallbackEvent += new DllFuncF10G10.callbackEventHandler(AddMsgCBStatus);
+            m_DLLFuncB30L = new DllFuncF10G10B30();
+            m_DLLFuncB30L.MyCallbackEvent += new DllFuncF10G10B30.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncB30L.CallbackStatusSamp(false);
 
             CreatePrinterList();
@@ -230,7 +230,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                        // }
                         break;
                     case PrinterType.SII_RP_F10:
-                        (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
+                        (PrintersMainList[i].properties as Properties_RP_F10_G10_B30).CurrentProperties = m_DLLFuncF10G10.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
                         for (int j = 0; j < PrintersList.Count; j++)
                         {
                             if (PrintersMainList[i].Name == PrintersList[j].Name)
@@ -238,7 +238,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 PrintersList[j].properties = PrintersMainList[i].properties;
                             }
                         }
-                        NetworkData.GetInstance().SendDefaultSettings(PrinterType.SII_RP_F10, (PrintersMainList[i].properties as Properties_RP_F10_G10).GetDefaultPrinterSettings());
+                        NetworkData.GetInstance().SendDefaultSettings(PrinterType.SII_RP_F10, (PrintersMainList[i].properties as Properties_RP_F10_G10_B30).GetDefaultPrinterSettings());
                         if (NetworkData.GetInstance().GetCommands(PrinterType.SII_RP_F10).Result != "ok")
                         {
                             JObject jObject = JObject.Parse(NetworkData.GetInstance().GetCommands(PrinterType.SII_RP_F10).Result);
@@ -267,7 +267,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         {
                             NetworkData.GetInstance().CanPrintPage = 0;
                         }
-                        if ((PrintersMainList[i].properties as Properties_RP_F10_G10).ChangesDone)
+                        if ((PrintersMainList[i].properties as Properties_RP_F10_G10_B30).ChangesDone)
                         {
                             if(NetworkData.GetInstance().printersId.Count > 0 && NetworkData.GetInstance().printersId.ContainsKey(PrinterType.SII_RP_F10)) 
                             {
@@ -276,11 +276,11 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 NetworkData.GetInstance().SendInfoAboutChanges(PrinterType.SII_RP_F10, printersID);
                             }
                             else
-                                NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
+                                NetworkData.GetInstance().SendSettings(PrinterType.SII_RP_F10, (PrintersMainList[i].properties as Properties_RP_F10_G10_B30).CurrentProperties);
                         }
                         break;
                     case PrinterType.SII_MP_B30L:
-                        (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties = m_DLLFuncB30L.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
+                        (PrintersMainList[i].properties as Properties_RP_F10_G10_B30).CurrentProperties = m_DLLFuncB30L.GetCurrentPrinterSettings(PrintersMainList[i].properties, PrintersMainList[i].Name, PrintersMainList[i].printerType);
                         for (int j = 0; j < PrintersList.Count; j++)
                         {
                             if (PrintersMainList[i].Name == PrintersList[j].Name)
@@ -288,7 +288,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 PrintersList[j].properties = PrintersMainList[i].properties;
                             }
                         }
-                        NetworkData.GetInstance().SendDefaultSettings(PrinterType.SII_MP_B30L, (PrintersMainList[i].properties as Properties_RP_F10_G10).GetDefaultPrinterSettings());
+                        NetworkData.GetInstance().SendDefaultSettings(PrinterType.SII_MP_B30L, (PrintersMainList[i].properties as Properties_RP_F10_G10_B30).GetDefaultPrinterSettings());
                         if (NetworkData.GetInstance().GetCommands(PrinterType.SII_MP_B30L).Result != "ok")
                         {
                             JObject jObject = JObject.Parse(NetworkData.GetInstance().GetCommands(PrinterType.SII_MP_B30L).Result);
@@ -317,7 +317,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         {
                             NetworkData.GetInstance().CanPrintPage = 0;
                         }
-                        if ((PrintersMainList[i].properties as Properties_RP_F10_G10).ChangesDone)
+                        if ((PrintersMainList[i].properties as Properties_RP_F10_G10_B30).ChangesDone)
                         {
                             if (NetworkData.GetInstance().printersId.Count > 0 && NetworkData.GetInstance().printersId.ContainsKey(PrinterType.SII_MP_B30L))
                             {
@@ -326,7 +326,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                                 NetworkData.GetInstance().SendInfoAboutChanges(PrinterType.SII_MP_B30L, printersID);
                             }
                             else
-                                NetworkData.GetInstance().SendSettings(PrinterType.SII_MP_B30L, (PrintersMainList[i].properties as Properties_RP_F10_G10).CurrentProperties);
+                                NetworkData.GetInstance().SendSettings(PrinterType.SII_MP_B30L, (PrintersMainList[i].properties as Properties_RP_F10_G10_B30).CurrentProperties);
                         }
                         break;
                 }

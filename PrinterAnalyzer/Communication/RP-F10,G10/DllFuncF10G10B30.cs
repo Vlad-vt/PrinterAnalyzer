@@ -89,15 +89,25 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
         // Model dependent data class
         private DevInfoG10F10 m_DevInfo;
 
-        public DllFuncF10G10()
+        private PrinterType m_PrinterType;
+
+        public DllFuncF10G10(PrinterType printerType)
         {
             m_DevInfo = new DevInfoG10F10();
             m_StatusAPI = new StatusAPI();
+            m_PrinterType = printerType;
             m_StatusAPI.StatusCallback += new StatusAPI.StatusCallbackHandler(CbStatusFuncSampProc);
-            m_BarcodeScannerAPI = new BarcodeScannerAPI();
-            m_BarcodeScannerAPI.BarcodeDataCallback += new BarcodeScannerAPI.BarcodeDataCallbackHandler(CbBarcodeDataFuncSampProc);
+            try
+            {
+                m_BarcodeScannerAPI = new BarcodeScannerAPI();
+                m_BarcodeScannerAPI.BarcodeDataCallback += new BarcodeScannerAPI.BarcodeDataCallbackHandler(CbBarcodeDataFuncSampProc);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
+            }
         }
-
+        
         public Dictionary<PropertyType, int> GetCurrentPrinterSettings(Properties properties, string PrinterName, PrinterType printerType)
         {
             try
@@ -105,9 +115,9 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
                 switch (printerType)
                 {
                     case PrinterType.SII_RP_F10:
-                        return (properties as Properties_RP_F10_G10).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
+                        return (properties as Properties_RP_F10_G10_B30).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
                     case PrinterType.SII_MP_B30L:
-                        return (properties as Properties_RP_F10_G10).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
+                        return (properties as Properties_RP_F10_G10_B30).GetCurrentPrinterSettings(PrinterName, ref m_StatusAPI);
                     default:
                         return null;
                 }
@@ -125,10 +135,10 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
                 switch(printerType)
                 {
                     case PrinterType.SII_RP_F10:
-                        (properties as Properties_RP_F10_G10).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
+                        (properties as Properties_RP_F10_G10_B30).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
                         break;
                     case PrinterType .SII_MP_B30L:
-                        (properties as Properties_RP_F10_G10).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
+                        (properties as Properties_RP_F10_G10_B30).ChangeParameter(PrinterName, ref m_StatusAPI, propertyType, id);
                         break;
 
                 }
@@ -146,10 +156,10 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
                 switch (printerType)
                 {
                     case PrinterType.SII_RP_F10:
-                        (properties as Properties_RP_F10_G10).ChangeParameters(PrinterName, ref m_StatusAPI, settingsList);
+                        (properties as Properties_RP_F10_G10_B30).ChangeParameters(PrinterName, ref m_StatusAPI, settingsList);
                         break;
                     case PrinterType.SII_MP_B30L:
-                        (properties as Properties_RP_F10_G10).ChangeParameters(PrinterName, ref m_StatusAPI, settingsList);
+                        (properties as Properties_RP_F10_G10_B30).ChangeParameters(PrinterName, ref m_StatusAPI, settingsList);
                         break;
                 }
             }
@@ -166,7 +176,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             if (status == ASB.ASB_NO_RESPONSE)
             {
                 errorStatus.Add("* Printer is offline", "Yes");
-                MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10);
+                MyCallbackEvent(errorStatus, m_PrinterType);
                 return;
             }
             else
@@ -250,7 +260,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
                 errorStatus.Add("Battery", "Low");
 
 
-            MyCallbackEvent(errorStatus, PrinterType.SII_RP_F10);
+            MyCallbackEvent(errorStatus, m_PrinterType);
             return;
         }
 

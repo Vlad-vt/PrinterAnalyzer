@@ -509,7 +509,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         {
             try
             {
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Speed))
+                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Speed))
                 {
                     case 0:
                         App.Current.Dispatcher.Invoke(() =>
@@ -536,7 +536,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         });
                         break;
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
+                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
                 {
                     case 0:
                         App.Current.Dispatcher.Invoke(() =>
@@ -560,7 +560,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                         });
                         break;
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
+                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
                 {
                     case 0:
                         {
@@ -595,7 +595,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             break;
                         }
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
+                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
                 {
                     case 0:
                         {
@@ -616,7 +616,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                             break;
                         }
                 }
-                switch ((_printer.properties as Properties_RP_F10_G10).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
+                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
                 {
                     case 0:
                         {
