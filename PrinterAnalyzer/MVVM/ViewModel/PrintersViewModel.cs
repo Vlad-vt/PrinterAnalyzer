@@ -82,11 +82,11 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             m_DLLFuncE10.myCallbackEvent += new DllFuncE10.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncE10.CallbackSamp(false);
             
-            m_DLLFuncF10G10 = new DllFuncF10G10B30();
+            m_DLLFuncF10G10 = new DllFuncF10G10B30(PrinterType.SII_RP_F10);
             m_DLLFuncF10G10.MyCallbackEvent += new DllFuncF10G10B30.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncF10G10.CallbackStatusSamp(false);
-            
-            m_DLLFuncB30L = new DllFuncF10G10B30();
+
+            m_DLLFuncB30L = new DllFuncF10G10B30(PrinterType.SII_MP_B30L);
             m_DLLFuncB30L.MyCallbackEvent += new DllFuncF10G10B30.callbackEventHandler(AddMsgCBStatus);
             m_DLLFuncB30L.CallbackStatusSamp(false);
 

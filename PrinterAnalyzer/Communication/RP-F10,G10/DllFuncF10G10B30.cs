@@ -8,7 +8,7 @@ using System.Text;
 
 namespace PrinterAnalyzer.Communication.RP_F10_G10
 {
-    internal class DllFuncF10G10
+    internal class DllFuncF10G10B30
     {
         [DllImport("winspool.Drv", EntryPoint = "DocumentPropertiesW", SetLastError = true,
         ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
