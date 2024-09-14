@@ -10,48 +10,63 @@ namespace PrinterAnalyzer.MVVM.ViewModel
     internal class PrinterSettingsB30LViewModel : ObservableObject
     {
         #region Speed
-        public RelayCommand SpeedHigh { get; set; }
-        public RelayCommand SpeedMidQuality { get; set; }
-        public RelayCommand SpeedMidSilence { get; set; }
+        public RelayCommand SpeedSpecValue { get; set; }
+        public RelayCommand SpeedStandard { get; set; }
+        public RelayCommand SpeedQuality1 { get; set; }
+        public RelayCommand SpeedQuality2 { get; set; }
 
-        private string _speedHighColor;
-        public string SpeedHighColor
+        private string _speedSpecValueColor;
+        public string SpeedSpecValueColor
         {
             get
             {
-                return _speedHighColor;
+                return _speedSpecValueColor;
             }
             set
             {
-                _speedHighColor = value;
+                _speedSpecValueColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _speedMidQualityColor;
-        public string SpeedMidQualityColor
+        private string _speedStandardColor;
+        public string SpeedStandardColor
         {
             get
             {
-                return _speedMidQualityColor;
+                return _speedStandardColor;
             }
             set
             {
-                _speedMidQualityColor = value;
+                _speedStandardColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _speedMidSilenceColor;
-        public string SpeedMidSilenceColor
+        private string _speedQuality1Color;
+        public string SpeedQuality1Color
         {
             get
             {
-                return _speedMidSilenceColor;
+                return _speedQuality1Color;
             }
             set
             {
-                _speedMidSilenceColor = value;
+                _speedQuality1Color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _speedQuality2Color;
+        public string SpeedQuality2Color
+        {
+            get
+            {
+                return _speedQuality2Color;
+            }
+            set
+            {
+                _speedQuality2Color = value;
                 OnPropertyChanged();
             }
         }
@@ -472,9 +487,10 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         public PrinterSettingsB30LViewModel(ref Printer printer)
         {
             _printer = printer;
-            SpeedHigh = new RelayCommand(o => SpeedToHigh());
-            SpeedMidQuality = new RelayCommand(o => SpeedToMidQuality());
-            SpeedMidSilence = new RelayCommand(o => SpeedToMidSilence());
+            SpeedSpecValue = new RelayCommand(o => SpeedToHigh());
+            SpeedStandard = new RelayCommand(o => SpeedToMidQuality());
+            SpeedQuality1 = new RelayCommand(o => SpeedToMidSilence());
+            SpeedQuality2 = new RelayCommand(o => )
             MinMarg = new RelayCommand(o => MarginToMin());
             MinTopMarg = new RelayCommand(o => MarginToTopMin());
             MinBottomMarg = new RelayCommand(o => MarginBottomMin());
@@ -507,176 +523,166 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         {
             try
             {
-                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Speed))
+                App.Current.Dispatcher.Invoke(() =>
                 {
-                    case 0:
-                        App.Current.Dispatcher.Invoke(() =>
-                        {
-                            SpeedHighColor = "#f7941d";
-                            SpeedMidQualityColor = "#5e6366";
-                            SpeedMidSilenceColor = "#5e6366";
-                        });
-                        break;
-                    case 1:
-                        App.Current.Dispatcher.Invoke(() =>
-                        {
-                            SpeedHighColor = "#5e6366";
-                            SpeedMidQualityColor = "#f7941d";
-                            SpeedMidSilenceColor = "#5e6366";
-                        });
-                        break;
-                    case 3:
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            SpeedHighColor = "#5e6366";
-                            SpeedMidQualityColor = "#5e6366";
-                            SpeedMidSilenceColor = "#f7941d";
-                        });
-                        break;
-                }
-                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
-                {
-                    case 0:
-                        App.Current.Dispatcher.Invoke(() =>
-                        {
+                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Speed))
+                    {
+                        case 0:
+                            SpeedSpecValueColor = "#f7941d";
+                            SpeedStandardColor = "#5e6366";
+                            SpeedQuality1Color = "#5e6366";
+                            SpeedQuality2Color = "#5e6366";
+                            break;
+                        case 1:
+                            SpeedSpecValueColor = "#5e6366";
+                            SpeedStandardColor = "#f7941d";
+                            SpeedQuality1Color = "#5e6366";
+                            SpeedQuality2Color = "#5e6366";
+                            break;
+                        case 2:
+                            SpeedSpecValueColor = "#5e6366";
+                            SpeedStandardColor = "#5e6366";
+                            SpeedQuality1Color = "#f7941d";
+                            SpeedQuality2Color = "#5e6366";
+                            break;
+                        case 3:
+                            SpeedSpecValueColor = "#5e6366";
+                            SpeedStandardColor = "#5e6366";
+                            SpeedQuality1Color = "#5e6366";
+                            SpeedQuality2Color = "#f7941d";
+                            break;
+                    }
+                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
+                    {
+                        case 0:
                             DirectionForwardColor = "#f7941d";
                             DirectionBackwardColor = "#5e6366";
-                        });
-                        break;
-                    case 1:
-                        App.Current.Dispatcher.Invoke(() =>
-                        {
+                            break;
+                        case 1:
                             DirectionForwardColor = "#5e6366";
                             DirectionBackwardColor = "#f7941d";
-                        });
-                        break;
-                    case 3:
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
+                            break;
+                        case 3:
                             DirectionForwardColor = "#5e6366";
                             DirectionBackwardColor = "#f7941d";
-                        });
-                        break;
-                }
-                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
-                {
-                    case 0:
-                        {
+                            break;
+                    }
+                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
+                    {
+                        case 0:
                             MinMargColor = "#f7941d";
                             MinTopMargColor = "#5e6366";
                             MinBottomMargColor = "#5e6366";
                             MaxMargColor = "#5e6366";
                             break;
-                        }
-                    case 1:
-                        {
+
+                        case 1:
                             MinMargColor = "#5e6366";
                             MinTopMargColor = "#f7941d";
                             MinBottomMargColor = "#5e6366";
                             MaxMargColor = "#5e6366";
                             break;
-                        }
-                    case 2:
-                        {
+
+                        case 2:
                             MinMargColor = "#5e6366";
                             MinTopMargColor = "#5e6366";
                             MinBottomMargColor = "#f7941d";
                             MaxMargColor = "#5e6366";
                             break;
-                        }
-                    case 3:
-                        {
+
+                        case 3:
                             MinMargColor = "#5e6366";
                             MinTopMargColor = "#5e6366";
                             MinBottomMargColor = "#5e6366";
                             MaxMargColor = "#f7941d";
                             break;
-                        }
-                }
-                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
-                {
-                    case 0:
-                        {
-                            FeedEnabledColor = "#f7941d";
-                            FeedDisabledColor = "#5e6366";
-                            break;
-                        }
-                    case 1:
-                        {
-                            FeedEnabledColor = "#5e6366";
-                            FeedDisabledColor = "#f7941d";
-                            break;
-                        }
-                    case 3:
-                        {
-                            FeedEnabledColor = "#5e6366";
-                            FeedDisabledColor = "#f7941d";
-                            break;
-                        }
-                }
-                switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
-                {
-                    case 0:
-                        {
-                            CutNoCutColor = "#f7941d";
-                            CutFullCutByJobColor = "#5e6366";
-                            CutPartialCutByJobsColor = "#5e6366";
-                            CutFullCutByPageColor = "#5e6366";
-                            CutPartialCutByPageColor = "#5e6366";
-                            CutPartialCutBetweenPagesColor = "#5e6366";
-                            break;
-                        }
-                    case 1:
-                        {
-                            CutNoCutColor = "#5e6366";
-                            CutFullCutByJobColor = "#f7941d";
-                            CutPartialCutByJobsColor = "#5e6366";
-                            CutFullCutByPageColor = "#5e6366";
-                            CutPartialCutByPageColor = "#5e6366";
-                            CutPartialCutBetweenPagesColor = "#5e6366";
-                            break;
-                        }
-                    case 2:
-                        {
-                            CutNoCutColor = "#5e6366";
-                            CutFullCutByJobColor = "#5e6366";
-                            CutPartialCutByJobsColor = "#f7941d";
-                            CutFullCutByPageColor = "#5e6366";
-                            CutPartialCutByPageColor = "#5e6366";
-                            CutPartialCutBetweenPagesColor = "#5e6366";
-                            break;
-                        }
-                    case 3:
-                        {
-                            CutNoCutColor = "#5e6366";
-                            CutFullCutByJobColor = "#5e6366";
-                            CutPartialCutByJobsColor = "#5e6366";
-                            CutFullCutByPageColor = "#f7941d";
-                            CutPartialCutByPageColor = "#5e6366";
-                            CutPartialCutBetweenPagesColor = "#5e6366";
-                            break;
-                        }
-                    case 4:
-                        {
-                            CutNoCutColor = "#5e6366";
-                            CutFullCutByJobColor = "#5e6366";
-                            CutPartialCutByJobsColor = "#5e6366";
-                            CutFullCutByPageColor = "#5e6366";
-                            CutPartialCutByPageColor = "#f7941d";
-                            CutPartialCutBetweenPagesColor = "#5e6366";
-                            break;
-                        }
-                    case 5:
-                        {
-                            CutNoCutColor = "#5e6366";
-                            CutFullCutByJobColor = "#5e6366";
-                            CutPartialCutByJobsColor = "#5e6366";
-                            CutFullCutByPageColor = "#5e6366";
-                            CutPartialCutByPageColor = "#5e6366";
-                            CutPartialCutBetweenPagesColor = "#f7941d";
-                            break;
-                        }
-                }
+
+                    }
+                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
+                    {
+                        case 0:
+                            {
+                                FeedEnabledColor = "#f7941d";
+                                FeedDisabledColor = "#5e6366";
+                                break;
+                            }
+                        case 1:
+                            {
+                                FeedEnabledColor = "#5e6366";
+                                FeedDisabledColor = "#f7941d";
+                                break;
+                            }
+                        case 3:
+                            {
+                                FeedEnabledColor = "#5e6366";
+                                FeedDisabledColor = "#f7941d";
+                                break;
+                            }
+                    }
+                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
+                    {
+                        case 0:
+                            {
+                                CutNoCutColor = "#f7941d";
+                                CutFullCutByJobColor = "#5e6366";
+                                CutPartialCutByJobsColor = "#5e6366";
+                                CutFullCutByPageColor = "#5e6366";
+                                CutPartialCutByPageColor = "#5e6366";
+                                CutPartialCutBetweenPagesColor = "#5e6366";
+                                break;
+                            }
+                        case 1:
+                            {
+                                CutNoCutColor = "#5e6366";
+                                CutFullCutByJobColor = "#f7941d";
+                                CutPartialCutByJobsColor = "#5e6366";
+                                CutFullCutByPageColor = "#5e6366";
+                                CutPartialCutByPageColor = "#5e6366";
+                                CutPartialCutBetweenPagesColor = "#5e6366";
+                                break;
+                            }
+                        case 2:
+                            {
+                                CutNoCutColor = "#5e6366";
+                                CutFullCutByJobColor = "#5e6366";
+                                CutPartialCutByJobsColor = "#f7941d";
+                                CutFullCutByPageColor = "#5e6366";
+                                CutPartialCutByPageColor = "#5e6366";
+                                CutPartialCutBetweenPagesColor = "#5e6366";
+                                break;
+                            }
+                        case 3:
+                            {
+                                CutNoCutColor = "#5e6366";
+                                CutFullCutByJobColor = "#5e6366";
+                                CutPartialCutByJobsColor = "#5e6366";
+                                CutFullCutByPageColor = "#f7941d";
+                                CutPartialCutByPageColor = "#5e6366";
+                                CutPartialCutBetweenPagesColor = "#5e6366";
+                                break;
+                            }
+                        case 4:
+                            {
+                                CutNoCutColor = "#5e6366";
+                                CutFullCutByJobColor = "#5e6366";
+                                CutPartialCutByJobsColor = "#5e6366";
+                                CutFullCutByPageColor = "#5e6366";
+                                CutPartialCutByPageColor = "#f7941d";
+                                CutPartialCutBetweenPagesColor = "#5e6366";
+                                break;
+                            }
+                        case 5:
+                            {
+                                CutNoCutColor = "#5e6366";
+                                CutFullCutByJobColor = "#5e6366";
+                                CutPartialCutByJobsColor = "#5e6366";
+                                CutFullCutByPageColor = "#5e6366";
+                                CutPartialCutByPageColor = "#5e6366";
+                                CutPartialCutBetweenPagesColor = "#f7941d";
+                                break;
+                            }
+                    }
+                });
             }
             catch { }
         }
@@ -684,19 +690,24 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
 
         #region Speed Commands
-        private void SpeedToHigh()
+        private void SpeedToSpec()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10, Model.PrinterProperties.PropertyType.Speed, 0);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
             ChangeSpeedButtonColor(0);
         }
-        private void SpeedToMidQuality()
+        private void SpeedToStandard()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10, Model.PrinterProperties.PropertyType.Speed, 1);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
             ChangeSpeedButtonColor(1);
         }
-        private void SpeedToMidSilence()
+        private void SpeedToQuality1()
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_RP_F10, Model.PrinterProperties.PropertyType.Speed, 3);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
+            ChangeSpeedButtonColor(2);
+        }
+        private void SpeedToQuality2()
+        {
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 3);
             ChangeSpeedButtonColor(2);
         }
         private void ChangeSpeedButtonColor(int id)
@@ -704,19 +715,28 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             switch (id)
             {
                 case 0:
-                    SpeedHighColor = "#f7941d";
-                    SpeedMidQualityColor = "#5e6366";
-                    SpeedMidSilenceColor = "#5e6366";
+                    SpeedSpecValueColor = "#f7941d";
+                    SpeedStandardColor = "#5e6366";
+                    SpeedQuality1Color = "#5e6366";
+                    SpeedQuality2Color = "#5e6366";
                     break;
                 case 1:
-                    SpeedHighColor = "#5e6366";
-                    SpeedMidQualityColor = "#f7941d";
-                    SpeedMidSilenceColor = "#5e6366";
+                    SpeedSpecValueColor = "#5e6366";
+                    SpeedStandardColor = "#f7941d";
+                    SpeedQuality1Color = "#5e6366";
+                    SpeedQuality2Color = "#5e6366";
                     break;
                 case 2:
-                    SpeedHighColor = "#5e6366";
-                    SpeedMidQualityColor = "#5e6366";
-                    SpeedMidSilenceColor = "#f7941d";
+                    SpeedSpecValueColor = "#5e6366";
+                    SpeedStandardColor = "#5e6366";
+                    SpeedQuality1Color = "#f7941d";
+                    SpeedQuality2Color = "#5e6366";
+                    break;
+                case 3:
+                    SpeedSpecValueColor = "#5e6366";
+                    SpeedStandardColor = "#5e6366";
+                    SpeedQuality1Color = "#5e6366";
+                    SpeedQuality2Color = "#f7941d";
                     break;
             }
         }
