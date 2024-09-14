@@ -91,7 +91,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
 
         private PrinterType m_PrinterType;
 
-        public DllFuncF10G10(PrinterType printerType)
+        public DllFuncF10G10B30(PrinterType printerType)
         {
             m_DevInfo = new DevInfoG10F10();
             m_StatusAPI = new StatusAPI();
