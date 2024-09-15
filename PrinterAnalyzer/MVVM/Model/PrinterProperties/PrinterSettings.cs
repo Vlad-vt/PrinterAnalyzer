@@ -235,34 +235,52 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
                     switch (propertyType)
                     {
                         case PropertyType.Speed:
-                            if(statusAPI.GetProperty(gDevModeData, PropertyId.SPEED, bytes, ref size) == ErrorCode.SUCCESS);
-                            {
-                                properties.Add(PropertyType.Speed, BitConverter.ToInt32(bytes, 0));
-                            }
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.SPEED, bytes, ref size);
+                            properties.Add(PropertyType.Speed, BitConverter.ToInt32(bytes, 0));
                             break;
                         case PropertyType.Direction:
-                            statusAPI.GetProperty(gDevModeData, PropertyId.DIRECTION, bytes, ref size);
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.DIRECTION, bytes, ref size);
                             properties.Add(PropertyType.Direction, BitConverter.ToInt32(bytes, 0));
                             break;
                         case PropertyType.FeedToCutPosition:
-                            statusAPI.GetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, ref size);
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.CUT_FEED, bytes, ref size);
                             properties.Add(PropertyType.FeedToCutPosition, BitConverter.ToInt32(bytes, 0));
                             break;
                         case PropertyType.Margin:
-                            statusAPI.GetProperty(gDevModeData, PropertyId.MARGIN, bytes, ref size);
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.MARGIN, bytes, ref size);
                             properties.Add(PropertyType.Margin, BitConverter.ToInt32(bytes, 0));
                             break;
                         case PropertyType.PaperCut:
-                            statusAPI.GetProperty(gDevModeData, PropertyId.CUT, bytes, ref size);
+                            statusAPI.GetProperty(gDevModeData, 7, bytes, ref size);
                             properties.Add(PropertyType.PaperCut, BitConverter.ToInt32(bytes, 0));
                             break;
                         case PropertyType.Orientation:
-                            statusAPI.GetProperty(gDevModeData, PropertyId.ORIENTATION, bytes, ref size);
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.ORIENTATION, bytes, ref size);
                             properties.Add(PropertyType.Orientation, BitConverter.ToInt32(bytes, 0));
                             break;
                         case PropertyType.Watermark:
-                            statusAPI.GetProperty(gDevModeData, PropertyId.WATERMARK, bytes, ref size);
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.WATERMARK, bytes, ref size);
                             properties.Add(PropertyType.Watermark, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.Preset:
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.PRESET, bytes, ref size);
+                            properties.Add(PropertyType.Preset, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.MarkFeed:
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.MARK_FEED, bytes, ref size);
+                            properties.Add(PropertyType.MarkFeed, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.PageStartLogo:
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.START_PAGE_LOGO, bytes, ref size);
+                            properties.Add(PropertyType.PageStartLogo, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.PageEndLogo:
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.END_PAGE_LOGO, bytes, ref size);
+                            properties.Add(PropertyType.PageEndLogo, BitConverter.ToInt32(bytes, 0));
+                            break;
+                        case PropertyType.PaperSize:
+                            statusAPI.GetProperty(gDevModeData, (byte)PropertyId.PAPER_SIZE, bytes, ref size);
+                            properties.Add(PropertyType.PaperSize, BitConverter.ToInt32(bytes, 0));
                             break;
                     }
                 }
