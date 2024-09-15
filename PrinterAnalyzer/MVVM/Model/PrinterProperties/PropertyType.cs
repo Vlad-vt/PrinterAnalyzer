@@ -8,6 +8,11 @@
         Margin,
         Orientation, 
         PaperCut,
-        Watermark
+        PaperSize,
+        Watermark,
+        Preset,
+        MarkFeed,
+        PageStartLogo,
+        PageEndLogo
     }
 }

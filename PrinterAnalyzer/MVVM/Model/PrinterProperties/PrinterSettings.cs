@@ -559,6 +559,18 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
                         case PropertyType.Watermark:
                             tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.WATERMARK, bytes, size)));
                             break;
+                        case PropertyType.Preset:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.PRESET, bytes, size)));
+                            break;
+                        case PropertyType.PaperSize:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.PAPER_SIZE, bytes, size)));
+                            break;
+                        case PropertyType.PageStartLogo:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.START_PAGE_LOGO, bytes, size)));
+                            break;
+                        case PropertyType.PageEndLogo:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.END_PAGE_LOGO, bytes, size)));
+                            break;
                     }
 
                     // Ожидаем выполнения всех задач

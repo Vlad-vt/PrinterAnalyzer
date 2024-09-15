@@ -124,7 +124,93 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
                     });
                     break;
                 case PrinterType.SII_MP_B30L:
+                    PropertiesList.Add(PropertyType.Speed, new Dictionary<int, string>
+                    {  {0, "Standard" },
+                       {1, "Quality1" },
+                       {2, "Quality2" }
+                    });
+                    PropertiesList.Add(PropertyType.Margin, new Dictionary<int, string>
+                    { {0, "Minimum margin" },
+                      {1, "Minimum top margin" },
+                      {2, "Minimum bottom margin" },
+                      {3, "Maximum margin" }
+                    });
+                    PropertiesList.Add(PropertyType.FeedToCutPosition, new Dictionary<int, string>
+                    {
+                        {0, "Enabled" },
+                        {1, "Disabled" }
+                    });
+                    PropertiesList.Add(PropertyType.Watermark, new Dictionary<int, string>
+                    {
+                        {0, "None" },
+                        {1, "Upper Left" },
+                        {2, "Top Center" },
+                        {3 ,"Upper Right" },
+                        {4, "Left" },
+                        {5, "Center" },
+                        {6, "Right" },
+                        {7, "Lower Left" },
+                        {8, "Bottom Center" },
+                        {9, "Lower Right" }
+                    });
+                    PropertiesList.Add(PropertyType.Orientation, new Dictionary<int, string>
+                    {
+                        {0, "Portrait" },
+                        {1, "Landscape" }
+                    });
+                    PropertiesList.Add(PropertyType.Direction, new Dictionary<int, string>
+                    {
+                        {0, "Forward" },
+                        {1, "Backward" }
+                    });
+                    PropertiesList.Add(PropertyType.PageStartLogo, new Dictionary<int, string>
+                    {
+                        {0, "None" },
+                        {1, "Left" },
+                        {2, "Center" },
+                        {3, "Right" }
+                    });
+                    PropertiesList.Add(PropertyType.PageEndLogo, new Dictionary<int, string>
+                    {
+                        {0, "None" },
+                        {1, "Left" },
+                        {2, "Center" },
+                        {3, "Right" }
+                    });
+                    PropertiesList.Add(PropertyType.PaperSize, new Dictionary<int, string>
+                    {
+                        {0, "Letter" },
+                        {1, "A4" },
+                        {2, "80 mm (72×3276 mm)" },
+                        {3, "58 mm (54×3276 mm) *4" },
+                        {5, "76.2 mm (72×3276 mm) *4" },
+                        {6, "76.2 mm (70×3276 mm) *4" },
+                        {7, "58 mm (52×3276 mm) *4" }
+                    });
+                    PropertiesList.Add(PropertyType.Preset, new Dictionary<int, string>
+                    {
+                        {1, "58 mm Receipt Setting" },
+                        {3, "58 mm Mark or Gap Form Feed Setting" },
+                        {118, "58 mm Mark or Gap Form Feed Setting (Label)" },
+                        {5, "A4->58 mm Reduction Setting" },
+                        {152, "76.2 mm Receipt Setting" },
+                        {153, "76.2 mm Mark or Gap Form Feed Setting" },
+                        {154, "76.2 mm Mark or Gap Form Feed Setting (Label)" },
+                        {155, "A4->76.2 mm Reduction Setting" },
+                        {160, "80 mm Receipt Setting" },
+                        {161, "80 mm Mark or Gap Form Feed Setting" },
+                        {162, "80 mm Mark or Gap Form Feed Setting (Label)" },
+                        {163, "A4->80 mm Reduction Setting" },
+                        {255, "User setting" }
+                    });
+                    PropertiesList.Add(PropertyType.MarkFeed, new Dictionary<int, string>
+                    {
+                        {0, "No form feed" },
+                        {1, "By pages" },
+                        {2, "By jobs" }
+                    });
                     break;
+
             }
         }
     }

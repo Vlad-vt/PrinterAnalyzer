@@ -621,6 +621,197 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         }
         #endregion
 
+        #region Page Start Logo
+        public RelayCommand PageStartLogoNoneCommand { get; set; }
+        public RelayCommand PageStartLogoLeftCommand { get; set; }
+        public RelayCommand PageStartLogoCenterCommand { get; set; }
+        public RelayCommand PageStartLogoRightCommand { get; set; }
+
+        private string _pageStartLogoNoneColor;
+        public string PageStartLogoNoneColor
+        {
+            get { return _pageStartLogoNoneColor; }
+            set
+            {
+                _pageStartLogoNoneColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pageStartLogoLeftColor;
+        public string PageStartLogoLeftColor
+        {
+            get { return _pageStartLogoLeftColor; }
+            set
+            {
+                _pageStartLogoLeftColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pageStartLogoCenterColor;
+        public string PageStartLogoCenterColor
+        {
+            get { return _pageStartLogoCenterColor; }
+            set
+            {
+                _pageStartLogoCenterColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pageStartLogoRightColor;
+        public string PageStartLogoRightColor
+        {
+            get { return _pageStartLogoRightColor; }
+            set
+            {
+                _pageStartLogoRightColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Page End Logo
+        public RelayCommand PageEndLogoNoneCommand { get; set; }
+        public RelayCommand PageEndLogoLeftCommand { get; set; }
+        public RelayCommand PageEndLogoCenterCommand { get; set; }
+        public RelayCommand PageEndLogoRightCommand { get; set; }
+
+        private string _pageEndLogoNoneColor;
+        public string PageEndLogoNoneColor
+        {
+            get { return _pageEndLogoNoneColor; }
+            set
+            {
+                _pageEndLogoNoneColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pageEndLogoLeftColor;
+        public string PageEndLogoLeftColor
+        {
+            get { return _pageEndLogoLeftColor; }
+            set
+            {
+                _pageEndLogoLeftColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pageEndLogoCenterColor;
+        public string PageEndLogoCenterColor
+        {
+            get { return _pageEndLogoCenterColor; }
+            set
+            {
+                _pageEndLogoCenterColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pageEndLogoRightColor;
+        public string PageEndLogoRightColor
+        {
+            get { return _pageEndLogoRightColor; }
+            set
+            {
+                _pageEndLogoRightColor = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Paper Size
+        public RelayCommand LetterPS { get; set; }
+        public RelayCommand A4PS { get; set; }
+        public RelayCommand MM80PS { get; set; }
+        public RelayCommand MM5854PS { get; set; }
+        public RelayCommand MM7672PS { get; set; }
+        public RelayCommand MM7670PS { get; set; }
+        public RelayCommand MM5852PS { get; set; }
+
+        private string _letterPSColor;
+        public string LetterPSColor
+        {
+            get { return _letterPSColor; }
+            set
+            {
+                _letterPSColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _a4PSColor;
+        public string A4PSColor
+        {
+            get { return _a4PSColor; }
+            set
+            {
+                _a4PSColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _mm80Color;
+        public string MM80Color
+        {
+            get { return _mm80Color; }
+            set
+            {
+                _mm80Color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _mm5854Color;
+        public string MM5854Color
+        {
+            get { return _mm5854Color; }
+            set
+            {
+                _mm5854Color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _mm7672Color;
+        public string MM7672Color
+        {
+            get { return _mm7672Color; }
+            set
+            {
+                _mm7672Color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _mm7670Color;
+        public string MM7670Color
+        {
+            get { return _mm7670Color; }
+            set
+            {
+                _mm7670Color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _mm5852Color;
+        public string MM5852Color
+        {
+            get { return _mm5852Color; }
+            set
+            {
+                _mm5852Color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
         private Printer _printer;
 
         public PrinterSettingsB30LViewModel(ref Printer printer)
@@ -631,9 +822,9 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             {
                 //while (true)
                 //{
-                    Thread.Sleep(3000);
-                    GetChanges();
-                    //Thread.Sleep(2000);
+                Thread.Sleep(3000);
+                GetChanges();
+                //Thread.Sleep(2000);
                 //}
             });
             thread.IsBackground = true;
@@ -642,19 +833,95 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
         private void CommandsInit()
         {
-            SpeedStandard = new RelayCommand(async o => await SpeedToStandardAsync());
-            SpeedQuality1 = new RelayCommand(async o => await SpeedToQuality1Async());
-            SpeedQuality2 = new RelayCommand(async o => await SpeedToQuality2Async());
-            MinMarg = new RelayCommand(async o => await MarginToMinAsync());
-            MinTopMarg = new RelayCommand(async o => await MarginToTopMinAsync());
-            MinBottomMarg = new RelayCommand(async o => await MarginBottomMinAsync());
-            MaxMarg = new RelayCommand(async o => await MarginToMaxAsync());
-            DirectionForwardCommand = new RelayCommand(async o => await DirectionForwardAsync());
-            DirectionBackwardCommand = new RelayCommand(async o => await DirectionBackwardAsync());
-            OrientationLandscapeCommand = new RelayCommand(async o => await SetOrientationLandscapeAsync());
-            OrientationPortraitCommand = new RelayCommand(async o => await SetOrientationPortraitAsync());
-            FeedEnabled = new RelayCommand(async o => await EnableFeedAsync());
-            FeedDisabled = new RelayCommand(async o => await DisableFeedAsync());
+            #region Speed Commands Init
+
+            SpeedStandard = new RelayCommand(async o => await ChangeSpeedAsync(0));
+            SpeedQuality1 = new RelayCommand(async o => await ChangeSpeedAsync(1));
+            SpeedQuality2 = new RelayCommand(async o => await ChangeSpeedAsync(2));
+
+            #endregion
+
+            #region Margin Commands Init
+
+            MinMarg = new RelayCommand(async o => await ChangeMarginAsync(0));
+            MinTopMarg = new RelayCommand(async o => await ChangeMarginAsync(1));
+            MinBottomMarg = new RelayCommand(async o => await ChangeMarginAsync(2));
+            MaxMarg = new RelayCommand(async o => await ChangeMarginAsync(3));
+
+            #endregion
+
+            #region Direction Commands Init
+
+            DirectionForwardCommand = new RelayCommand(async o => await ChangeDirectionAsync(0));
+            DirectionBackwardCommand = new RelayCommand(async o => await ChangeDirectionAsync(1));
+
+            #endregion
+
+            #region Orientation Commands Init
+
+            OrientationPortraitCommand = new RelayCommand(async o => await SetOrientationAsync(0));
+            OrientationLandscapeCommand = new RelayCommand(async o => await SetOrientationAsync(1));
+
+            #endregion
+
+            #region Feed position commands init
+
+            FeedEnabled = new RelayCommand(async o => await ChangeFeedAsync(0));
+            FeedDisabled = new RelayCommand(async o => await ChangeFeedAsync(1));
+
+            #endregion
+
+            #region Preset commands init
+
+            MM58PresCommand = new RelayCommand(async o => await ChangePresetAsync(1));
+            MM58GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(3));
+            MM58GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(118));
+            A458PresCommand = new RelayCommand(async o => await ChangePresetAsync(5));
+            MM76ReseiptPresCommand = new RelayCommand(async o => await ChangePresetAsync(152));
+            MM76GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(153));
+            MM76GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(154));
+            A476PresCommand = new RelayCommand(async o => await ChangePresetAsync(155));
+            MM80ReseiptPresCommand = new RelayCommand(async o => await ChangePresetAsync(0));
+            MM80GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(2));
+            MM80GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(162));
+            A480PresCommand = new RelayCommand(async o => await ChangePresetAsync(4));
+            UserSettingPresCommand = new RelayCommand(async o => await ChangePresetAsync(6));
+
+            #endregion
+
+            #region Watermark Commands Init
+
+            WatermarkNoneCommand = new RelayCommand(async o => await ChangeWatermarkAsync(0));
+            WatermarkCenterCommand = new RelayCommand(async o => await ChangeWatermarkAsync(1));
+            WatermarkLeftCommand = new RelayCommand(async o => await ChangeWatermarkAsync(2));
+            WatermarkUpperLeftCommand = new RelayCommand(async o => await ChangeWatermarkAsync(3));
+            WatermarkTopCenterCommand = new RelayCommand(async o => await ChangeWatermarkAsync(4));
+            WatermarkUpperRightCommand = new RelayCommand(async o => await ChangeWatermarkAsync(5));
+            WatermarkRightCommand = new RelayCommand(async o => await ChangeWatermarkAsync(6));
+            WatermarkLowerLeftCommand = new RelayCommand(async o => await ChangeWatermarkAsync(7));
+            WatermarkBottomCenterCommand = new RelayCommand(async o => await ChangeWatermarkAsync(8));
+            WatermarkLowerRightCommand = new RelayCommand(async o => await ChangeWatermarkAsync(9));
+
+            #endregion
+
+            #region Preset Command Initialization
+
+            MM58PresCommand = new RelayCommand(async o => await ChangePresetAsync(1));
+            MM58GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(3));
+            MM58GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(118));
+            A458PresCommand = new RelayCommand(async o => await ChangePresetAsync(5));
+            MM76ReseiptPresCommand = new RelayCommand(async o => await ChangePresetAsync(152));
+            MM76GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(153));
+            MM76GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(154));
+            A476PresCommand = new RelayCommand(async o => await ChangePresetAsync(155));
+            MM80ReseiptPresCommand = new RelayCommand(async o => await ChangePresetAsync(0));
+            MM80GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(2));
+            MM80GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(162));
+            A480PresCommand = new RelayCommand(async o => await ChangePresetAsync(4));
+            UserSettingPresCommand = new RelayCommand(async o => await ChangePresetAsync(6));
+
+            #endregion
+
         }
 
         private void GetChanges()
@@ -819,59 +1086,35 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
 
         #region Speed Commands
-        private void SpeedToStandard()
+        private void ChangeSpeed(int speedId)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
-            ChangeSpeedButtonColor(0);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, speedId);
+            ChangeSpeedButtonColor(speedId);
         }
 
-        private async Task SpeedToStandardAsync()
+        private async Task ChangeSpeedAsync(int speedId)
         {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
-            ChangeSpeedButtonColor(0);
-        }
-
-        private void SpeedToQuality1()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
-            ChangeSpeedButtonColor(1);
-        }
-
-        private async Task SpeedToQuality1Async()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
-            ChangeSpeedButtonColor(1);
-        }
-
-        private void SpeedToQuality2()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
-            ChangeSpeedButtonColor(2);
-        }
-
-        private async Task SpeedToQuality2Async()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
-            ChangeSpeedButtonColor(2);
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, speedId);
+            ChangeSpeedButtonColor(speedId);
         }
 
         private void ChangeSpeedButtonColor(int id)
         {
+            // Set default color for all speed settings
+            SpeedStandardColor = "#5e6366";
+            SpeedQuality1Color = "#5e6366";
+            SpeedQuality2Color = "#5e6366";
+
+            // Highlight selected speed setting
             switch (id)
             {
                 case 0:
                     SpeedStandardColor = "#f7941d";
-                    SpeedQuality1Color = "#5e6366";
-                    SpeedQuality2Color = "#5e6366";
                     break;
                 case 1:
-                    SpeedStandardColor = "#5e6366";
                     SpeedQuality1Color = "#f7941d";
-                    SpeedQuality2Color = "#5e6366";
                     break;
                 case 2:
-                    SpeedStandardColor = "#5e6366";
-                    SpeedQuality1Color = "#5e6366";
                     SpeedQuality2Color = "#f7941d";
                     break;
             }
@@ -879,72 +1122,39 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #endregion
 
         #region Margin Commands
-        private void MarginToMin()
+        private void ChangeMargin(int marginId)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 0);
-            ChangeMarginButtonColor(0);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, marginId);
+            ChangeMarginButtonColor(marginId);
         }
-        private async Task MarginToMinAsync()
+
+        private async Task ChangeMarginAsync(int marginId)
         {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 0);
-            ChangeMarginButtonColor(0);
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, marginId);
+            ChangeMarginButtonColor(marginId);
         }
-        private void MarginToTopMin()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 1);
-            ChangeMarginButtonColor(1);
-        }
-        private async Task MarginToTopMinAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 1);
-            ChangeMarginButtonColor(1);
-        }
-        private void MarginBottomMin()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 2);
-            ChangeMarginButtonColor(2);
-        }
-        private async Task MarginBottomMinAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 2);
-            ChangeMarginButtonColor(2);
-        }
-        private void MarginToMax()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 3);
-            ChangeMarginButtonColor(3);
-        }
-        private async Task MarginToMaxAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Margin, 3);
-            ChangeMarginButtonColor(3);
-        }
+
         private void ChangeMarginButtonColor(int id)
         {
+            // Set default color for all margin settings
+            MinMargColor = "#5e6366";
+            MinTopMargColor = "#5e6366";
+            MinBottomMargColor = "#5e6366";
+            MaxMargColor = "#5e6366";
+
+            // Highlight selected margin setting
             switch (id)
             {
                 case 0:
                     MinMargColor = "#f7941d";
-                    MinTopMargColor = "#5e6366";
-                    MinBottomMargColor = "#5e6366";
-                    MaxMargColor = "#5e6366";
                     break;
                 case 1:
-                    MinMargColor = "#5e6366";
                     MinTopMargColor = "#f7941d";
-                    MinBottomMargColor = "#5e6366";
-                    MaxMargColor = "#5e6366";
                     break;
                 case 2:
-                    MinMargColor = "#5e6366";
-                    MinTopMargColor = "#5e6366";
                     MinBottomMargColor = "#f7941d";
-                    MaxMargColor = "#5e6366";
                     break;
                 case 3:
-                    MinMargColor = "#5e6366";
-                    MinTopMargColor = "#5e6366";
-                    MinBottomMargColor = "#5e6366";
                     MaxMargColor = "#f7941d";
                     break;
             }
@@ -952,36 +1162,31 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #endregion
 
         #region DirectionCommands
-        private void DirectionForward()
+        private void ChangeDirection(int directionId)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Direction, 0);
-            ChangeDirectionButtonColor(0);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Direction, directionId);
+            ChangeDirectionButtonColor(directionId);
         }
-        private async Task DirectionForwardAsync()
+
+        private async Task ChangeDirectionAsync(int directionId)
         {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Direction, 0);
-            ChangeDirectionButtonColor(0);
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Direction, directionId);
+            ChangeDirectionButtonColor(directionId);
         }
-        private void DirectionBackward()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Direction, 1);
-            ChangeDirectionButtonColor(1);
-        }
-        private async Task DirectionBackwardAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Direction, 1);
-            ChangeDirectionButtonColor(1);
-        }
+
         private void ChangeDirectionButtonColor(int id)
         {
+            // Set default color for all directions
+            DirectionForwardColor = "#5e6366";
+            DirectionBackwardColor = "#5e6366";
+
+            // Highlight selected direction
             switch (id)
             {
                 case 0:
                     DirectionForwardColor = "#f7941d";
-                    DirectionBackwardColor = "#5e6366";
                     break;
                 case 1:
-                    DirectionForwardColor = "#5e6366";
                     DirectionBackwardColor = "#f7941d";
                     break;
             }
@@ -989,199 +1194,374 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #endregion
 
         #region OrientationCommands
-        private void SetOrientationPortrait()
+        private void ChangeOrientation(int orientationId)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Orientation, 0);
-            ChangeOrientationButtonColor(0);
-        }
-        private async Task SetOrientationPortraitAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Orientation, 0);
-            ChangeOrientationButtonColor(0);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Orientation, orientationId);
+            ChangeOrientationButtonColor(orientationId);
         }
 
-        private void SetOrientationLandscape()
+        private async Task ChangeOrientationAsync(int orientationId)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Orientation, 1);
-            ChangeOrientationButtonColor(1);
-        }
-        private async Task SetOrientationLandscapeAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Orientation, 1);
-            ChangeOrientationButtonColor(1);
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Orientation, orientationId);
+            ChangeOrientationButtonColor(orientationId);
         }
 
         private void ChangeOrientationButtonColor(int id)
         {
+            // Set default color for all orientations
+            OrientationPortraitColor = "#5e6366";
+            OrientationLandscapeColor = "#5e6366";
+
+            // Highlight selected orientation
             switch (id)
             {
                 case 0:
                     OrientationPortraitColor = "#f7941d";
-                    OrientationLandscapeColor = "#5e6366";
                     break;
                 case 1:
-                    OrientationPortraitColor = "#5e6366";
                     OrientationLandscapeColor = "#f7941d";
                     break;
             }
         }
+
         #endregion
 
         #region FeedPosition Commands
-        private void EnableFeed()
+        private void ChangeFeed(int feedState)
         {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.FeedToCutPosition, 0);
-            ChangeFeedButtonColor(0);
+            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.FeedToCutPosition, feedState);
+            ChangeFeedButtonColor(feedState);
         }
-        private async Task EnableFeedAsync()
+
+        private async Task ChangeFeedAsync(int feedState)
         {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.FeedToCutPosition, 0);
-            ChangeFeedButtonColor(0);
+            await PrintersViewModel.m_DLLFuncF10G10.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.FeedToCutPosition, feedState);
+            ChangeFeedButtonColor(feedState);
         }
-        private void DisableFeed()
-        {
-            PrintersViewModel.m_DLLFuncF10G10.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.FeedToCutPosition, 1);
-            ChangeFeedButtonColor(1);
-        }
-        private async Task DisableFeedAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.FeedToCutPosition, 1);
-            ChangeFeedButtonColor(1);
-        }
+
         private void ChangeFeedButtonColor(int id)
         {
+            FeedEnabledColor = "#5e6366";
+            FeedDisabledColor = "#5e6366";
             switch (id)
             {
                 case 0:
                     FeedEnabledColor = "#f7941d";
-                    FeedDisabledColor = "#5e6366";
                     break;
                 case 1:
-                    FeedEnabledColor = "#5e6366";
                     FeedDisabledColor = "#f7941d";
                     break;
             }
         }
         #endregion
 
-        #region PaperCut
-        private void SetCutNoCut()
+        #region Paper Size Commands
+        private void ChangePaperSize(int sizeId)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 0);
-            ChangeCutButtonColor(0);
-        }
-        private async Task SetCutNoCutAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 0);
-            ChangeCutButtonColor(0);
-        }
-        private void SetFullCutByJob()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 1);
-            ChangeCutButtonColor(1);
-        }
-        private async Task SetFullCutByJobAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 1);
-            ChangeCutButtonColor(1);
-        }
-        private void SetPartialCutByJobs()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 2);
-            ChangeCutButtonColor(2);
-        }
-        private async Task SetPartialCutByJobsAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 2);
-            ChangeCutButtonColor(2);
-        }
-        private void SetFullCutByPage()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 3);
-            ChangeCutButtonColor(3);
-        }
-        private async Task SetFullCutByPageAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 3);
-            ChangeCutButtonColor(3);
-        }
-        private void SetPartialCutByPage()
-        {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 4);
-            ChangeCutButtonColor(4);
-        }
-        private async Task SetPartialCutByPageAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 4);
-            ChangeCutButtonColor(4);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperSize, sizeId);
+            ChangePaperSizeButtonColor(sizeId);
         }
 
-        private void SetPartialCutBetweenPages()
+        private async Task ChangePaperSizeAsync(int sizeId)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 5);
-            ChangeCutButtonColor(5);
-        }
-        private async Task SetPartialCutBetweenPagesAsync()
-        {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperCut, 5);
-            ChangeCutButtonColor(5);
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PaperSize, sizeId);
+            ChangePaperSizeButtonColor(sizeId);
         }
 
-        private void ChangeCutButtonColor(int id)
+        private void ChangePaperSizeButtonColor(int id)
         {
+            // Set default color for all paper sizes
+            LetterPSColor = "#5e6366";
+            A4PSColor = "#5e6366";
+            MM80Color = "#5e6366";
+            MM5854Color = "#5e6366";
+            MM7672Color = "#5e6366";
+            MM7670Color = "#5e6366";
+            MM5852Color = "#5e6366";
+
+            // Highlight selected paper size
             switch (id)
             {
                 case 0:
-                    CutNoCutColor = "#f7941d";
-                    CutFullCutByJobColor = "#5e6366";
-                    CutPartialCutByJobsColor = "#5e6366";
-                    CutFullCutByPageColor = "#5e6366";
-                    CutPartialCutByPageColor = "#5e6366";
-                    CutPartialCutBetweenPagesColor = "#5e6366";
+                    LetterPSColor = "#f7941d";
                     break;
                 case 1:
-                    CutNoCutColor = "#5e6366";
-                    CutFullCutByJobColor = "#f7941d";
-                    CutPartialCutByJobsColor = "#5e6366";
-                    CutFullCutByPageColor = "#5e6366";
-                    CutPartialCutByPageColor = "#5e6366";
-                    CutPartialCutBetweenPagesColor = "#5e6366";
+                    A4PSColor = "#f7941d";
                     break;
                 case 2:
-                    CutNoCutColor = "#5e6366";
-                    CutFullCutByJobColor = "#5e6366";
-                    CutPartialCutByJobsColor = "#f7941d";
-                    CutFullCutByPageColor = "#5e6366";
-                    CutPartialCutByPageColor = "#5e6366";
-                    CutPartialCutBetweenPagesColor = "#5e6366";
+                    MM80Color = "#f7941d";
                     break;
                 case 3:
-                    CutNoCutColor = "#5e6366";
-                    CutFullCutByJobColor = "#5e6366";
-                    CutPartialCutByJobsColor = "#5e6366";
-                    CutFullCutByPageColor = "#f7941d";
-                    CutPartialCutByPageColor = "#5e6366";
-                    CutPartialCutBetweenPagesColor = "#5e6366";
-                    break;
-                case 4:
-                    CutNoCutColor = "#5e6366";
-                    CutFullCutByJobColor = "#5e6366";
-                    CutPartialCutByJobsColor = "#5e6366";
-                    CutFullCutByPageColor = "#5e6366";
-                    CutPartialCutByPageColor = "#f7941d";
-                    CutPartialCutBetweenPagesColor = "#5e6366";
+                    MM5854Color = "#f7941d";
                     break;
                 case 5:
-                    CutNoCutColor = "#5e6366";
-                    CutFullCutByJobColor = "#5e6366";
-                    CutPartialCutByJobsColor = "#5e6366";
-                    CutFullCutByPageColor = "#5e6366";
-                    CutPartialCutByPageColor = "#5e6366";
-                    CutPartialCutBetweenPagesColor = "#f7941d";
+                    MM7672Color = "#f7941d";
                     break;
-
+                case 6:
+                    MM7670Color = "#f7941d";
+                    break;
+                case 7:
+                    MM5852Color = "#f7941d";
+                    break;
             }
         }
+        #endregion
+
+        #region Preset Commands
+        private void ChangePreset(int presetId)
+        {
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Preset, presetId);
+            ChangePresetButtonColor(presetId);
+        }
+
+        private async Task ChangePresetAsync(int presetId)
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Preset, presetId);
+            ChangePresetButtonColor(presetId);
+        }
+
+        private void ChangePresetButtonColor(int id)
+        {
+            // Set default color for all presets
+            MM58PresColor = "#5e6366";
+            MM58GapFormPresColor = "#5e6366";
+            MM58GapFormLabelPresColor = "#5e6366";
+            A458PresColor = "#5e6366";
+            MM76ReseiptPresColor = "#5e6366";
+            MM76GapFormPresColor = "#5e6366";
+            MM76GapFormLabelPresColor = "#5e6366";
+            A476PresColor = "#5e6366";
+            MM80ReseiptPresColor = "#5e6366";
+            MM80GapFormPresColor = "#5e6366";
+            MM80GapFormLabelPresColor = "#5e6366";
+            A480PresColor = "#5e6366";
+            UserSettingPresColor = "#5e6366";
+
+            // Highlight selected preset
+            switch (id)
+            {
+                case 1:   // 58 mm Receipt Setting
+                    MM58PresColor = "#f7941d";
+                    break;
+                case 3:   // 58 mm Mark or Gap Form Feed Setting
+                    MM58GapFormPresColor = "#f7941d";
+                    break;
+                case 118: // 58 mm Mark or Gap Form Feed Setting (Label)
+                    MM58GapFormLabelPresColor = "#f7941d";
+                    break;
+                case 5:   // A4->58 mm Reduction Setting
+                    A458PresColor = "#f7941d";
+                    break;
+                case 152: // 76.2 mm Receipt Setting
+                    MM76ReseiptPresColor = "#f7941d";
+                    break;
+                case 153: // 76.2 mm Mark or Gap Form Feed Setting
+                    MM76GapFormPresColor = "#f7941d";
+                    break;
+                case 154: // 76.2 mm Mark or Gap Form Feed Setting (Label)
+                    MM76GapFormLabelPresColor = "#f7941d";
+                    break;
+                case 155: // A4->76.2 mm Reduction Setting
+                    A476PresColor = "#f7941d";
+                    break;
+                case 0:   // 80 mm Receipt Setting
+                    MM80ReseiptPresColor = "#f7941d";
+                    break;
+                case 2:   // 80 mm Mark or Gap Form Feed Setting
+                    MM80GapFormPresColor = "#f7941d";
+                    break;
+                case 162: // 80 mm Mark or Gap Form Feed Setting (Label)
+                    MM80GapFormLabelPresColor = "#f7941d";
+                    break;
+                case 4:   // A4->80 mm Reduction Setting
+                    A480PresColor = "#f7941d";
+                    break;
+                case 6:   // User setting
+                    UserSettingPresColor = "#f7941d";
+                    break;
+            }
+        }
+        #endregion
+
+        #region Watermark Commands
+        private void ChangeWatermark(int watermarkId)
+        {
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Watermark, watermarkId);
+            ChangeWatermarkButtonColor(watermarkId);
+        }
+
+        private async Task ChangeWatermarkAsync(int watermarkId)
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Watermark, watermarkId);
+            ChangeWatermarkButtonColor(watermarkId);
+        }
+
+        private void ChangeWatermarkButtonColor(int id)
+        {
+            // Set default color for all watermarks
+            WatermarkNoneColor = "#5e6366";
+            WatermarkCenterColor = "#5e6366";
+            WatermarkLeftColor = "#5e6366";
+            WatermarkUpperLeftColor = "#5e6366";
+            WatermarkTopCenterColor = "#5e6366";
+            WatermarkUpperRightColor = "#5e6366";
+            WatermarkRightColor = "#5e6366";
+            WatermarkLowerLeftColor = "#5e6366";
+            WatermarkBottomCenterColor = "#5e6366";
+            WatermarkLowerRightColor = "#5e6366";
+
+            // Highlight selected watermark
+            switch (id)
+            {
+                case 0:
+                    WatermarkNoneColor = "#f7941d";
+                    break;
+                case 1:
+                    WatermarkCenterColor = "#f7941d";
+                    break;
+                case 2:
+                    WatermarkLeftColor = "#f7941d";
+                    break;
+                case 3:
+                    WatermarkUpperLeftColor = "#f7941d";
+                    break;
+                case 4:
+                    WatermarkTopCenterColor = "#f7941d";
+                    break;
+                case 5:
+                    WatermarkUpperRightColor = "#f7941d";
+                    break;
+                case 6:
+                    WatermarkRightColor = "#f7941d";
+                    break;
+                case 7:
+                    WatermarkLowerLeftColor = "#f7941d";
+                    break;
+                case 8:
+                    WatermarkBottomCenterColor = "#f7941d";
+                    break;
+                case 9:
+                    WatermarkLowerRightColor = "#f7941d";
+                    break;
+            }
+        }
+        #endregion
+
+        #region Page Start Logo
+        private void ChangePageStartLogo(int logoId)
+        {
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PageStartLogo, logoId);
+            ChangePageStartLogoButtonColor(logoId);
+        }
+
+        private async Task ChangePageStartLogoAsync(int logoId)
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PageStartLogo, logoId);
+            ChangePageStartLogoButtonColor(logoId);
+        }
+
+        private void ChangePageStartLogoButtonColor(int id)
+        {
+            // Set default color for all page start logos
+            PageStartLogoNoneColor = "#5e6366";
+            PageStartLogoLeftColor = "#5e6366";
+            PageStartLogoCenterColor = "#5e6366";
+            PageStartLogoRightColor = "#5e6366";
+
+            // Highlight selected page start logo
+            switch (id)
+            {
+                case 0:
+                    PageStartLogoNoneColor = "#f7941d";
+                    break;
+                case 1:
+                    PageStartLogoLeftColor = "#f7941d";
+                    break;
+                case 2:
+                    PageStartLogoCenterColor = "#f7941d";
+                    break;
+                case 3:
+                    PageStartLogoRightColor = "#f7941d";
+                    break;
+            }
+        }
+        #endregion
+
+        #region Page End Logo
+        private void ChangePageEndLogo(int logoId)
+        {
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PageEndLogo, logoId);
+            ChangePageEndLogoButtonColor(logoId);
+        }
+
+        private async Task ChangePageEndLogoAsync(int logoId)
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.PageEndLogo, logoId);
+            ChangePageEndLogoButtonColor(logoId);
+        }
+
+        private void ChangePageEndLogoButtonColor(int id)
+        {
+            // Set default color for all page end logos
+            PageEndLogoNoneColor = "#5e6366";
+            PageEndLogoLeftColor = "#5e6366";
+            PageEndLogoCenterColor = "#5e6366";
+            PageEndLogoRightColor = "#5e6366";
+
+            // Highlight selected page end logo
+            switch (id)
+            {
+                case 0:
+                    PageEndLogoNoneColor = "#f7941d";
+                    break;
+                case 1:
+                    PageEndLogoLeftColor = "#f7941d";
+                    break;
+                case 2:
+                    PageEndLogoCenterColor = "#f7941d";
+                    break;
+                case 3:
+                    PageEndLogoRightColor = "#f7941d";
+                    break;
+            }
+        }
+        #endregion
+
+        #region Marked paper form feed commands
+        private void ChangeMarkedPaperFormFeed(int feedType)
+        {
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.MarkedPaperFormFeed, feedType);
+            ChangeMarkedPaperFormFeedButtonColor(feedType);
+        }
+
+        private async Task ChangeMarkedPaperFormFeedAsync(int feedType)
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.MarkedPaperFormFeed, feedType);
+            ChangeMarkedPaperFormFeedButtonColor(feedType);
+        }
+
+        private void ChangeMarkedPaperFormFeedButtonColor(int id)
+        {
+            // Set default color for all feed types
+            NoFormFeedColor = "#5e6366";
+            ByPagesColor = "#5e6366";
+            ByJobColor = "#5e6366";
+
+            // Highlight selected feed type
+            switch (id)
+            {
+                case 0:
+                    NoFormFeedColor = "#f7941d";
+                    break;
+                case 1:
+                    ByPagesColor = "#f7941d";
+                    break;
+                case 2:
+                    ByJobColor = "#f7941d";
+                    break;
+            }
+        }
+
         #endregion
     }
 }

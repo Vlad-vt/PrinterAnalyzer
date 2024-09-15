@@ -128,10 +128,10 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding PageStartLogoNoneCommand}" Grid.Column="0" Grid.Row="0" Background="{Binding PageStartLogoNoneColor}" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding PageStartLogoLeftCommand}" Grid.Column="1" Grid.Row="0" Background="{Binding PageStartLogoLeftColor}" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding PageStartLogoCenterCommand}" Grid.Column="0" Grid.Row="1" Background="{Binding PageStartLogoCenterColor}" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding PageStartLogoRightCommand}" Grid.Column="1" Grid.Row="1" Background="{Binding PageStartLogoRightColor}" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -148,10 +148,10 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding PageEndLogoNoneCommand}" Grid.Column="0" Grid.Row="0" Background="{Binding PageEndLogoNoneColor}" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding PageEndLogoLeftCommand}" Grid.Column="1" Grid.Row="0" Background="{Binding PageEndLogoLeftColor}" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding PageEndLogoCenterCommand}" Grid.Column="0" Grid.Row="1" Background="{Binding PageEndLogoCenterColor}" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding PageEndLogoRightCommand}" Grid.Column="1" Grid.Row="1" Background="{Binding PageEndLogoRightColor}" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -186,16 +186,16 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0" BorderThickness="0" Content="Upper left" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1" BorderThickness="0" Content="Top center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1" BorderThickness="0" Content="Upper right" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="2" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="2" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="3" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="3" BorderThickness="0" Content="Lower left" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="4" BorderThickness="0" Content="Bottom center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="4" BorderThickness="0" Content="Lower right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkNoneCommand}" Grid.Column="0" Grid.Row="0" Background="{Binding WatermarkNoneColor}" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding WatermarkUpperLeftCommand}" Grid.Column="1" Grid.Row="0" Background="{Binding WatermarkUpperLeftColor}" BorderThickness="0" Content="Upper left" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding WatermarkTopCenterCommand}" Grid.Column="0" Grid.Row="1" Background="{Binding WatermarkTopCenterColor}" BorderThickness="0" Content="Top center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkUpperRightCommand}" Grid.Column="1" Grid.Row="1" Background="{Binding WatermarkUpperRightColor}" BorderThickness="0" Content="Upper right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkLeftCommand}" Grid.Column="0" Grid.Row="2" Background="{Binding WatermarkLeftColor}" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkCenterCommand}" Grid.Column="1" Grid.Row="2" Background="{Binding WatermarkCenterColor}" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkRightCommand}" Grid.Column="0" Grid.Row="3" Background="{Binding WatermarkRightColor}" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkLowerLeftCommand}" Grid.Column="1" Grid.Row="3" Background="{Binding WatermarkLowerLeftColor}" BorderThickness="0" Content="Lower left" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkBottomCenterCommand}" Grid.Column="0" Grid.Row="4" Background="{Binding WatermarkBottomCenterColor}" BorderThickness="0" Content="Bottom center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding WatermarkLowerRightCommand}" Grid.Column="1" Grid.Row="4" Background="{Binding WatermarkLowerRightColor}" BorderThickness="0" Content="Lower right" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,30">
