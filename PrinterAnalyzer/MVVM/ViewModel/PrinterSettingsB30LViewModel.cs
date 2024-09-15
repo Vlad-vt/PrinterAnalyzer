@@ -488,7 +488,10 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         public PrinterSettingsB30LViewModel(ref Printer printer)
         {
             _printer = printer;
-            SpeedSpecValue = new RelayCommand(async o => await SpeedToSpecAsync());
+            //SpeedSpecValue = new RelayCommand(async o => await SpeedToSpecAsync());
+            //SpeedStandard = new RelayCommand(async o => await SpeedToStandardAsync());
+            //SpeedQuality1 = new RelayCommand(async o => await SpeedToQuality1Async());
+            //SpeedQuality2 = new RelayCommand(async o => await SpeedToQuality2Async());
             SpeedStandard = new RelayCommand(o => SpeedToStandard());
             SpeedQuality1 = new RelayCommand(o => SpeedToQuality1());
             SpeedQuality2 = new RelayCommand(o => SpeedToQuality2());
@@ -689,60 +692,57 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
 
         #region Speed Commands
-        private void SpeedToSpec()
+        private void SpeedToStandard()
         {
             PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
             ChangeSpeedButtonColor(0);
         }
-        private async Task SpeedToSpecAsync()
-        {
-            // Асинхронный вызов ChangeParameterAsync
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
 
-            // Вызов синхронного метода для смены цвета кнопки
+        private async Task SpeedToStandardAsync()
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 0);
             ChangeSpeedButtonColor(0);
         }
 
-
-        private void SpeedToStandard()
-        {
-            //PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
-            ChangeSpeedButtonColor(1);
-        }
         private void SpeedToQuality1()
         {
-            //PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
-            ChangeSpeedButtonColor(2);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
+            ChangeSpeedButtonColor(1);
         }
+
+        private async Task SpeedToQuality1Async()
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 1);
+            ChangeSpeedButtonColor(1);
+        }
+
         private void SpeedToQuality2()
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 3);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
             ChangeSpeedButtonColor(2);
         }
+
+        private async Task SpeedToQuality2Async()
+        {
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.Speed, 2);
+            ChangeSpeedButtonColor(2);
+        }
+
         private void ChangeSpeedButtonColor(int id)
         {
             switch (id)
             {
                 case 0:
-                    SpeedSpecValueColor = "#f7941d";
-                    SpeedStandardColor = "#5e6366";
-                    SpeedQuality1Color = "#5e6366";
-                    SpeedQuality2Color = "#5e6366";
-                    break;
-                case 1:
-                    SpeedSpecValueColor = "#5e6366";
                     SpeedStandardColor = "#f7941d";
                     SpeedQuality1Color = "#5e6366";
                     SpeedQuality2Color = "#5e6366";
                     break;
-                case 2:
-                    SpeedSpecValueColor = "#5e6366";
+                case 1:
                     SpeedStandardColor = "#5e6366";
                     SpeedQuality1Color = "#f7941d";
                     SpeedQuality2Color = "#5e6366";
                     break;
-                case 3:
-                    SpeedSpecValueColor = "#5e6366";
+                case 2:
                     SpeedStandardColor = "#5e6366";
                     SpeedQuality1Color = "#5e6366";
                     SpeedQuality2Color = "#f7941d";

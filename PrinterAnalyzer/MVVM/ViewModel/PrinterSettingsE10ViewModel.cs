@@ -504,16 +504,16 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             CutPartialCutByJobs = new RelayCommand(o => SetPartialCutByJobs());
             CutPartialCutByPage = new RelayCommand(o => SetPartialCutByPage());
             CutPartialCutBetweenPages = new RelayCommand(o => SetPartialCutBetweenPages());
-            Thread thread = new Thread(() =>
-            {
-                while (true)
-                {
-                    GetChanges();
-                    Thread.Sleep(2000);
-                }
-            });
-            thread.IsBackground = true;
-            thread.Start();
+            //Thread thread = new Thread(() =>
+            //{
+             //   while (true)
+             //   {
+                   // GetChanges();
+                    //Thread.Sleep(2000);
+               // }
+           // });
+            //thread.IsBackground = true;
+            //thread.Start();
         } 
 
         private void GetChanges()
