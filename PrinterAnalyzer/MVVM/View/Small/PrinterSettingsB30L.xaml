@@ -62,23 +62,16 @@
                 <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <TextBlock Text="* Paper cut : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                    <TextBlock Text="* Marked paper form feed : " Foreground="#5e6366" Width="100" TextWrapping="WrapWithOverflow" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Command="{Binding CutNoCut}"  Background="{Binding  CutNoCutColor}" BorderThickness="0" Content="No cut" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0" Command="{Binding CutFullCutByJob}"  Background="{Binding  CutFullCutByJobColor}" BorderThickness="0" Content=" Full cut (by jobs)" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1" Command="{Binding CutPartialCutByJobs}"  Background="{Binding  CutPartialCutByJobsColor}" BorderThickness="0" Content="Partial cut (by jobs)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1" Command="{Binding CutFullCutByPage}"  Background="{Binding  CutFullCutByPageColor}" BorderThickness="0" Content="Full cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="2" Command="{Binding CutPartialCutByPage}"  Background="{Binding  CutPartialCutByPageColor}" BorderThickness="0" Content="Partial cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="2" Command="{Binding CutPartialCutBetweenPages}"  Background="{Binding  CutPartialCutBetweenPagesColor}" BorderThickness="0" Content="Partial cut (between pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Command="{Binding NoFormFeed}"  Background="{Binding  NoFormFeedColor}" BorderThickness="0" Content="No form feed" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="1" Command="{Binding ByPages}"  Background="{Binding  ByPagesColor}" BorderThickness="0" Content="By pages" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="2" Command="{Binding ByJobs}"  Background="{Binding  ByJobsColor}" BorderThickness="0" Content="By jobs" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -109,18 +102,43 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="Letter" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="A4" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="80 mm (72×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="58mm (54×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding LetterPS}" Background="{Binding LetterPSColor}" Grid.Column="0" Grid.Row="0" BorderThickness="0" Content="Letter" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding A4PS}" Background="{Binding A4PSColor}" Grid.Column="1" Grid.Row="0" BorderThickness="0" Content="A4" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding MM80PS}" Background="{Binding MM80Color}" Grid.Column="0" Grid.Row="1"   BorderThickness="0" Content="80 mm (72×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM5854PS}" Background="{Binding MM5854Color}" Grid.Column="1" Grid.Row="1"   BorderThickness="0" Content="58mm (54×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM7672PS}" Background="{Binding MM7672Color}" Grid.Column="0" Grid.Row="2"  BorderThickness="0" Content="76.2 mm (70×3276 mm) " Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM7670PS}" Background="{Binding MM7670Color}" Grid.Column="1" Grid.Row="2"   BorderThickness="0" Content="76.2 mm (70×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM5852PS}" Background="{Binding MM5852Color}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"  BorderThickness="0" Content="58 mm (52×3276 mm)" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
 
                 <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <TextBlock Text="* Print start logo : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                    <TextBlock Text="* Page start logo : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                    </Grid>
+                </StackPanel>
+
+                <Separator Height="1" Margin="60,20,130,10" Background="#e0e0e0"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="* Page end logo : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -178,6 +196,37 @@
                         <Button Grid.Column="1" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="Lower left" Width="auto" Height="30" Margin="10,15,10,0"/>
                         <Button Grid.Column="0" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="Bottom center" Width="auto" Height="30" Margin="10,15,10,0"/>
                         <Button Grid.Column="1" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="Lower right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,30">
+                    <TextBlock Text="* Preset : " Foreground="#5e6366" FontSize="14" Margin="7, 3.5, 0,0" FontWeight="SemiBold" Visibility="{Binding Path=VoltageVisibility,ElementName=PrinterCardf}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Command="{Binding MM58Pres}"  Grid.Column="0" Grid.Row="0" BorderThickness="0" Content="58 mm Receipt Setting" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="0"  BorderThickness="0" Content="58 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="1"  BorderThickness="0" Content="58 mm Mark or Gap Form FeedSetting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="1"  BorderThickness="0" Content="A4->58 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="76.2 mm Receipt Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="76.2 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="76.2 mm Mark or Gap Form Feed Setting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="A4->76.2 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="80 mm Receipt Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="80 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="5"  Background="#5e6366" BorderThickness="0" Content="80 mm Mark or Gap Form Feed Setting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="5"  Background="#5e6366" BorderThickness="0" Content="A4->80 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6"  Background="#5e6366" BorderThickness="0" Content="User Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
 

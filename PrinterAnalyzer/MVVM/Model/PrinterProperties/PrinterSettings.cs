@@ -556,6 +556,9 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
                         case PropertyType.FeedToCutPosition:
                             tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.CUT_FEED, bytes, size)));
                             break;
+                        case PropertyType.Watermark:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.WATERMARK, bytes, size)));
+                            break;
                     }
 
                     // Ожидаем выполнения всех задач
