@@ -545,7 +545,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region Marked paper form feed
         public RelayCommand NoFormFeed { get; set; }
         public RelayCommand ByPages { get; set; }
-        public RelayCommand ByJob { get; set; }
+        public RelayCommand ByJobs { get; set; }
 
         private string _noFormFeedColor;
         public string NoFormFeedColor
@@ -575,16 +575,16 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             }
         }
 
-        private string _byJobColor;
-        public string ByJobColor
+        private string _byJobsColor;
+        public string ByJobsColor
         {
             get
             {
-                return _byJobColor;
+                return _byJobsColor;
             }
             set
             {
-                _byJobColor = value;
+                _byJobsColor = value;
                 OnPropertyChanged();
             }
         }
@@ -909,7 +909,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
             NoFormFeed = new RelayCommand(async o => await ChangeMarkedPaperFormFeedAsync(0));
             ByPages = new RelayCommand(async o => await ChangeMarkedPaperFormFeedAsync(1));
-            ByJob = new RelayCommand(async o => await ChangeMarkedPaperFormFeedAsync(2));
+            ByJobs = new RelayCommand(async o => await ChangeMarkedPaperFormFeedAsync(2));
 
             #endregion
 
@@ -1549,7 +1549,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             // Set default color for all feed types
             NoFormFeedColor = "#5e6366";
             ByPagesColor = "#5e6366";
-            ByJobColor = "#5e6366";
+            ByJobsColor = "#5e6366";
 
             // Highlight selected feed type
             switch (id)
@@ -1561,7 +1561,7 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     ByPagesColor = "#f7941d";
                     break;
                 case 2:
-                    ByJobColor = "#f7941d";
+                    ByJobsColor = "#f7941d";
                     break;
             }
         }
