@@ -571,6 +571,9 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
                         case PropertyType.PageEndLogo:
                             tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.END_PAGE_LOGO, bytes, size)));
                             break;
+                        case PropertyType.MarkFeed:
+                            tasks.Add(Task.Run(() => statusAPI.SetProperty(gDevModeData, PropertyId.MARK_FEED, bytes, size)));
+                            break;
                     }
 
                     // Ожидаем выполнения всех задач

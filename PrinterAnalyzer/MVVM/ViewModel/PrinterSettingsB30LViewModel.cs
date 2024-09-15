@@ -1,7 +1,9 @@
 ﻿using PrinterAnalyzer.Core;
 using PrinterAnalyzer.MVVM.Model;
 using PrinterAnalyzer.MVVM.Model.PrinterProperties;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -904,21 +906,41 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
             #endregion
 
-            #region Preset Command Initialization
+            #region Marked Paper Form Feed Command Initialization
 
-            MM58PresCommand = new RelayCommand(async o => await ChangePresetAsync(1));
-            MM58GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(3));
-            MM58GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(118));
-            A458PresCommand = new RelayCommand(async o => await ChangePresetAsync(5));
-            MM76ReseiptPresCommand = new RelayCommand(async o => await ChangePresetAsync(152));
-            MM76GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(153));
-            MM76GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(154));
-            A476PresCommand = new RelayCommand(async o => await ChangePresetAsync(155));
-            MM80ReseiptPresCommand = new RelayCommand(async o => await ChangePresetAsync(0));
-            MM80GapFormPresCommand = new RelayCommand(async o => await ChangePresetAsync(2));
-            MM80GapFormLabelPresCommand = new RelayCommand(async o => await ChangePresetAsync(162));
-            A480PresCommand = new RelayCommand(async o => await ChangePresetAsync(4));
-            UserSettingPresCommand = new RelayCommand(async o => await ChangePresetAsync(6));
+            NoFormFeed = new RelayCommand(async o => await ChangeMarkedPaperFormFeedAsync(0));
+            ByPages = new RelayCommand(async o => await ChangeMarkedPaperFormFeedAsync(1));
+            ByJob = new RelayCommand(async o => await ChangeMarkedPaperFormFeedAsync(2));
+
+            #endregion
+
+            #region Page Start Logo Command Initialization
+
+            PageStartLogoNoneCommand = new RelayCommand(async o => await ChangePageStartLogoAsync(0));
+            PageStartLogoLeftCommand = new RelayCommand(async o => await ChangePageStartLogoAsync(1));
+            PageStartLogoCenterCommand = new RelayCommand(async o => await ChangePageStartLogoAsync(2));
+            PageStartLogoRightCommand = new RelayCommand(async o => await ChangePageStartLogoAsync(3));
+
+            #endregion
+
+            #region Page End Logo Command Initialization
+
+            PageEndLogoNoneCommand = new RelayCommand(async o => await ChangePageEndLogoAsync(0));
+            PageEndLogoLeftCommand = new RelayCommand(async o => await ChangePageEndLogoAsync(1));
+            PageEndLogoCenterCommand = new RelayCommand(async o => await ChangePageEndLogoAsync(2));
+            PageEndLogoRightCommand = new RelayCommand(async o => await ChangePageEndLogoAsync(3));
+
+            #endregion
+
+            #region Paper Size Command Initialization
+
+            LetterPS = new RelayCommand(async o => await ChangePaperSizeAsync(0));
+            A4PS = new RelayCommand(async o => await ChangePaperSizeAsync(1));
+            MM80PS = new RelayCommand(async o => await ChangePaperSizeAsync(2));
+            MM5854PS = new RelayCommand(async o => await ChangePaperSizeAsync(3));
+            MM7672PS = new RelayCommand(async o => await ChangePaperSizeAsync(5));
+            MM7670PS = new RelayCommand(async o => await ChangePaperSizeAsync(6));
+            MM5852PS = new RelayCommand(async o => await ChangePaperSizeAsync(7));
 
             #endregion
 
@@ -930,158 +952,297 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
-                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Speed))
+                    var properties = _printer.properties as Properties_RP_F10_G10_B30;
+                    var currentProperties = properties?.CurrentProperties;
+
+                    if (currentProperties == null) 
+                        return;
+
+                    #region Speed property
+                    try
+                    {
+                        ChangeSpeedButtonColor(currentProperties.GetValueOrDefault(PropertyType.Speed));
+                    }
+                    catch(Exception ex) 
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Direction property
+                    try
+                    {
+                        ChangeDirectionButtonColor(currentProperties.GetValueOrDefault(PropertyType.Direction));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Margin property
+                    try
+                    {
+                        ChangeMarginButtonColor(currentProperties.GetValueOrDefault(PropertyType.Margin));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Orientation property
+                    try
+                    {
+                        ChangeOrientationButtonColor(currentProperties.GetValueOrDefault(PropertyType.Orientation));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Watermark property
+                    try
+                    {
+                        ChangeWatermarkButtonColor(currentProperties.GetValueOrDefault(PropertyType.Watermark));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Preset property
+                    try
+                    {
+                        ChangePresetButtonColor(currentProperties.GetValueOrDefault(PropertyType.Preset));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region MarkFeed property
+                    try
+                    {
+                        ChangeMarkedPaperFormFeedButtonColor(currentProperties.GetValueOrDefault(PropertyType.MarkFeed));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Page start logo property
+                    try
+                    {
+                        ChangePageStartLogoButtonColor(currentProperties.GetValueOrDefault(PropertyType.PageStartLogo));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Page end logo property
+                    try
+                    {
+                        ChangePageEndLogoButtonColor(currentProperties.GetValueOrDefault(PropertyType.PageEndLogo));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Paper size property
+                    try
+                    {
+                        ChangePaperSizeButtonColor(currentProperties.GetValueOrDefault(PropertyType.PaperSize));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+                    #region Feed position property
+                    try
+                    {
+                        ChangeFeedButtonColor(currentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Speed property error: " + ex.Message);
+                    }
+                    #endregion
+
+
+                    // Speed
+                    switch (currentProperties.GetValueOrDefault(PropertyType.Speed))
                     {
                         case 0:
-                            SpeedStandardColor = "#f7941d";
-                            SpeedQuality1Color = "#5e6366";
-                            SpeedQuality2Color = "#5e6366";
+                            ChangeSpeedButtonColor(0);
                             break;
                         case 1:
-                            SpeedStandardColor = "#5e6366";
-                            SpeedQuality1Color = "#f7941d";
-                            SpeedQuality2Color = "#5e6366";
+                            ChangeSpeedButtonColor(1);
                             break;
                         case 2:
-                            SpeedStandardColor = "#5e6366";
-                            SpeedQuality1Color = "#5e6366";
-                            SpeedQuality2Color = "#f7941d";
+                            ChangeSpeedButtonColor(2);
                             break;
                     }
-                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Direction))
+
+                    // Direction
+                    switch (currentProperties.GetValueOrDefault(PropertyType.Direction))
                     {
                         case 0:
-                            DirectionForwardColor = "#f7941d";
-                            DirectionBackwardColor = "#5e6366";
+                            ChangeDirectionButtonColor(0);
                             break;
                         case 1:
-                            DirectionForwardColor = "#5e6366";
-                            DirectionBackwardColor = "#f7941d";
-                            break;
-                        case 3:
-                            DirectionForwardColor = "#5e6366";
-                            DirectionBackwardColor = "#f7941d";
+                            ChangeDirectionButtonColor(1);
                             break;
                     }
-                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.Margin))
+
+                    // Margin
+                    switch (currentProperties.GetValueOrDefault(PropertyType.Margin))
                     {
                         case 0:
-                            MinMargColor = "#f7941d";
-                            MinTopMargColor = "#5e6366";
-                            MinBottomMargColor = "#5e6366";
-                            MaxMargColor = "#5e6366";
+                            ChangeMarginButtonColor(0);
                             break;
-
                         case 1:
-                            MinMargColor = "#5e6366";
-                            MinTopMargColor = "#f7941d";
-                            MinBottomMargColor = "#5e6366";
-                            MaxMargColor = "#5e6366";
+                            ChangeMarginButtonColor(1);
                             break;
-
                         case 2:
-                            MinMargColor = "#5e6366";
-                            MinTopMargColor = "#5e6366";
-                            MinBottomMargColor = "#f7941d";
-                            MaxMargColor = "#5e6366";
+                            ChangeMarginButtonColor(2);
                             break;
-
                         case 3:
-                            MinMargColor = "#5e6366";
-                            MinTopMargColor = "#5e6366";
-                            MinBottomMargColor = "#5e6366";
-                            MaxMargColor = "#f7941d";
+                            ChangeMarginButtonColor(3);
                             break;
-
                     }
-                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
+
+                    // FeedToCutPosition
+                    switch (currentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
                     {
                         case 0:
-                            {
-                                FeedEnabledColor = "#f7941d";
-                                FeedDisabledColor = "#5e6366";
-                                break;
-                            }
+                            ChangeFeedButtonColor(0);
+                            break;
                         case 1:
-                            {
-                                FeedEnabledColor = "#5e6366";
-                                FeedDisabledColor = "#f7941d";
-                                break;
-                            }
-                        case 3:
-                            {
-                                FeedEnabledColor = "#5e6366";
-                                FeedDisabledColor = "#f7941d";
-                                break;
-                            }
+                            ChangeFeedButtonColor(1);
+                            break;
                     }
-                    switch ((_printer.properties as Properties_RP_F10_G10_B30).CurrentProperties.GetValueOrDefault(PropertyType.PaperCut))
+
+                    // Paper Size
+                    switch (currentProperties.GetValueOrDefault(PropertyType.PaperSize))
                     {
                         case 0:
-                            {
-                                CutNoCutColor = "#f7941d";
-                                CutFullCutByJobColor = "#5e6366";
-                                CutPartialCutByJobsColor = "#5e6366";
-                                CutFullCutByPageColor = "#5e6366";
-                                CutPartialCutByPageColor = "#5e6366";
-                                CutPartialCutBetweenPagesColor = "#5e6366";
-                                break;
-                            }
+                            ChangePaperSizeButtonColor(0);
+                            break;
                         case 1:
-                            {
-                                CutNoCutColor = "#5e6366";
-                                CutFullCutByJobColor = "#f7941d";
-                                CutPartialCutByJobsColor = "#5e6366";
-                                CutFullCutByPageColor = "#5e6366";
-                                CutPartialCutByPageColor = "#5e6366";
-                                CutPartialCutBetweenPagesColor = "#5e6366";
-                                break;
-                            }
+                            ChangePaperSizeButtonColor(1);
+                            break;
                         case 2:
-                            {
-                                CutNoCutColor = "#5e6366";
-                                CutFullCutByJobColor = "#5e6366";
-                                CutPartialCutByJobsColor = "#f7941d";
-                                CutFullCutByPageColor = "#5e6366";
-                                CutPartialCutByPageColor = "#5e6366";
-                                CutPartialCutBetweenPagesColor = "#5e6366";
-                                break;
-                            }
+                            ChangePaperSizeButtonColor(2);
+                            break;
                         case 3:
-                            {
-                                CutNoCutColor = "#5e6366";
-                                CutFullCutByJobColor = "#5e6366";
-                                CutPartialCutByJobsColor = "#5e6366";
-                                CutFullCutByPageColor = "#f7941d";
-                                CutPartialCutByPageColor = "#5e6366";
-                                CutPartialCutBetweenPagesColor = "#5e6366";
-                                break;
-                            }
-                        case 4:
-                            {
-                                CutNoCutColor = "#5e6366";
-                                CutFullCutByJobColor = "#5e6366";
-                                CutPartialCutByJobsColor = "#5e6366";
-                                CutFullCutByPageColor = "#5e6366";
-                                CutPartialCutByPageColor = "#f7941d";
-                                CutPartialCutBetweenPagesColor = "#5e6366";
-                                break;
-                            }
+                            ChangePaperSizeButtonColor(3);
+                            break;
                         case 5:
-                            {
-                                CutNoCutColor = "#5e6366";
-                                CutFullCutByJobColor = "#5e6366";
-                                CutPartialCutByJobsColor = "#5e6366";
-                                CutFullCutByPageColor = "#5e6366";
-                                CutPartialCutByPageColor = "#5e6366";
-                                CutPartialCutBetweenPagesColor = "#f7941d";
-                                break;
-                            }
+                            ChangePaperSizeButtonColor(5);
+                            break;
+                        case 6:
+                            ChangePaperSizeButtonColor(6);
+                            break;
+                        case 7:
+                            ChangePaperSizeButtonColor(7);
+                            break;
+                    }
+
+                    // Presets
+                    switch (currentProperties.GetValueOrDefault(PropertyType.Preset))
+                    {
+                        case 1:
+                        case 3:
+                        case 118:
+                        case 5:
+                        case 152:
+                        case 153:
+                        case 154:
+                        case 155:
+                        case 0:
+                        case 2:
+                        case 162:
+                        case 4:
+                        case 6:
+                            ChangePresetButtonColor(currentProperties.GetValueOrDefault(PropertyType.Preset));
+                            break;
+                    }
+
+                    // Watermark
+                    switch (currentProperties.GetValueOrDefault(PropertyType.Watermark))
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
+                        case 6:
+                            break;
+                        case 7:
+                            break;
+                        case 8:
+                            break;
+                        case 9:
+                            break;
+                    }
+
+                    // Page Start Logo
+                    switch (currentProperties.GetValueOrDefault(PropertyType.PageStartLogo))
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                            ChangePageStartLogoButtonColor(currentProperties.GetValueOrDefault(PropertyType.PageStartLogo));
+                            break;
+                    }
+
+                    // Page End Logo
+                    switch (currentProperties.GetValueOrDefault(PropertyType.PageEndLogo))
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                            ChangePageEndLogoButtonColor(currentProperties.GetValueOrDefault(PropertyType.PageEndLogo));
+                            break;
+                    }
+
+                    // Marked Paper Form Feed
+                    switch (currentProperties.GetValueOrDefault(PropertyType.MarkedPaperFormFeed))
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                            ChangeMarkedPaperFormFeedButtonColor(currentProperties.GetValueOrDefault(PropertyType.MarkedPaperFormFeed));
+                            break;
                     }
                 });
             }
-            catch { }
+            catch
+            {
+                // Handle exceptions as needed
+            }
         }
+
 
 
 
