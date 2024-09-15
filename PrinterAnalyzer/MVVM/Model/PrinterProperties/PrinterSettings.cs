@@ -392,7 +392,7 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             return Convert.ToBoolean(gNRet);
         }
 
-        public unsafe static bool ChangePrinterSetting(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)
+       /* public unsafe static bool ChangePrinterSetting(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)
         {
             #region DEVMODE Structure
             gDevMode = GetPrinterSettings(iPrinterName);
@@ -458,11 +458,11 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
             }
 
             return Convert.ToBoolean(gNRet);
-        }
+        }*/
 
 
 
-        /*public static bool ChangePrinterSetting(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)
+        public static bool ChangePrinterSetting(string iPrinterName, ref SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)
         {
             #region DEVMODE Structure
             gDevMode = GetPrinterSettings(iPrinterName);
@@ -515,7 +515,7 @@ namespace PrinterAnalyzer.MVVM.Model.PrinterProperties
                 ClosePrinter(gPrinter);
             }
             return Convert.ToBoolean(gNRet);
-        }*/
+        }
 
         public static async Task<bool> ChangePrinterSettingAsync(string iPrinterName, SII.SDK.PosPrinter.StatusAPI statusAPI, PropertyType propertyType, int id)
         {

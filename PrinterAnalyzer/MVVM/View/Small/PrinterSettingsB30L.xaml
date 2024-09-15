@@ -16,15 +16,11 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Button Command="{Binding SpeedSpecValue}" Grid.Column="0" Grid.Row="0" Background="{Binding SpeedSpecValueColor}" BorderThickness="0" Content="Specified Value" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Command="{Binding SpeedStandard}" Grid.Column="1" Grid.Row="0"  Background="{Binding SpeedStandardColor}" BorderThickness="0" Content="Standard" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Command="{Binding SpeedQuality1}" Grid.Column="0" Grid.Row="1"  Background="{Binding SpeedQuality1Color}" BorderThickness="0" Content="Quality 1" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Command="{Binding SpeedQuality2}" Grid.Column="1" Grid.Row="1"  Background="{Binding SpeedQuality2Color}" BorderThickness="0" Content="Quality 2" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding SpeedStandard}" Grid.Column="0"  Background="{Binding SpeedStandardColor}" BorderThickness="0" Content="Standard" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedQuality1}" Grid.Column="1"  Background="{Binding SpeedQuality1Color}" BorderThickness="0" Content="Quality 1" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding SpeedQuality2}" Grid.Column="2"  Background="{Binding SpeedQuality2Color}" BorderThickness="0" Content="Quality 2" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -77,12 +73,12 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="No cut" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content=" Full cut (by jobs)" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Partial cut (by jobs)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Full cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Partial cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Partial cut (between pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="0" Command="{Binding CutNoCut}"  Background="{Binding  CutNoCutColor}" BorderThickness="0" Content="No cut" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="0" Command="{Binding CutFullCutByJob}"  Background="{Binding  CutFullCutByJobColor}" BorderThickness="0" Content=" Full cut (by jobs)" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="1" Command="{Binding CutPartialCutByJobs}"  Background="{Binding  CutPartialCutByJobsColor}" BorderThickness="0" Content="Partial cut (by jobs)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="1" Command="{Binding CutFullCutByPage}"  Background="{Binding  CutFullCutByPageColor}" BorderThickness="0" Content="Full cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="2" Command="{Binding CutPartialCutByPage}"  Background="{Binding  CutPartialCutByPageColor}" BorderThickness="0" Content="Partial cut (by pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="2" Command="{Binding CutPartialCutBetweenPages}"  Background="{Binding  CutPartialCutBetweenPagesColor}" BorderThickness="0" Content="Partial cut (between pages)" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -96,8 +92,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="Enabled" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Disabled" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding FeedEnabled}"  Background="{Binding  FeedEnabledColor}" Grid.Column="0" BorderThickness="0" Content="Enabled" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding FeedDisabled}" Background="{Binding FeedDisabledColor}" Grid.Column="1" BorderThickness="0" Content="Disabled" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 
@@ -151,8 +147,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Background="#f7941d" BorderThickness="0" Content="Portrait" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Background="#5e6366" BorderThickness="0" Content="Landscape" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="0" Command="{Binding OrientationPortraitCommand}" Background="{Binding  OrientationPortraitColor}" BorderThickness="0" Content="Portrait" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="1" Command="{Binding OrientationLandscapeCommand}" Background="{Binding  OrientationLandscapeColor}" BorderThickness="0" Content="Landscape" Width="auto" Height="30" Margin="10,0,10,0"/>
                     </Grid>
                 </StackPanel>
 
