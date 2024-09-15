@@ -186,16 +186,16 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="0" Grid.Row="0" Background="#f7941d" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0"  Background="#5e6366" BorderThickness="0" Content="Upper left" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Top center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1"  Background="#5e6366" BorderThickness="0" Content="Upper right" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="Lower left" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="Bottom center" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="Lower right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="0" BorderThickness="0" Content="None" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="0" BorderThickness="0" Content="Upper left" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="1" BorderThickness="0" Content="Top center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="1" BorderThickness="0" Content="Upper right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="2" BorderThickness="0" Content="Left" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="2" BorderThickness="0" Content="Center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="3" BorderThickness="0" Content="Right" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="3" BorderThickness="0" Content="Lower left" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="0" Grid.Row="4" BorderThickness="0" Content="Bottom center" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Grid.Column="1" Grid.Row="4" BorderThickness="0" Content="Lower right" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,30">
@@ -214,19 +214,19 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Command="{Binding MM58Pres}"  Grid.Column="0" Grid.Row="0" BorderThickness="0" Content="58 mm Receipt Setting" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="0"  BorderThickness="0" Content="58 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,0,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="1"  BorderThickness="0" Content="58 mm Mark or Gap Form FeedSetting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="1"  BorderThickness="0" Content="A4->58 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="76.2 mm Receipt Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="2"  Background="#5e6366" BorderThickness="0" Content="76.2 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="76.2 mm Mark or Gap Form Feed Setting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="3"  Background="#5e6366" BorderThickness="0" Content="A4->76.2 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="80 mm Receipt Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="4"  Background="#5e6366" BorderThickness="0" Content="80 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.Row="5"  Background="#5e6366" BorderThickness="0" Content="80 mm Mark or Gap Form Feed Setting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="1" Grid.Row="5"  Background="#5e6366" BorderThickness="0" Content="A4->80 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
-                        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6"  Background="#5e6366" BorderThickness="0" Content="User Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM58PresCommand}" Background="{Binding MM58PresColor}"  Grid.Column="0" Grid.Row="0" BorderThickness="0" Content="58 mm Receipt Setting" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding MM58GapFormPresCommand}" Background="{Binding MM58GapFormPresColor}" Grid.Column="1" Grid.Row="0"  BorderThickness="0" Content="58 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,0,10,0"/>
+                        <Button Command="{Binding MM58GapFormLabelPresCommand}" Background="{Binding MM58GapFormLabelPresColor}" Grid.Column="0" Grid.Row="1"  BorderThickness="0" Content="58 mm Mark or Gap Form FeedSetting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding A458PresCommand}" Background="{Binding A458PresColor}" Grid.Column="1" Grid.Row="1"  BorderThickness="0" Content="A4->58 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM76ReseiptPresCommand}" Background="{Binding MM76ReseiptPresColor}" Grid.Column="0" Grid.Row="2"  BorderThickness="0" Content="76.2 mm Receipt Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM76GapFormPresCommand}" Background="{Binding MM76GapFormPresColor}" Grid.Column="1" Grid.Row="2"  BorderThickness="0" Content="76.2 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM76GapFormLabelPresCommand}" Background="{Binding MM76GapFormLabelPresColor}" Grid.Column="0" Grid.Row="3"  BorderThickness="0" Content="76.2 mm Mark or Gap Form Feed Setting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding A476PresCommand}" Background="{Binding A476PresColor}" Grid.Column="1" Grid.Row="3"  BorderThickness="0" Content="A4->76.2 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM80ReseiptPresCommand}" Background="{Binding MM80ReseiptPresColor}" Grid.Column="0" Grid.Row="4"  BorderThickness="0" Content="80 mm Receipt Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM80GapFormPresCommand}" Background="{Binding MM80GapFormPresColor}" Grid.Column="1" Grid.Row="4"  BorderThickness="0" Content="80 mm Mark or Gap Form Feed Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding MM80GapFormLabelPresCommand}" Background="{Binding MM80GapFormLabelPresColor}" Grid.Column="0" Grid.Row="5"  BorderThickness="0" Content="80 mm Mark or Gap Form Feed Setting (Label)" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding A480PresCommand}" Background="{Binding A480PresColor}" Grid.Column="1" Grid.Row="5"  BorderThickness="0" Content="A4->80 mm Reduction Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
+                        <Button Command="{Binding UserSettingPresCommand}" Background="{Binding UserSettingPresColor}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" BorderThickness="0" Content="User Setting" Width="auto" Height="30" Margin="10,15,10,0"/>
                     </Grid>
                 </StackPanel>
 

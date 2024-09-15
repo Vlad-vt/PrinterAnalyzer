@@ -342,94 +342,247 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         }
         #endregion
 
-        #region PaperCut
-        public RelayCommand CutNoCut { get; set; }
-        public RelayCommand CutFullCutByJob { get; set; }
-        public RelayCommand CutPartialCutByJobs { get; set; }
-        public RelayCommand CutFullCutByPage { get; set; }
-        public RelayCommand CutPartialCutByPage { get; set; }
-        public RelayCommand CutPartialCutBetweenPages { get; set; }
+        #region Preset
+        public RelayCommand MM58PresCommand { get; set; }
+        public RelayCommand MM58GapFormPresCommand { get; set; }
+        public RelayCommand MM58GapFormLabelPresCommand { get; set; }
+        public RelayCommand A458PresCommand { get; set; }
+        public RelayCommand MM76ReseiptPresCommand { get; set; }
+        public RelayCommand MM76GapFormPresCommand { get; set; }
+        public RelayCommand MM76GapFormLabelPresCommand { get; set; }
+        public RelayCommand A476PresCommand { get; set; }
+        public RelayCommand MM80ReseiptPresCommand { get; set; }
+        public RelayCommand MM80GapFormPresCommand { get; set; }
+        public RelayCommand MM80GapFormLabelPresCommand { get; set; }
+        public RelayCommand A480PresCommand { get; set; }
+        public RelayCommand UserSettingPresCommand { get; set; }
 
-        private string _cutNoCutColor;
-        public string CutNoCutColor
+        private string _MM58PresColor;
+        public string MM58PresColor
         {
             get
             {
-                return _cutNoCutColor;
+                return _MM58PresColor;
             }
             set
             {
-                _cutNoCutColor = value;
+                _MM58PresColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _cutFullCutByJobColor;
-        public string CutFullCutByJobColor
+        private string _MM58GapFormPresColor;
+        public string MM58GapFormPresColor
         {
             get
             {
-                return _cutFullCutByJobColor;
+                return _MM58GapFormPresColor;
             }
             set
             {
-                _cutFullCutByJobColor = value;
+                _MM58GapFormPresColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _cutPartialCutByJobsColor;
-        public string CutPartialCutByJobsColor
+        private string _MM58GapFormLabelPresColor;
+        public string MM58GapFormLabelPresColor
         {
             get
             {
-                return _cutPartialCutByJobsColor;
+                return _MM58GapFormLabelPresColor;
             }
             set
             {
-                _cutPartialCutByJobsColor = value;
+                _MM58GapFormLabelPresColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _cutFullCutByPageColor;
-        public string CutFullCutByPageColor
+        private string _A458PresColor;
+        public string A458PresColor
         {
             get
             {
-                return _cutFullCutByPageColor;
+                return _watermarkUpperLeftColor;
             }
             set
             {
-                _cutFullCutByPageColor = value;
+                _watermarkUpperLeftColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _cutPartialCutByPageColor;
-        public string CutPartialCutByPageColor
+        private string _MM76ReseiptPresColor;
+        public string MM76ReseiptPresColor
         {
             get
             {
-                return _cutPartialCutByPageColor;
+                return _MM76ReseiptPresColor;
             }
             set
             {
-                _cutPartialCutByPageColor = value;
+                _MM76ReseiptPresColor = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _cutPartialCutBetweenPagesColor;
-        public string CutPartialCutBetweenPagesColor
+        private string _MM76GapFormPresColor;
+        public string MM76GapFormPresColor
         {
             get
             {
-                return _cutPartialCutBetweenPagesColor;
+                return _MM76GapFormPresColor;
             }
             set
             {
-                _cutPartialCutBetweenPagesColor = value;
+                _MM76GapFormPresColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _MM76GapFormLabelPresColor;
+        public string MM76GapFormLabelPresColor
+        {
+            get
+            {
+                return _MM76GapFormLabelPresColor;
+            }
+            set
+            {
+                _MM76GapFormLabelPresColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _A476PresColor;
+        public string A476PresColor
+        {
+            get
+            {
+                return _A476PresColor;
+            }
+            set
+            {
+                _A476PresColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _MM80ReseiptPresColor;
+        public string MM80ReseiptPresColor
+        {
+            get
+            {
+                return _MM80ReseiptPresColor;
+            }
+            set
+            {
+                _MM80ReseiptPresColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _MM80GapFormPresColor;
+        public string MM80GapFormPresColor
+        {
+            get
+            {
+                return _MM80GapFormPresColor;
+            }
+            set
+            {
+                _MM80GapFormPresColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _MM80GapFormLabelPresColor;
+        public string MM80GapFormLabelPresColor
+        {
+            get
+            {
+                return _MM80GapFormLabelPresColor;
+            }
+            set
+            {
+                _MM80GapFormLabelPresColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _A480PresColor;
+        public string A480PresColor
+        {
+            get
+            {
+                return _A480PresColor;
+            }
+            set
+            {
+                _A480PresColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _UserSettingPresColor;
+        public string UserSettingPresColor
+        {
+            get
+            {
+                return _UserSettingPresColor;
+            }
+            set
+            {
+                _UserSettingPresColor = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Marked paper form feed
+        public RelayCommand NoFormFeed { get; set; }
+        public RelayCommand ByPages { get; set; }
+        public RelayCommand ByJob { get; set; }
+
+        private string _noFormFeedColor;
+        public string NoFormFeedColor
+        {
+            get
+            {
+                return _noFormFeedColor;
+            }
+            set
+            {
+                _noFormFeedColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _byPagesColor;
+        public string ByPagesColor
+        {
+            get
+            {
+                return _byPagesColor;
+            }
+            set
+            {
+                _byPagesColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _byJobColor;
+        public string ByJobColor
+        {
+            get
+            {
+                return _byJobColor;
+            }
+            set
+            {
+                _byJobColor = value;
                 OnPropertyChanged();
             }
         }
@@ -500,12 +653,6 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             DirectionBackwardCommand = new RelayCommand(async o => await DirectionBackwardAsync());
             OrientationLandscapeCommand = new RelayCommand(async o => await SetOrientationLandscapeAsync());
             OrientationPortraitCommand = new RelayCommand(async o => await SetOrientationPortraitAsync());
-            CutNoCut = new RelayCommand(async o => await SetCutNoCutAsync());
-            CutFullCutByPage = new RelayCommand(async o => await SetFullCutByPageAsync());
-            CutFullCutByJob = new RelayCommand(async o => await SetFullCutByJobAsync());
-            CutPartialCutByJobs = new RelayCommand(async o => await SetPartialCutByJobsAsync());
-            CutPartialCutByPage = new RelayCommand(async o => await SetPartialCutByPageAsync());
-            CutPartialCutBetweenPages = new RelayCommand(async o => await SetPartialCutBetweenPagesAsync());
             FeedEnabled = new RelayCommand(async o => await EnableFeedAsync());
             FeedDisabled = new RelayCommand(async o => await DisableFeedAsync());
         }
