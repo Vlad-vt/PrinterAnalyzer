@@ -861,8 +861,8 @@ namespace PrinterAnalyzer.MVVM.ViewModel
 
             #region Orientation Commands Init
 
-            OrientationPortraitCommand = new RelayCommand(async o => await SetOrientationAsync(0));
-            OrientationLandscapeCommand = new RelayCommand(async o => await SetOrientationAsync(1));
+            OrientationPortraitCommand = new RelayCommand(async o => await ChangeOrientationAsync(0));
+            OrientationLandscapeCommand = new RelayCommand(async o => await ChangeOrientationAsync(1));
 
             #endregion
 
@@ -1079,162 +1079,6 @@ namespace PrinterAnalyzer.MVVM.ViewModel
                     }
                     #endregion
 
-
-                    // Speed
-                    switch (currentProperties.GetValueOrDefault(PropertyType.Speed))
-                    {
-                        case 0:
-                            ChangeSpeedButtonColor(0);
-                            break;
-                        case 1:
-                            ChangeSpeedButtonColor(1);
-                            break;
-                        case 2:
-                            ChangeSpeedButtonColor(2);
-                            break;
-                    }
-
-                    // Direction
-                    switch (currentProperties.GetValueOrDefault(PropertyType.Direction))
-                    {
-                        case 0:
-                            ChangeDirectionButtonColor(0);
-                            break;
-                        case 1:
-                            ChangeDirectionButtonColor(1);
-                            break;
-                    }
-
-                    // Margin
-                    switch (currentProperties.GetValueOrDefault(PropertyType.Margin))
-                    {
-                        case 0:
-                            ChangeMarginButtonColor(0);
-                            break;
-                        case 1:
-                            ChangeMarginButtonColor(1);
-                            break;
-                        case 2:
-                            ChangeMarginButtonColor(2);
-                            break;
-                        case 3:
-                            ChangeMarginButtonColor(3);
-                            break;
-                    }
-
-                    // FeedToCutPosition
-                    switch (currentProperties.GetValueOrDefault(PropertyType.FeedToCutPosition))
-                    {
-                        case 0:
-                            ChangeFeedButtonColor(0);
-                            break;
-                        case 1:
-                            ChangeFeedButtonColor(1);
-                            break;
-                    }
-
-                    // Paper Size
-                    switch (currentProperties.GetValueOrDefault(PropertyType.PaperSize))
-                    {
-                        case 0:
-                            ChangePaperSizeButtonColor(0);
-                            break;
-                        case 1:
-                            ChangePaperSizeButtonColor(1);
-                            break;
-                        case 2:
-                            ChangePaperSizeButtonColor(2);
-                            break;
-                        case 3:
-                            ChangePaperSizeButtonColor(3);
-                            break;
-                        case 5:
-                            ChangePaperSizeButtonColor(5);
-                            break;
-                        case 6:
-                            ChangePaperSizeButtonColor(6);
-                            break;
-                        case 7:
-                            ChangePaperSizeButtonColor(7);
-                            break;
-                    }
-
-                    // Presets
-                    switch (currentProperties.GetValueOrDefault(PropertyType.Preset))
-                    {
-                        case 1:
-                        case 3:
-                        case 118:
-                        case 5:
-                        case 152:
-                        case 153:
-                        case 154:
-                        case 155:
-                        case 0:
-                        case 2:
-                        case 162:
-                        case 4:
-                        case 6:
-                            ChangePresetButtonColor(currentProperties.GetValueOrDefault(PropertyType.Preset));
-                            break;
-                    }
-
-                    // Watermark
-                    switch (currentProperties.GetValueOrDefault(PropertyType.Watermark))
-                    {
-                        case 0:
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            break;
-                        case 6:
-                            break;
-                        case 7:
-                            break;
-                        case 8:
-                            break;
-                        case 9:
-                            break;
-                    }
-
-                    // Page Start Logo
-                    switch (currentProperties.GetValueOrDefault(PropertyType.PageStartLogo))
-                    {
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                            ChangePageStartLogoButtonColor(currentProperties.GetValueOrDefault(PropertyType.PageStartLogo));
-                            break;
-                    }
-
-                    // Page End Logo
-                    switch (currentProperties.GetValueOrDefault(PropertyType.PageEndLogo))
-                    {
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                            ChangePageEndLogoButtonColor(currentProperties.GetValueOrDefault(PropertyType.PageEndLogo));
-                            break;
-                    }
-
-                    // Marked Paper Form Feed
-                    switch (currentProperties.GetValueOrDefault(PropertyType.MarkedPaperFormFeed))
-                    {
-                        case 0:
-                        case 1:
-                        case 2:
-                            ChangeMarkedPaperFormFeedButtonColor(currentProperties.GetValueOrDefault(PropertyType.MarkedPaperFormFeed));
-                            break;
-                    }
                 });
             }
             catch
@@ -1691,13 +1535,13 @@ namespace PrinterAnalyzer.MVVM.ViewModel
         #region Marked paper form feed commands
         private void ChangeMarkedPaperFormFeed(int feedType)
         {
-            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.MarkedPaperFormFeed, feedType);
+            PrintersViewModel.m_DLLFuncB30L.ChangeParameter(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.MarkFeed, feedType);
             ChangeMarkedPaperFormFeedButtonColor(feedType);
         }
 
         private async Task ChangeMarkedPaperFormFeedAsync(int feedType)
         {
-            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.MarkedPaperFormFeed, feedType);
+            await PrintersViewModel.m_DLLFuncB30L.ChangeParameterAsync(_printer.properties, _printer.Name, Enums.PrinterType.SII_MP_B30L, Model.PrinterProperties.PropertyType.MarkFeed, feedType);
             ChangeMarkedPaperFormFeedButtonColor(feedType);
         }
 
