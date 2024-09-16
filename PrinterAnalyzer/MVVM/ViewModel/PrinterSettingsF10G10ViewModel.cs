@@ -495,12 +495,11 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             SpeedMidSilenceColor = "#5e6366";
             Thread thread = new Thread(() =>
             {
-                while (true)
-                {
-                    Thread.Sleep(5000);
+                //while (true)
+                //{
+                    Thread.Sleep(1000);
                     GetChanges();
-                    Thread.Sleep(30000);
-                }
+                //}
             });
             thread.IsBackground = true;
             thread.Start();

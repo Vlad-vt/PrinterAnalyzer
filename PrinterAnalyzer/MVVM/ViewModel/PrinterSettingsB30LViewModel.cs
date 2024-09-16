@@ -822,12 +822,12 @@ namespace PrinterAnalyzer.MVVM.ViewModel
             CommandsInit();
             Thread thread = new Thread(() =>
             {
-                while (true)
-                {
-                    Thread.Sleep(5000);
+                //while (true)
+                //{
+                    Thread.Sleep(1000);
                     GetChanges();
-                    Thread.Sleep(30000);
-                }
+                    //Thread.Sleep(30000);
+                //}
             });
             thread.IsBackground = true;
             thread.Start();
