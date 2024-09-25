@@ -204,7 +204,7 @@ namespace PrinterAnalyzer.Communication.RP_F10_G10
             }
             else
                 errorStatus.Add("* Printer is offline", "No");
-
+          
             if (status == ASB.ASB_VP_ERR)
                 errorStatus.Add("* Voltage error : ", "Yes");
             else
